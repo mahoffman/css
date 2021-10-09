@@ -1,2 +1,3 @@
-# css
-Course materials for SOC10: Introduction to Computational Social Science at Stanford
+# Tutorials and course materials for SOC10: Introduction to Computational Social Science
+
+This GitHub repository includes the tutorials and course materials for SOC10: Introduction to Computational Social Science, an introductory course to computational social science theory and methods for undergraduates. The tutorials contained here are also published in Bookdown format at http://www.bookdown.org/markhoff/css. The code is in R. Please feel free to use any of the materials here for your own work or classes. If you see any errors or have any questions or suggestions, email me at markhoff@stanford.edu or make a pull request here on GitHub.
