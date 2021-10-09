@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5 Exploring and Visualizing Data | Introduction to Computational Social Science</title>
+  <meta name="description" content="5 Exploring and Visualizing Data | Introduction to Computational Social Science" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5 Exploring and Visualizing Data | Introduction to Computational Social Science" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5 Exploring and Visualizing Data | Introduction to Computational Social Science" />
+  
+  
+  
+
+<meta name="author" content="Mark Hoffman" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="r-basics.html"/>
+<link rel="next" href="surveys-and-survey-experiments-with-qualtrics.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="reading-list.html"><a href="reading-list.html"><i class="fa fa-check"></i><b>1</b> Reading List</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="reading-list.html"><a href="reading-list.html#readings-and-software"><i class="fa fa-check"></i><b>1.1</b> Readings and Software</a></li>
+<li class="chapter" data-level="1.2" data-path="reading-list.html"><a href="reading-list.html#course-outline"><i class="fa fa-check"></i><b>1.2</b> Course Outline</a></li>
+<li class="chapter" data-level="1.3" data-path="reading-list.html"><a href="reading-list.html#week-1-beg.-september-20th-introductions-lab-introduction-to-r"><i class="fa fa-check"></i><b>1.3</b> Week 1 (beg. September 20th): Introductions (Lab: Introduction to R)</a></li>
+<li class="chapter" data-level="1.4" data-path="reading-list.html"><a href="reading-list.html#week-2-beg.-september-27th-ethics-lab-surveys-and-survey-experiments"><i class="fa fa-check"></i><b>1.4</b> Week 2 (beg. September 27th): Ethics (Lab: Surveys and Survey Experiments)</a></li>
+<li class="chapter" data-level="1.5" data-path="reading-list.html"><a href="reading-list.html#week-3-beg.-october-4th-inequality-lab-collecting-data-online"><i class="fa fa-check"></i><b>1.5</b> Week 3 (beg. October 4th): Inequality (Lab: Collecting Data Online)</a></li>
+<li class="chapter" data-level="1.6" data-path="reading-list.html"><a href="reading-list.html#week-4-beg.-october-11th-polarization-lab-analyzing-text"><i class="fa fa-check"></i><b>1.6</b> Week 4 (beg. October 11th): Polarization (Lab: Analyzing Text)</a></li>
+<li class="chapter" data-level="1.7" data-path="reading-list.html"><a href="reading-list.html#week-5-beg.-october-18th-markets-lab-regression"><i class="fa fa-check"></i><b>1.7</b> Week 5 (beg. October 18th): Markets (Lab: Regression)</a></li>
+<li class="chapter" data-level="1.8" data-path="reading-list.html"><a href="reading-list.html#week-6-beg.-october-25th-discrimination-lab-machine-learning"><i class="fa fa-check"></i><b>1.8</b> Week 6 (beg. October 25th): Discrimination (Lab: Machine Learning)</a></li>
+<li class="chapter" data-level="1.9" data-path="reading-list.html"><a href="reading-list.html#week-7-beg.-november-1st-homophily-and-diffusion-lab-network-analysis"><i class="fa fa-check"></i><b>1.9</b> Week 7 (beg. November 1st): Homophily and Diffusion (Lab: Network Analysis)</a></li>
+<li class="chapter" data-level="1.10" data-path="reading-list.html"><a href="reading-list.html#week-8-beg.-november-8th-semantic-change-and-historical-meaning-lab-semantic-network-analysis"><i class="fa fa-check"></i><b>1.10</b> Week 8 (beg. November 8th): Semantic Change and Historical Meaning (Lab: Semantic Network Analysis)</a></li>
+<li class="chapter" data-level="1.11" data-path="reading-list.html"><a href="reading-list.html#week-9-beg.-november-15th-health-no-lab"><i class="fa fa-check"></i><b>1.11</b> Week 9 (beg. November 15th): Health (No Lab)</a></li>
+<li class="chapter" data-level="1.12" data-path="reading-list.html"><a href="reading-list.html#week-10-beg.-november-29th-group-presentations"><i class="fa fa-check"></i><b>1.12</b> Week 10 (beg. November 29th): Group Presentations</a></li>
+<li class="chapter" data-level="1.13" data-path="reading-list.html"><a href="reading-list.html#december-11th-final-papers-are-due."><i class="fa fa-check"></i><b>1.13</b> December 11th: Final papers are due.</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="installing-r-and-rstudio.html"><a href="installing-r-and-rstudio.html"><i class="fa fa-check"></i><b>2</b> Installing R and RStudio</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="installing-r-and-rstudio.html"><a href="installing-r-and-rstudio.html#downloading-and-installing-r"><i class="fa fa-check"></i><b>2.1</b> Downloading and Installing R</a></li>
+<li class="chapter" data-level="2.2" data-path="installing-r-and-rstudio.html"><a href="installing-r-and-rstudio.html#downloading-and-installing-rstudio"><i class="fa fa-check"></i><b>2.2</b> Downloading and Installing RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="tour-rstudio-with-udacity.html"><a href="tour-rstudio-with-udacity.html"><i class="fa fa-check"></i><b>3</b> Tour RStudio with Udacity</a></li>
+<li class="chapter" data-level="4" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>4</b> R Basics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="r-basics.html"><a href="r-basics.html#vectors"><i class="fa fa-check"></i><b>4.1</b> Vectors</a></li>
+<li class="chapter" data-level="4.2" data-path="r-basics.html"><a href="r-basics.html#loading-packages"><i class="fa fa-check"></i><b>4.2</b> Loading Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="exploring-and-visualizing-data.html"><a href="exploring-and-visualizing-data.html"><i class="fa fa-check"></i><b>5</b> Exploring and Visualizing Data</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="exploring-and-visualizing-data.html"><a href="exploring-and-visualizing-data.html#lab-assignment"><i class="fa fa-check"></i><b>5.1</b> Lab Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="surveys-and-survey-experiments-with-qualtrics.html"><a href="surveys-and-survey-experiments-with-qualtrics.html"><i class="fa fa-check"></i><b>6</b> Surveys and Survey Experiments with Qualtrics</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="surveys-and-survey-experiments-with-qualtrics.html"><a href="surveys-and-survey-experiments-with-qualtrics.html#creating-a-qualtrics-account"><i class="fa fa-check"></i><b>6.1</b> Creating a Qualtrics account</a></li>
+<li class="chapter" data-level="6.2" data-path="surveys-and-survey-experiments-with-qualtrics.html"><a href="surveys-and-survey-experiments-with-qualtrics.html#building-a-survey"><i class="fa fa-check"></i><b>6.2</b> Building a survey</a></li>
+<li class="chapter" data-level="6.3" data-path="surveys-and-survey-experiments-with-qualtrics.html"><a href="surveys-and-survey-experiments-with-qualtrics.html#survey-options"><i class="fa fa-check"></i><b>6.3</b> Survey options</a></li>
+<li class="chapter" data-level="6.4" data-path="surveys-and-survey-experiments-with-qualtrics.html"><a href="surveys-and-survey-experiments-with-qualtrics.html#a-quick-survey-experiment"><i class="fa fa-check"></i><b>6.4</b> A quick survey experiment</a></li>
+<li class="chapter" data-level="6.5" data-path="surveys-and-survey-experiments-with-qualtrics.html"><a href="surveys-and-survey-experiments-with-qualtrics.html#publish-and-distribute"><i class="fa fa-check"></i><b>6.5</b> Publish and Distribute</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="collecting-data-online.html"><a href="collecting-data-online.html"><i class="fa fa-check"></i><b>7</b> Collecting data online</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="collecting-data-online.html"><a href="collecting-data-online.html#scraping-the-web"><i class="fa fa-check"></i><b>7.1</b> Scraping the web</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html"><i class="fa fa-check"></i><b>8</b> Machine Learning I: Linear and Multiple Regression</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html#more-with-the-gss"><i class="fa fa-check"></i><b>8.1</b> More with the GSS</a></li>
+<li class="chapter" data-level="8.2" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html#how-regression-works"><i class="fa fa-check"></i><b>8.2</b> How regression works</a></li>
+<li class="chapter" data-level="8.3" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html#linear-regression-using-the-lm-function"><i class="fa fa-check"></i><b>8.3</b> Linear regression using the lm function</a></li>
+<li class="chapter" data-level="8.4" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html#prediction-and-prediction-errors"><i class="fa fa-check"></i><b>8.4</b> Prediction and prediction errors</a></li>
+<li class="chapter" data-level="8.5" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html#multiple-regression"><i class="fa fa-check"></i><b>8.5</b> Multiple Regression</a></li>
+<li class="chapter" data-level="8.6" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html#prediction"><i class="fa fa-check"></i><b>8.6</b> Prediction</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="machine-learning-with-caret.html"><a href="machine-learning-with-caret.html"><i class="fa fa-check"></i><b>9</b> Machine Learning with caret</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="machine-learning-with-caret.html"><a href="machine-learning-with-caret.html#the-data"><i class="fa fa-check"></i><b>9.1</b> The data</a></li>
+<li class="chapter" data-level="9.2" data-path="machine-learning-with-caret.html"><a href="machine-learning-with-caret.html#training-vs.-testing"><i class="fa fa-check"></i><b>9.2</b> Training vs. testing</a></li>
+<li class="chapter" data-level="9.3" data-path="machine-learning-with-caret.html"><a href="machine-learning-with-caret.html#creating-features"><i class="fa fa-check"></i><b>9.3</b> Creating features</a></li>
+<li class="chapter" data-level="9.4" data-path="machine-learning-with-caret.html"><a href="machine-learning-with-caret.html#constructing-a-model"><i class="fa fa-check"></i><b>9.4</b> Constructing a model</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="machine-learning-with-caret.html"><a href="machine-learning-with-caret.html#lab"><i class="fa fa-check"></i><b>9.4.1</b> LAB</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html"><i class="fa fa-check"></i><b>10</b> Social and Semantic Network Analysis</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#understanding-network-data-structures"><i class="fa fa-check"></i><b>10.1</b> Understanding network data structures</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#edge-lists"><i class="fa fa-check"></i><b>10.1.1</b> Edge lists</a></li>
+<li class="chapter" data-level="10.1.2" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#adjacency-matrices"><i class="fa fa-check"></i><b>10.1.2</b> Adjacency matrices</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#producing-a-skip-gram-matrix-for-semantic-network-analysis-and-embedding-models"><i class="fa fa-check"></i><b>10.2</b> Producing a skip-gram matrix for semantic network analysis and embedding models</a></li>
+<li class="chapter" data-level="10.3" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#from-data-to-networks"><i class="fa fa-check"></i><b>10.3</b> From data to networks</a></li>
+<li class="chapter" data-level="10.4" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#exploring-your-network"><i class="fa fa-check"></i><b>10.4</b> Exploring your network</a></li>
+<li class="chapter" data-level="10.5" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#the-basics-of-visualization"><i class="fa fa-check"></i><b>10.5</b> The Basics of Visualization</a></li>
+<li class="chapter" data-level="10.6" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#layouts"><i class="fa fa-check"></i><b>10.6</b> Layouts</a></li>
+<li class="chapter" data-level="10.7" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#group-detection"><i class="fa fa-check"></i><b>10.7</b> Group detection</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="working-with-weird-data-an-example.html"><a href="working-with-weird-data-an-example.html"><i class="fa fa-check"></i><b>11</b> Working with weird data, an example</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="working-with-weird-data-an-example.html"><a href="working-with-weird-data-an-example.html#reading-in-pdf-data"><i class="fa fa-check"></i><b>11.1</b> Reading in PDF data</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Computational Social Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="exploring-and-visualizing-data" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Exploring and Visualizing Data</h1>
+<p>Now, let’s actually get our hands dirty and start analyzing data. The first thing we will need to do is to pick a data set to analyze. A good candidate is the General Social Survey (GSS) - a large-scale survey that sociologists have been administering since the 1960s, meant to gauge the changing social attitudes and practices of Americans over time. It is probably sociology’s most celebrated dataset, the subject of tens of thousands of papers since its inception. It isn’t quite big data (only a couple thousand respondets each year), but it is a good starting point for our first data exercises.</p>
+<p>To download the GSS, first navigate to: <a href="https://gss.norc.org/get-the-data/stata" class="uri">https://gss.norc.org/get-the-data/stata</a></p>
+<p>Then, click where it says 2018, under the heading <strong>Download Individual Year Data Sets (cross-section only)</strong>.</p>
+<p>For now, drag the downloaded file to your Desktop. It is a STATA file, so we will have to use a special R package, foreign, to load it into R as well as the function, read.dta, from that package.</p>
+<p>A function is basically a command which helps you do something. Later on, we will work on writing our own functions, for now we will us the functions that other people’s packages supply for us.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="exploring-and-visualizing-data.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load in the foreign package.. it comes with R</span></span>
+<span id="cb37-2"><a href="exploring-and-visualizing-data.html#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreign)</span>
+<span id="cb37-3"><a href="exploring-and-visualizing-data.html#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co"># now we can load in the GSS data</span></span>
+<span id="cb37-4"><a href="exploring-and-visualizing-data.html#cb37-4" aria-hidden="true" tabindex="-1"></a>gss <span class="ot">&lt;-</span> <span class="fu">read.dta</span>(<span class="st">&quot;Data/GSS2018.dta&quot;</span>)</span></code></pre></div>
+<p>You can use the View() or head() functions to actually view the data and see what it looks like.</p>
+<pre><code>##   abany abdefect   abfelegl abhelp1 abhelp2 abhelp3 abhelp4 abhlth
+## 1    no      yes       &lt;NA&gt;     yes     yes     yes     yes    yes
+## 2   yes      yes it depends      no      no      no      no    yes
+## 3  &lt;NA&gt;     &lt;NA&gt;       &lt;NA&gt;     yes      no     yes     yes   &lt;NA&gt;
+## 4  &lt;NA&gt;     &lt;NA&gt;     should     yes     yes     yes     yes   &lt;NA&gt;
+## 5    no      yes       &lt;NA&gt;      no      no      no     yes    yes
+## 6   yes      yes     should     yes     yes     yes     yes    yes
+##                    abinspay                                          abmedgov1
+## 1     people should be able                       the government should decide
+## 2 people should not be able                                               &lt;NA&gt;
+## 3 people should not be able a woman and her medical professional should decide
+## 4     people should be able                                               &lt;NA&gt;
+## 5 people should not be able                                               &lt;NA&gt;
+## 6     people should be able                                               &lt;NA&gt;</code></pre>
+<p>If you have ever worked with Excel before, this should look pretty familiar! In R, this is called a data.frame(). It is the most common way we will use to organize data.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="exploring-and-visualizing-data.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(gss)</span></code></pre></div>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<p>A data.frame is organized into rows and columns. Each row holds the data for a single respondent, whereas each column holds the data for a single variable (or question). Let’s see how many people (rows) and variables (columns) the data have.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="exploring-and-visualizing-data.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the number of rows</span></span>
+<span id="cb41-2"><a href="exploring-and-visualizing-data.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(gss)</span></code></pre></div>
+<pre><code>## [1] 2348</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="exploring-and-visualizing-data.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the number of columns</span></span>
+<span id="cb43-2"><a href="exploring-and-visualizing-data.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(gss)</span></code></pre></div>
+<pre><code>## [1] 1064</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="exploring-and-visualizing-data.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Or both at the same time!</span></span>
+<span id="cb45-2"><a href="exploring-and-visualizing-data.html#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(gss)</span></code></pre></div>
+<pre><code>## [1] 2348 1064</code></pre>
+<p>We can find this information over in the environment too.</p>
+<p>The rows are numbered, while the columns have names. But if you look at the column names, they won’t make much sense.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="exploring-and-visualizing-data.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the column names</span></span>
+<span id="cb47-2"><a href="exploring-and-visualizing-data.html#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(gss)</span></code></pre></div>
+<pre><code>##    [1] &quot;abany&quot;         &quot;abdefect&quot;      &quot;abfelegl&quot;      &quot;abhelp1&quot;      
+##    [5] &quot;abhelp2&quot;       &quot;abhelp3&quot;       &quot;abhelp4&quot;       &quot;abhlth&quot;       
+##    [9] &quot;abinspay&quot;      &quot;abmedgov1&quot;     &quot;abmedgov2&quot;     &quot;abmelegl&quot;     
+##   [13] &quot;abmoral&quot;       &quot;abnomore&quot;      &quot;abpoor&quot;        &quot;abpoorw&quot;      
+##   [17] &quot;abrape&quot;        &quot;absingle&quot;      &quot;abstate1&quot;      &quot;abstate2&quot;     
+##   [21] &quot;acqntsex&quot;      &quot;actssoc&quot;       &quot;adults&quot;        &quot;advfront&quot;     
+##   [25] &quot;affrmact&quot;      &quot;afraidof&quot;      &quot;afterlif&quot;      &quot;age&quot;          
+##   [29] &quot;aged&quot;          &quot;agekdbrn&quot;      &quot;ancestrs&quot;      &quot;arthrtis&quot;     
+##   [33] &quot;astrolgy&quot;      &quot;astrosci&quot;      &quot;atheists&quot;      &quot;attend&quot;       
+##   [37] &quot;attend12&quot;      &quot;attendma&quot;      &quot;attendpa&quot;      &quot;away1&quot;        
+##   [41] &quot;away11&quot;        &quot;away2&quot;         &quot;away3&quot;         &quot;away4&quot;        
+##   [45] &quot;away5&quot;         &quot;away6&quot;         &quot;away7&quot;         &quot;babies&quot;       
+##   [49] &quot;backpain&quot;      &quot;ballot&quot;        &quot;balneg&quot;        &quot;balpos&quot;       
+##   [53] &quot;befair&quot;        &quot;betrlang&quot;      &quot;bible&quot;         &quot;bigbang&quot;      
+##   [57] &quot;bigbang1&quot;      &quot;bigbang2&quot;      &quot;bird&quot;          &quot;birdb4&quot;       
+##   [61] &quot;born&quot;          &quot;boyorgrl&quot;      &quot;breakdwn&quot;      &quot;buddhsts&quot;     
+##   [65] &quot;buyesop&quot;       &quot;buyvalue&quot;      &quot;cantrust&quot;      &quot;cappun&quot;       
+##   [69] &quot;cat&quot;           &quot;catb4&quot;         &quot;charactr&quot;      &quot;chemgen&quot;      
+##   [73] &quot;childs&quot;        &quot;chldidel&quot;      &quot;christns&quot;      &quot;churhpow&quot;     
+##   [77] &quot;class&quot;         &quot;clergvte&quot;      &quot;closeto1&quot;      &quot;closeto2&quot;     
+##   [81] &quot;closeto3&quot;      &quot;closeto4&quot;      &quot;closeto5&quot;      &quot;cntctfam&quot;     
+##   [85] &quot;cntctfrd&quot;      &quot;cntctkid&quot;      &quot;cntctpar&quot;      &quot;cntctsib&quot;     
+##   [89] &quot;codeg&quot;         &quot;coden&quot;         &quot;coeduc&quot;        &quot;coevwork&quot;     
+##   [93] &quot;cofund&quot;        &quot;cohort&quot;        &quot;cohrs1&quot;        &quot;cohrs2&quot;       
+##   [97] &quot;coind10&quot;       &quot;coisco08&quot;      &quot;cojew&quot;         &quot;colath&quot;       
+##  [101] &quot;colcom&quot;        &quot;coldeg1&quot;       &quot;colhomo&quot;       &quot;colmil&quot;       
+##  [105] &quot;colmslm&quot;       &quot;colrac&quot;        &quot;colsci&quot;        &quot;colscinm&quot;     
+##  [109] &quot;comfort&quot;       &quot;company&quot;       &quot;compperf&quot;      &quot;comprend&quot;     
+##  [113] &quot;compuse&quot;       &quot;compwage&quot;      &quot;conarmy&quot;       &quot;conbiz&quot;       
+##  [117] &quot;conbus&quot;        &quot;conchurh&quot;      &quot;conclerg&quot;      &quot;concong&quot;      
+##  [121] &quot;concourt&quot;      &quot;condemnd&quot;      &quot;condom&quot;        &quot;condrift&quot;     
+##  [125] &quot;coneduc&quot;       &quot;conf2f&quot;        &quot;confed&quot;        &quot;confinan&quot;     
+##  [129] &quot;coninc&quot;        &quot;conjudge&quot;      &quot;conlabor&quot;      &quot;conlegis&quot;     
+##  [133] &quot;conmedic&quot;      &quot;conpress&quot;      &quot;conrinc&quot;       &quot;conschls&quot;     
+##  [137] &quot;consci&quot;        &quot;consent&quot;       &quot;contv&quot;         &quot;conwkday&quot;     
+##  [141] &quot;coocc10&quot;       &quot;coop&quot;          &quot;coother&quot;       &quot;copres10&quot;     
+##  [145] &quot;copres105plus&quot; &quot;corel&quot;         &quot;cosei10&quot;       &quot;cosei10educ&quot;  
+##  [149] &quot;cosei10inc&quot;    &quot;courts&quot;        &quot;cowrkhlp&quot;      &quot;cowrkint&quot;     
+##  [153] &quot;cowrkslf&quot;      &quot;cowrksta&quot;      &quot;crack30&quot;       &quot;dangoth1&quot;     
+##  [157] &quot;dangoth2&quot;      &quot;dangoth3&quot;      &quot;dangoth4&quot;      &quot;dangoth5&quot;     
+##  [161] &quot;dangroth&quot;      &quot;dangrslf&quot;      &quot;dangslf1&quot;      &quot;dangslf2&quot;     
+##  [165] &quot;dangslf3&quot;      &quot;dangslf4&quot;      &quot;dangslf5&quot;      &quot;dateintv&quot;     
+##  [169] &quot;decmoney&quot;      &quot;dectreat&quot;      &quot;defpensn&quot;      &quot;degree&quot;       
+##  [173] &quot;demands&quot;       &quot;denkid&quot;        &quot;denom&quot;         &quot;denom16&quot;      
+##  [177] &quot;depress&quot;       &quot;deptperf&quot;      &quot;diabetes&quot;      &quot;diagnosd&quot;     
+##  [181] &quot;difrel&quot;        &quot;dinefrds&quot;      &quot;dipged&quot;        &quot;discaff&quot;      
+##  [185] &quot;discaffm&quot;      &quot;discaffw&quot;      &quot;disrspct&quot;      &quot;divlaw&quot;       
+##  [189] &quot;divorce&quot;       &quot;dofirst&quot;       &quot;dog&quot;           &quot;dogb4&quot;        
+##  [193] &quot;dwelling&quot;      &quot;dwellpre&quot;      &quot;dwelown&quot;       &quot;dwelown16&quot;    
+##  [197] &quot;earnrs&quot;        &quot;earthsun&quot;      &quot;educ&quot;          &quot;egomeans&quot;     
+##  [201] &quot;electron&quot;      &quot;emailhr&quot;       &quot;emailmin&quot;      &quot;emoprobs&quot;     
+##  [205] &quot;empinput&quot;      &quot;emptrain&quot;      &quot;endsmeet&quot;      &quot;eqwlth&quot;       
+##  [209] &quot;esop&quot;          &quot;esopnot&quot;       &quot;eth1&quot;          &quot;eth2&quot;         
+##  [213] &quot;eth3&quot;          &quot;ethnic&quot;        &quot;ethnum&quot;        &quot;evcrack&quot;      
+##  [217] &quot;evidu&quot;         &quot;evolved&quot;       &quot;evolved2&quot;      &quot;evpaidsx&quot;     
+##  [221] &quot;evstray&quot;       &quot;evwork&quot;        &quot;expdesgn&quot;      &quot;exptext&quot;      
+##  [225] &quot;extr2017&quot;      &quot;extrapay&quot;      &quot;extraval&quot;      &quot;extrayr&quot;      
+##  [229] &quot;fair&quot;          &quot;fairearn&quot;      &quot;famdif16&quot;      &quot;famgen&quot;       
+##  [233] &quot;family16&quot;      &quot;fammhneg&quot;      &quot;fampress&quot;      &quot;famvswk&quot;      
+##  [237] &quot;famwkoff&quot;      &quot;fatalism&quot;      &quot;fatigue&quot;       &quot;fear&quot;         
+##  [241] &quot;fechld&quot;        &quot;feelevel&quot;      &quot;feelrel&quot;       &quot;feeused&quot;      
+##  [245] &quot;fefam&quot;         &quot;fehire&quot;        &quot;fejobaff&quot;      &quot;fepol&quot;        
+##  [249] &quot;fepresch&quot;      &quot;finalter&quot;      &quot;finrela&quot;       &quot;firstyou&quot;     
+##  [253] &quot;fish&quot;          &quot;fishb4&quot;        &quot;form&quot;          &quot;formwt&quot;       
+##  [257] &quot;fringeok&quot;      &quot;frndsex&quot;       &quot;fucitzn&quot;       &quot;fund&quot;         
+##  [261] &quot;fund16&quot;        &quot;gender1&quot;       &quot;gender10&quot;      &quot;gender11&quot;     
+##  [265] &quot;gender12&quot;      &quot;gender2&quot;       &quot;gender3&quot;       &quot;gender4&quot;      
+##  [269] &quot;gender5&quot;       &quot;gender6&quot;       &quot;gender7&quot;       &quot;gender8&quot;      
+##  [273] &quot;gender9&quot;       &quot;geneabrt2&quot;     &quot;genegen&quot;       &quot;genegoo2&quot;     
+##  [277] &quot;geneself2&quot;     &quot;genetics&quot;      &quot;genetst1&quot;      &quot;getahead&quot;     
+##  [281] &quot;goat&quot;          &quot;goatb4&quot;        &quot;god&quot;           &quot;godchnge&quot;     
+##  [285] &quot;godmeans&quot;      &quot;godswill&quot;      &quot;goodlife&quot;      &quot;goveqinc&quot;     
+##  [289] &quot;govlazy&quot;       &quot;govvsrel&quot;      &quot;granborn&quot;      &quot;grass&quot;        
+##  [293] &quot;gunlaw&quot;        &quot;handmove&quot;      &quot;hapcohab&quot;      &quot;hapmar&quot;       
+##  [297] &quot;happy&quot;         &quot;hapunhap&quot;      &quot;haveinfo&quot;      &quot;health&quot;       
+##  [301] &quot;health1&quot;       &quot;healthissp&quot;    &quot;heaven&quot;        &quot;hefinfo&quot;      
+##  [305] &quot;height&quot;        &quot;hell&quot;          &quot;helpblk&quot;       &quot;helpfrds&quot;     
+##  [309] &quot;helpful&quot;       &quot;helpnot&quot;       &quot;helpoth&quot;       &quot;helppoor&quot;     
+##  [313] &quot;helpsick&quot;      &quot;hhrace&quot;        &quot;hhtype&quot;        &quot;hhtype1&quot;      
+##  [317] &quot;hindus&quot;        &quot;hispanic&quot;      &quot;hivtest&quot;       &quot;hivtest1&quot;     
+##  [321] &quot;hivtest2&quot;      &quot;hlpadvce&quot;      &quot;hlpdown&quot;       &quot;hlpequip&quot;     
+##  [325] &quot;hlphome&quot;       &quot;hlpjob&quot;        &quot;hlploan&quot;       &quot;hlppaper&quot;     
+##  [329] &quot;hlpresde&quot;      &quot;hlpsick&quot;       &quot;hlpsickr&quot;      &quot;hlpsococ&quot;     
+##  [333] &quot;hlthdays&quot;      &quot;hlthmntl&quot;      &quot;hlthphys&quot;      &quot;hlthstrt&quot;     
+##  [337] &quot;homosex&quot;       &quot;homosex1&quot;      &quot;hompop&quot;        &quot;horse&quot;        
+##  [341] &quot;horseb4&quot;       &quot;hotcore&quot;       &quot;hrs1&quot;          &quot;hrs2&quot;         
+##  [345] &quot;hrsrelax&quot;      &quot;hsbio&quot;         &quot;hschem&quot;        &quot;hsmath&quot;       
+##  [349] &quot;hsphys&quot;        &quot;huadd&quot;         &quot;huaddwhy&quot;      &quot;hubbywrk&quot;     
+##  [353] &quot;huclean&quot;       &quot;hunt&quot;          &quot;hunt1&quot;         &quot;hurtatwk&quot;     
+##  [357] &quot;hurtoth&quot;       &quot;hurtself&quot;      &quot;hvylift&quot;       &quot;hyperten&quot;     
+##  [361] &quot;id&quot;            &quot;idu30&quot;         &quot;if12who&quot;       &quot;if16who&quot;      
+##  [365] &quot;imbalnce&quot;      &quot;imprvown&quot;      &quot;imprvtrt&quot;      &quot;incgap&quot;       
+##  [369] &quot;incom16&quot;       &quot;income&quot;        &quot;income16&quot;      &quot;incuspop&quot;     
+##  [373] &quot;indperf&quot;       &quot;indus10&quot;       &quot;indusgen&quot;      &quot;intage&quot;       
+##  [377] &quot;intcntct&quot;      &quot;intecon&quot;       &quot;inteduc&quot;       &quot;intenvir&quot;     
+##  [381] &quot;intethn&quot;       &quot;intfarm&quot;       &quot;inthisp&quot;       &quot;intid&quot;        
+##  [385] &quot;intintl&quot;       &quot;intlblks&quot;      &quot;intlhsps&quot;      &quot;intlwhts&quot;     
+##  [389] &quot;intmed&quot;        &quot;intmil&quot;        &quot;intrace1&quot;      &quot;intrace2&quot;     
+##  [393] &quot;intrace3&quot;      &quot;intsci&quot;        &quot;intsex&quot;        &quot;intspace&quot;     
+##  [397] &quot;inttech&quot;       &quot;intyrs&quot;        &quot;isco08&quot;        &quot;isco88&quot;       
+##  [401] &quot;issp&quot;          &quot;jew&quot;           &quot;jew16&quot;         &quot;jews&quot;         
+##  [405] &quot;jobfind&quot;       &quot;jobfind1&quot;      &quot;joblose&quot;       &quot;jobsecok&quot;     
+##  [409] &quot;kidpars&quot;       &quot;kidsinhh&quot;      &quot;kidssol&quot;       &quot;knowschd&quot;     
+##  [413] &quot;knowwhat&quot;      &quot;knwbus&quot;        &quot;knwclenr&quot;      &quot;knwcop&quot;       
+##  [417] &quot;knwcuttr&quot;      &quot;knwexec&quot;       &quot;knwhrman&quot;      &quot;knwlawyr&quot;     
+##  [421] &quot;knwmchnc&quot;      &quot;knwmw1&quot;        &quot;knwmw2&quot;        &quot;knwmw3&quot;       
+##  [425] &quot;knwmw4&quot;        &quot;knwmw5&quot;        &quot;knwnurse&quot;      &quot;knwtcher&quot;     
+##  [429] &quot;laidoff&quot;       &quot;lasers&quot;        &quot;learnnew&quot;      &quot;letdie1&quot;      
+##  [433] &quot;letin1a&quot;       &quot;libath&quot;        &quot;libcom&quot;        &quot;libhomo&quot;      
+##  [437] &quot;libmil&quot;        &quot;libmslm&quot;       &quot;librac&quot;        &quot;life&quot;         
+##  [441] &quot;lifein5&quot;       &quot;lifenow&quot;       &quot;liveblks&quot;      &quot;lngthinv&quot;     
+##  [445] &quot;localnum&quot;      &quot;lonely1&quot;       &quot;lonely2&quot;       &quot;lonely3&quot;      
+##  [449] &quot;madeg&quot;         &quot;madenkid&quot;      &quot;maeduc&quot;        &quot;maind10&quot;      
+##  [453] &quot;maisco08&quot;      &quot;maisco88&quot;      &quot;major1&quot;        &quot;major2&quot;       
+##  [457] &quot;majorcol&quot;      &quot;makefrnd&quot;      &quot;maleornt&quot;      &quot;manvsemp&quot;     
+##  [461] &quot;maocc10&quot;       &quot;mapres10&quot;      &quot;mapres105plus&quot; &quot;mar1&quot;         
+##  [465] &quot;mar11&quot;         &quot;mar12&quot;         &quot;mar2&quot;          &quot;mar3&quot;         
+##  [469] &quot;mar4&quot;          &quot;mar5&quot;          &quot;mar6&quot;          &quot;mar7&quot;         
+##  [473] &quot;mar8&quot;          &quot;mar9&quot;          &quot;marasian&quot;      &quot;marblk&quot;       
+##  [477] &quot;marcohab&quot;      &quot;marelkid&quot;      &quot;marhisp&quot;       &quot;marhomo&quot;      
+##  [481] &quot;marital&quot;       &quot;martype&quot;       &quot;marwht&quot;        &quot;masei10&quot;      
+##  [485] &quot;masei10educ&quot;   &quot;masei10inc&quot;    &quot;matesex&quot;       &quot;mawrkgrw&quot;     
+##  [489] &quot;mawrkslf&quot;      &quot;mcsds1&quot;        &quot;mcsds2&quot;        &quot;mcsds3&quot;       
+##  [493] &quot;mcsds4&quot;        &quot;mcsds5&quot;        &quot;mcsds6&quot;        &quot;mcsds7&quot;       
+##  [497] &quot;meddoc&quot;        &quot;mentldoc&quot;      &quot;mentlhos&quot;      &quot;mentlill&quot;     
+##  [501] &quot;mentloth&quot;      &quot;meovrwrk&quot;      &quot;mhdiagno&quot;      &quot;mhp1r1&quot;       
+##  [505] &quot;mhp1r2&quot;        &quot;mhp2r1&quot;        &quot;mhp2r2&quot;        &quot;mhp3r1&quot;       
+##  [509] &quot;mhp3r2&quot;        &quot;mhp4r1&quot;        &quot;mhp4r2&quot;        &quot;mhp5r1&quot;       
+##  [513] &quot;mhp5r2&quot;        &quot;mhtreat1&quot;      &quot;mhtreat2&quot;      &quot;mhtreat3&quot;     
+##  [517] &quot;mhtreat4&quot;      &quot;mhtreat5&quot;      &quot;mhtreatd&quot;      &quot;mhunsure&quot;     
+##  [521] &quot;miracles&quot;      &quot;misswork&quot;      &quot;mnthsusa&quot;      &quot;mntlhlth&quot;     
+##  [525] &quot;mobile16&quot;      &quot;mode&quot;          &quot;moredays&quot;      &quot;muslims&quot;      
+##  [529] &quot;mustdoc&quot;       &quot;musthosp&quot;      &quot;mustmed&quot;       &quot;mustwork&quot;     
+##  [533] &quot;mygoals&quot;       &quot;myprobs1&quot;      &quot;myprobs2&quot;      &quot;myprobs3&quot;     
+##  [537] &quot;myprobs4&quot;      &quot;myprobs5&quot;      &quot;myskills&quot;      &quot;mywaygod&quot;     
+##  [541] &quot;nanoben&quot;       &quot;nanoharm&quot;      &quot;nanowill&quot;      &quot;nataccess&quot;    
+##  [545] &quot;natactive&quot;     &quot;nataid&quot;        &quot;nataidy&quot;       &quot;natarms&quot;      
+##  [549] &quot;natarmsy&quot;      &quot;natchld&quot;       &quot;natcity&quot;       &quot;natcityy&quot;     
+##  [553] &quot;natcrime&quot;      &quot;natcrimy&quot;      &quot;natdrug&quot;       &quot;natdrugy&quot;     
+##  [557] &quot;nateduc&quot;       &quot;nateducy&quot;      &quot;natenrgy&quot;      &quot;natenvir&quot;     
+##  [561] &quot;natenviy&quot;      &quot;natfare&quot;       &quot;natfarey&quot;      &quot;natheal&quot;      
+##  [565] &quot;nathealy&quot;      &quot;natlack&quot;       &quot;natmass&quot;       &quot;natmeet&quot;      
+##  [569] &quot;natnotice&quot;     &quot;natpark&quot;       &quot;natrace&quot;       &quot;natracey&quot;     
+##  [573] &quot;natrelax&quot;      &quot;natroad&quot;       &quot;natsat&quot;        &quot;natsci&quot;       
+##  [577] &quot;natsoc&quot;        &quot;natspac&quot;       &quot;natspacy&quot;      &quot;nattime&quot;      
+##  [581] &quot;nattimeok&quot;     &quot;natviews&quot;      &quot;neisafe&quot;       &quot;newfrds&quot;      
+##  [585] &quot;news&quot;          &quot;newsfrom&quot;      &quot;nextgen&quot;       &quot;nihilism&quot;     
+##  [589] &quot;notsmart&quot;      &quot;ntwkhard&quot;      &quot;nukegen&quot;       &quot;numcong&quot;      
+##  [593] &quot;numemps&quot;       &quot;numlangs&quot;      &quot;nummen&quot;        &quot;numorg&quot;       
+##  [597] &quot;numpets&quot;       &quot;numwomen&quot;      &quot;obey&quot;          &quot;occ10&quot;        
+##  [601] &quot;odds1&quot;         &quot;odds2&quot;         &quot;old1&quot;          &quot;old10&quot;        
+##  [605] &quot;old11&quot;         &quot;old12&quot;         &quot;old2&quot;          &quot;old3&quot;         
+##  [609] &quot;old4&quot;          &quot;old5&quot;          &quot;old6&quot;          &quot;old7&quot;         
+##  [613] &quot;old8&quot;          &quot;old9&quot;          &quot;opdevel&quot;       &quot;otcmed&quot;       
+##  [617] &quot;oth16&quot;         &quot;other&quot;         &quot;othersex&quot;      &quot;othlang&quot;      
+##  [621] &quot;othlang1&quot;      &quot;othlang2&quot;      &quot;othmhneg&quot;      &quot;othpet&quot;       
+##  [625] &quot;othpetb4&quot;      &quot;oversamp&quot;      &quot;overwork&quot;      &quot;owngun&quot;       
+##  [629] &quot;ownstock&quot;      &quot;padeg&quot;         &quot;padenkid&quot;      &quot;paeduc&quot;       
+##  [633] &quot;paidsex&quot;       &quot;painarms&quot;      &quot;paind10&quot;       &quot;paisco08&quot;     
+##  [637] &quot;paisco88&quot;      &quot;paocc10&quot;       &quot;papres10&quot;      &quot;papres105plus&quot;
+##  [641] &quot;parborn&quot;       &quot;parelkid&quot;      &quot;parsol&quot;        &quot;partfull&quot;     
+##  [645] &quot;partlsc&quot;       &quot;partners&quot;      &quot;partnrs5&quot;      &quot;partpart&quot;     
+##  [649] &quot;partteam&quot;      &quot;partvol&quot;       &quot;partyid&quot;       &quot;pasei10&quot;      
+##  [653] &quot;pasei10educ&quot;   &quot;pasei10inc&quot;    &quot;pawrkslf&quot;      &quot;petb4&quot;        
+##  [657] &quot;petb4cmfrt&quot;    &quot;petb4fam&quot;      &quot;petb4ply&quot;      &quot;petcmfrt&quot;     
+##  [661] &quot;petfam&quot;        &quot;petplay&quot;       &quot;phase&quot;         &quot;phone&quot;        
+##  [665] &quot;phyeffrt&quot;      &quot;physacts&quot;      &quot;physhlth&quot;      &quot;physill&quot;      
+##  [669] &quot;pig&quot;           &quot;pigb4&quot;         &quot;pikupsex&quot;      &quot;pilingup&quot;     
+##  [673] &quot;pillok&quot;        &quot;pistol&quot;        &quot;polabuse&quot;      &quot;polattak&quot;     
+##  [677] &quot;poleff11&quot;      &quot;polescap&quot;      &quot;polhitok&quot;      &quot;polmurdr&quot;     
+##  [681] &quot;polviews&quot;      &quot;poorserv&quot;      &quot;popespks&quot;      &quot;popular&quot;      
+##  [685] &quot;pornlaw&quot;       &quot;posslq&quot;        &quot;posslqy&quot;       &quot;postlife&quot;     
+##  [689] &quot;pray&quot;          &quot;prayer&quot;        &quot;prayfreq&quot;      &quot;premarsx&quot;     
+##  [693] &quot;pres12&quot;        &quot;pres16&quot;        &quot;prestg10&quot;      &quot;prestg105plus&quot;
+##  [697] &quot;preteen&quot;       &quot;prodctiv&quot;      &quot;promtefr&quot;      &quot;promteok&quot;     
+##  [701] &quot;proudemp&quot;      &quot;prvdhlth&quot;      &quot;prvdold&quot;       &quot;quallife&quot;     
+##  [705] &quot;racdif1&quot;       &quot;racdif2&quot;       &quot;racdif3&quot;       &quot;racdif4&quot;      
+##  [709] &quot;race&quot;          &quot;racecen1&quot;      &quot;racecen2&quot;      &quot;racecen3&quot;     
+##  [713] &quot;raclive&quot;       &quot;racopen&quot;       &quot;racwork&quot;       &quot;radioact&quot;     
+##  [717] &quot;random&quot;        &quot;rank&quot;          &quot;ratepain&quot;      &quot;ratetone&quot;     
+##  [721] &quot;realinc&quot;       &quot;realrinc&quot;      &quot;reborn&quot;        &quot;reg16&quot;        
+##  [725] &quot;region&quot;        &quot;relactiv&quot;      &quot;relate1&quot;       &quot;relate10&quot;     
+##  [729] &quot;relate11&quot;      &quot;relate12&quot;      &quot;relate2&quot;       &quot;relate3&quot;      
+##  [733] &quot;relate4&quot;       &quot;relate5&quot;       &quot;relate6&quot;       &quot;relate7&quot;      
+##  [737] &quot;relate8&quot;       &quot;relate9&quot;       &quot;relatsex&quot;      &quot;relext1&quot;      
+##  [741] &quot;relext3&quot;       &quot;relgenbar&quot;     &quot;relgeneq&quot;      &quot;relhh1&quot;       
+##  [745] &quot;relhh10&quot;       &quot;relhh11&quot;       &quot;relhh12&quot;       &quot;relhh2&quot;       
+##  [749] &quot;relhh3&quot;        &quot;relhh4&quot;        &quot;relhh5&quot;        &quot;relhh6&quot;       
+##  [753] &quot;relhh7&quot;        &quot;relhh8&quot;        &quot;relhh9&quot;        &quot;relhhd1&quot;      
+##  [757] &quot;relhhd10&quot;      &quot;relhhd11&quot;      &quot;relhhd12&quot;      &quot;relhhd2&quot;      
+##  [761] &quot;relhhd3&quot;       &quot;relhhd4&quot;       &quot;relhhd5&quot;       &quot;relhhd6&quot;      
+##  [765] &quot;relhhd7&quot;       &quot;relhhd8&quot;       &quot;relhhd9&quot;       &quot;relig&quot;        
+##  [769] &quot;relig16&quot;       &quot;religcon&quot;      &quot;religint&quot;      &quot;religkid&quot;     
+##  [773] &quot;reliten&quot;       &quot;relmarry&quot;      &quot;relobjct&quot;      &quot;relpast&quot;      
+##  [777] &quot;relpersn&quot;      &quot;relrlvnt&quot;      &quot;relscrpt&quot;      &quot;relsp1&quot;       
+##  [781] &quot;relsp10&quot;       &quot;relsp11&quot;       &quot;relsp12&quot;       &quot;relsp2&quot;       
+##  [785] &quot;relsp3&quot;        &quot;relsp4&quot;        &quot;relsp5&quot;        &quot;relsp6&quot;       
+##  [789] &quot;relsp7&quot;        &quot;relsp8&quot;        &quot;relsp9&quot;        &quot;relsprt&quot;      
+##  [793] &quot;reptile&quot;       &quot;reptileb4&quot;     &quot;res16&quot;         &quot;respect&quot;      
+##  [797] &quot;respnum&quot;       &quot;respond&quot;       &quot;rfamlook&quot;      &quot;rgroomed&quot;     
+##  [801] &quot;rhlthend&quot;      &quot;richwork&quot;      &quot;rifle&quot;         &quot;rincblls&quot;     
+##  [805] &quot;rincom16&quot;      &quot;rincome&quot;       &quot;rlooks&quot;        &quot;rowngun&quot;      
+##  [809] &quot;rplace&quot;        &quot;rvisitor&quot;      &quot;rweight&quot;       &quot;rxmed&quot;        
+##  [813] &quot;safefrst&quot;      &quot;safehlth&quot;      &quot;safetywk&quot;      &quot;sampcode&quot;     
+##  [817] &quot;sample&quot;        &quot;satfam7&quot;       &quot;satfin&quot;        &quot;satjob&quot;       
+##  [821] &quot;satjob1&quot;       &quot;satlife&quot;       &quot;satsoc&quot;        &quot;savesoul&quot;     
+##  [825] &quot;scibnfts&quot;      &quot;scientbe&quot;      &quot;scientgo&quot;      &quot;scienthe&quot;     
+##  [829] &quot;scientod&quot;      &quot;scifrom&quot;       &quot;scinews1&quot;      &quot;scinews2&quot;     
+##  [833] &quot;scinews3&quot;      &quot;scistudy&quot;      &quot;scitext&quot;       &quot;secondwk&quot;     
+##  [837] &quot;seeksci&quot;       &quot;seetalk1&quot;      &quot;seetalk2&quot;      &quot;seetalk3&quot;     
+##  [841] &quot;seetalk4&quot;      &quot;seetalk5&quot;      &quot;sei10&quot;         &quot;sei10educ&quot;    
+##  [845] &quot;sei10inc&quot;      &quot;selfhelp&quot;      &quot;seriousp&quot;      &quot;severe1&quot;      
+##  [849] &quot;severe2&quot;       &quot;severe3&quot;       &quot;severe4&quot;       &quot;severe5&quot;      
+##  [853] &quot;sex&quot;           &quot;sexbirth&quot;      &quot;sexeduc&quot;       &quot;sexfreq&quot;      
+##  [857] &quot;sexnow&quot;        &quot;sexornt&quot;       &quot;sexsex&quot;        &quot;sexsex5&quot;      
+##  [861] &quot;shotgun&quot;       &quot;sibs&quot;          &quot;size&quot;          &quot;slfmangd&quot;     
+##  [865] &quot;slpprblm&quot;      &quot;smallgap&quot;      &quot;smammal&quot;       &quot;smammalb4&quot;    
+##  [869] &quot;socbar&quot;        &quot;socfrend&quot;      &quot;socommun&quot;      &quot;socrel&quot;       
+##  [873] &quot;solarrev&quot;      &quot;spaneng&quot;       &quot;spanint&quot;       &quot;spanking&quot;     
+##  [877] &quot;spanself&quot;      &quot;spdeg&quot;         &quot;spden&quot;         &quot;speduc&quot;       
+##  [881] &quot;spevwork&quot;      &quot;spfalook&quot;      &quot;spfund&quot;        &quot;sphealer&quot;     
+##  [885] &quot;sphrs1&quot;        &quot;sphrs2&quot;        &quot;spind10&quot;       &quot;spisco08&quot;     
+##  [889] &quot;spisco88&quot;      &quot;spjew&quot;         &quot;spkath&quot;        &quot;spkcom&quot;       
+##  [893] &quot;spkhomo&quot;       &quot;spklang&quot;       &quot;spkmil&quot;        &quot;spkmslm&quot;      
+##  [897] &quot;spkrac&quot;        &quot;splive&quot;        &quot;spocc10&quot;       &quot;spother&quot;      
+##  [901] &quot;sppres10&quot;      &quot;sppres105plus&quot; &quot;sprel&quot;         &quot;sprtprsn&quot;     
+##  [905] &quot;spsei10&quot;       &quot;spsei10educ&quot;   &quot;spsei10inc&quot;    &quot;spvtrfair&quot;    
+##  [909] &quot;spwksup&quot;       &quot;spwrkslf&quot;      &quot;spwrksta&quot;      &quot;srcbelt&quot;      
+##  [913] &quot;stockops&quot;      &quot;stockval&quot;      &quot;stress&quot;        &quot;stress12&quot;     
+##  [917] &quot;stresses&quot;      &quot;strredpg&quot;      &quot;suicide1&quot;      &quot;suicide2&quot;     
+##  [921] &quot;suicide3&quot;      &quot;suicide4&quot;      &quot;supcares&quot;      &quot;supervis&quot;     
+##  [925] &quot;suphelp&quot;       &quot;tax&quot;           &quot;teamsafe&quot;      &quot;teens&quot;        
+##  [929] &quot;teensex&quot;       &quot;tempgen&quot;       &quot;theism&quot;        &quot;thnkself&quot;     
+##  [933] &quot;threaten&quot;      &quot;tlkclrgy&quot;      &quot;tlkfam&quot;        &quot;toofast&quot;      
+##  [937] &quot;toofewwk&quot;      &quot;trbigbus&quot;      &quot;trcourts&quot;      &quot;trdunion&quot;     
+##  [941] &quot;trust&quot;         &quot;trustman&quot;      &quot;trustsci&quot;      &quot;trynewjb&quot;     
+##  [945] &quot;tvhours&quot;       &quot;unemp&quot;         &quot;unhappy&quot;       &quot;union&quot;        
+##  [949] &quot;union1&quot;        &quot;unrelat&quot;       &quot;upsdowns&quot;      &quot;upset&quot;        
+##  [953] &quot;uscitzn&quot;       &quot;usedup&quot;        &quot;usetech&quot;       &quot;usewww&quot;       
+##  [957] &quot;uswary&quot;        &quot;version&quot;       &quot;vetyears&quot;      &quot;vigfrnd&quot;      
+##  [961] &quot;viggrp&quot;        &quot;viglabel&quot;      &quot;vigmar&quot;        &quot;vignei&quot;       
+##  [965] &quot;vigsoc&quot;        &quot;vigversn&quot;      &quot;vigwork&quot;       &quot;viruses&quot;      
+##  [969] &quot;visitors&quot;      &quot;visnhist&quot;      &quot;vissci&quot;        &quot;vistholy&quot;     
+##  [973] &quot;viszoo&quot;        &quot;vote12&quot;        &quot;vote16&quot;        &quot;vpsu&quot;         
+##  [977] &quot;vstrat&quot;        &quot;watergen&quot;      &quot;waypaid&quot;       &quot;wayraise&quot;     
+##  [981] &quot;wealth&quot;        &quot;webmob&quot;        &quot;weekswrk&quot;      &quot;weight&quot;       
+##  [985] &quot;where1&quot;        &quot;where11&quot;       &quot;where2&quot;        &quot;where3&quot;       
+##  [989] &quot;where4&quot;        &quot;where5&quot;        &quot;where6&quot;        &quot;where7&quot;       
+##  [993] &quot;whoelse1&quot;      &quot;whoelse2&quot;      &quot;whoelse3&quot;      &quot;whoelse4&quot;     
+##  [997] &quot;whoelse5&quot;      &quot;whoelse6&quot;      &quot;whynopet&quot;      &quot;whywkhme&quot;     
+## [1001] &quot;widowed&quot;       &quot;wkageism&quot;      &quot;wkdecide&quot;      &quot;wkfreedm&quot;     
+## [1005] &quot;wkharoth&quot;      &quot;wkharsex&quot;      &quot;wkpraise&quot;      &quot;wkracism&quot;     
+## [1009] &quot;wksexism&quot;      &quot;wksmooth&quot;      &quot;wksub&quot;         &quot;wksub1&quot;       
+## [1013] &quot;wksubs&quot;        &quot;wksubs1&quot;       &quot;wksup&quot;         &quot;wksup1&quot;       
+## [1017] &quot;wksups&quot;        &quot;wksups1&quot;       &quot;wkvsfam&quot;       &quot;wlthblks&quot;     
+## [1021] &quot;wlthhsps&quot;      &quot;wlthwhts&quot;      &quot;worda&quot;         &quot;wordb&quot;        
+## [1025] &quot;wordc&quot;         &quot;wordd&quot;         &quot;worde&quot;         &quot;wordf&quot;        
+## [1029] &quot;wordg&quot;         &quot;wordh&quot;         &quot;wordi&quot;         &quot;wordj&quot;        
+## [1033] &quot;wordsum&quot;       &quot;workblks&quot;      &quot;workdiff&quot;      &quot;workfast&quot;     
+## [1037] &quot;workfor1&quot;      &quot;workhard&quot;      &quot;workhsps&quot;      &quot;workwhts&quot;     
+## [1041] &quot;wrkgovt&quot;       &quot;wrkhome&quot;       &quot;wrksched&quot;      &quot;wrkslf&quot;       
+## [1045] &quot;wrkslffam&quot;     &quot;wrkstat&quot;       &quot;wrktime&quot;       &quot;wrktype&quot;      
+## [1049] &quot;wrkwayup&quot;      &quot;wtss&quot;          &quot;wtssall&quot;       &quot;wtssnr&quot;       
+## [1053] &quot;wwwhr&quot;         &quot;wwwmin&quot;        &quot;xmarsex&quot;       &quot;xmarsex1&quot;     
+## [1057] &quot;xmovie&quot;        &quot;xnorcsiz&quot;      &quot;year&quot;          &quot;yearsjob&quot;     
+## [1061] &quot;yearsusa&quot;      &quot;yearval&quot;       &quot;yousup&quot;        &quot;zodiac&quot;</code></pre>
+<p>They are like a secret code - if you know what the code means then you can figure out what information a variable holds. But how do we figure that out? We have to use a codebook!</p>
+<p>Head over to <a href="https://gssdataexplorer.norc.org/variables/vfilter" class="uri">https://gssdataexplorer.norc.org/variables/vfilter</a> for an accessible online codebook.
+You can search for keywords to see if it has variables that you care about. Here are some random suggestions:
+* age
+* income
+* partyid
+* sex
+* race
+* hrs1</p>
+<p>We can evaluate these variables more closely using various R functions. For example, what are respondents’ average age? We use the mean function for that, and specify the na.rm = T option to tell R that respodent’s who didn’t report an age should be ignored.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="exploring-and-visualizing-data.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gss<span class="sc">$</span>age, <span class="at">na.rm =</span> T)</span></code></pre></div>
+<pre><code>## [1] 48.97138</code></pre>
+<p>Interesting - almost 50 years old! By comparison, the average age in the US is roughly 38 years old. This might signal that the GSS is skewed towards older respondents, but we have to remember that babies do not take surveys.</p>
+<p>We can use the summary function to get a host of information about a variable’s distribution. For example, below we apply it to partyid - a measure of political affiliation which goes from 1 (Strong Demcorat) to 7 (Strong Republican) [the reason that it is different in practice than what the codebook says is because of how R converts factors to numerics, which we have to do to examine the scale quantitatively – specifically, the first option of a factor in R will be a 1 rather than a 0]. The median is a 4, which is dabsmack in the middle of the scale. The median respondent is an independent with no reported party leanings.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="exploring-and-visualizing-data.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">as.numeric</span>(gss<span class="sc">$</span>partyid), <span class="at">na.rm =</span> T)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+##   1.000   2.000   4.000   3.883   6.000   8.000      33</code></pre>
+<p>Cool! What if we wanted to see how two variables relate to one another? For example, we have heard from pundits that racial background strongly shapes political leaning in the today’s America – does the GSS confirm that conclusion? For comparison, we can also look at how people of varioius racial backgrounds differ by age.</p>
+<p>To achieve this, we first have to group the data by race using the group_by function from tidyverse.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="exploring-and-visualizing-data.html#cb53-1" aria-hidden="true" tabindex="-1"></a>gss <span class="ot">&lt;-</span> gss <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(race)</span></code></pre></div>
+<p>Now that respondents are grouped by race, we can use the summarize function to evaluate each group’s average party identification and age.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="exploring-and-visualizing-data.html#cb54-1" aria-hidden="true" tabindex="-1"></a>vars_by_race <span class="ot">&lt;-</span> gss <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(</span>
+<span id="cb54-2"><a href="exploring-and-visualizing-data.html#cb54-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">partyid =</span> <span class="fu">mean</span>(<span class="fu">as.numeric</span>(partyid), <span class="at">na.rm =</span> T),</span>
+<span id="cb54-3"><a href="exploring-and-visualizing-data.html#cb54-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">age =</span> <span class="fu">mean</span>(age, <span class="at">na.rm =</span> T)</span>
+<span id="cb54-4"><a href="exploring-and-visualizing-data.html#cb54-4" aria-hidden="true" tabindex="-1"></a>                        )</span>
+<span id="cb54-5"><a href="exploring-and-visualizing-data.html#cb54-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-6"><a href="exploring-and-visualizing-data.html#cb54-6" aria-hidden="true" tabindex="-1"></a>vars_by_race</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+##   race  partyid   age
+##   &lt;fct&gt;   &lt;dbl&gt; &lt;dbl&gt;
+## 1 white    4.25  50.5
+## 2 black    2.45  46.0
+## 3 other    3.61  43.3</code></pre>
+<p>With respect to politics - just as we expected! People who identify as white also tend to be a bit older on average than people who identify as black.</p>
+<p>Instead of just looking at the averages, we could visualize them using a simple barplot.</p>
+<p>We will use the ggplot function for this, which is one of the most useful suite of functions for visualization in all of R.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="exploring-and-visualizing-data.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(vars_by_race, <span class="fu">aes</span>(<span class="at">x=</span>race, <span class="at">y=</span>partyid, <span class="at">fill=</span>race)) <span class="sc">+</span></span>
+<span id="cb56-2"><a href="exploring-and-visualizing-data.html#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p>It is a complex function, so let’s break it down. The first argument is the data we want to visualize itself - vars_by_race.</p>
+<p>Then we need to establish the aesthetics (i.e. aes()).</p>
+<p>x is the x variable (i.e. the variable on the x-axis of the graph), y is the y variable (i.e. the varible on the y axis of the graph), and fill is the variable we want to use to color the bars (race).</p>
+<p>Now that the aesthetics are established, we tell ggplot what kind of plot we want (geom_bar specifies a bar plot). And stat = “identity” means we want to graph the values as they are in the data we provided, rather than trying to do something else with them.</p>
+<p>Barplots are useful when you want to see the relationship between a continuous variable (like partyid) and a categorical variable (like race). But what if we have two continuous variables, like age and how many hours one works a week? We can use scatterplots for that!</p>
+<p>First, let’s return the data to its original state by ungrouping it.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="exploring-and-visualizing-data.html#cb57-1" aria-hidden="true" tabindex="-1"></a>gss <span class="ot">&lt;-</span> gss <span class="sc">%&gt;%</span> <span class="fu">ungroup</span>()</span></code></pre></div>
+<p>Now we can use geom_point, instead of bar, to plot the relationship between age and hours worked last week (hrs1).</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="exploring-and-visualizing-data.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gss, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> hrs1)) <span class="sc">+</span> </span>
+<span id="cb58-2"><a href="exploring-and-visualizing-data.html#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<pre><code>## Warning: Removed 973 rows containing missing values (geom_point).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-28-1.png" width="672" />
+With geom_smooth(), we can add a best fit line to better understand the relationship.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="exploring-and-visualizing-data.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gss, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> hrs1)) <span class="sc">+</span> </span>
+<span id="cb60-2"><a href="exploring-and-visualizing-data.html#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb60-3"><a href="exploring-and-visualizing-data.html#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 973 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 973 rows containing missing values (geom_point).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-29-1.png" width="672" />
+Pretty flat, with a bit of a decrease after age 50, and a weird uptick around 100 years old… perhaps that is just noise? Let’s filter out the really old people from the data. It is simple using the filter command. All we have to specify is that we want people of age less than 80, like so.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="exploring-and-visualizing-data.html#cb64-1" aria-hidden="true" tabindex="-1"></a>gss_younger <span class="ot">&lt;-</span> gss <span class="sc">%&gt;%</span> <span class="fu">filter</span>(age <span class="sc">&lt;</span> <span class="dv">80</span>)</span></code></pre></div>
+<p>Now we replot the data, except we have to change the name of the data we are using to gss_younger!</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="exploring-and-visualizing-data.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gss_younger, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> hrs1)) <span class="sc">+</span> </span>
+<span id="cb65-2"><a href="exploring-and-visualizing-data.html#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb65-3"><a href="exploring-and-visualizing-data.html#cb65-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39; and formula &#39;y ~ s(x, bs = &quot;cs&quot;)&#39;</code></pre>
+<pre><code>## Warning: Removed 853 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 853 rows containing missing values (geom_point).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-31-1.png" width="672" />
+Great!</p>
+<p>We can add in another variable using color, if we want. Coloring by sex, for example, reveals remaining discrepencies in workforce participation between males and females, though there is a lot of overlap, and much more than we would have seen twenty years ago.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="exploring-and-visualizing-data.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gss, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> hrs1, <span class="at">color =</span> sex)) <span class="sc">+</span> </span>
+<span id="cb69-2"><a href="exploring-and-visualizing-data.html#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<pre><code>## Warning: Removed 973 rows containing missing values (geom_point).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p>If we add geom_smooth() to this, we actually get two lines, one for each group!</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="exploring-and-visualizing-data.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gss, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> hrs1, <span class="at">color =</span> sex)) <span class="sc">+</span> </span>
+<span id="cb71-2"><a href="exploring-and-visualizing-data.html#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<pre><code>## Warning: Removed 973 rows containing missing values (geom_point).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p>Awesome! That is it for today.</p>
+<div id="lab-assignment" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Lab Assignment</h2>
+<p>Use the GSS to produce an intersting or surprising visualization of your own! We will look at them in class.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="r-basics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="surveys-and-survey-experiments-with-qualtrics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

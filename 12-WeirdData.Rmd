@@ -1,0 +1,124 @@
+---
+output: html_document
+---
+
+# Working with weird data, an example
+
+By now, you have a wide range of skills when it comes to analyzing data. You can design your own surveys, analyze networks, text data, text networks, perform machine learning and linear regression. The goal of this week is to prepare you for some of the inevitable difficulties you will run into when starting your own data projects. 
+
+There is so much data out there and a lot of it is messy or in formats that you can't easily analyze. One common data format you will run into, especially in social histroy, is PDF. We use PDFs all the time for documents ranging from articles to contracts. PDFs can easily be opened one at a time using Adobe or Preview but are difficult to analyze systematically in R.
+
+Two common issues arise when working with PDFs. First, PDFs do not natively read into R. If you want PDF data, you'll have to use packages like `pdftools` to read your PDF. But it gets even more complicated -- older PDFs are often just simple images of texts, scanned into the computer. As a result, the data they hold is optical, and so you can't simply read the text into R, even with pdftools at your disposal. As a result, we'll have to learn how to perform Optimal Character Recognition (OCR), which uses machine learning to take images of texts and reads the text. 
+
+## Reading in PDF data
+
+How can we read PDFs into R? If your PDF is already OCRed and has text associated with it, you can simply use the `pdf_text()` function from the pdftools packages in R to read in the text. For example, here, I read in a pdf from my own computer. 
+
+First, install pdftools.
+```{r eval = F}
+install.packages("pdftools")
+```
+
+Then load it in along with tidyverse
+```{r}
+library(pdftools)
+library(tidyverse)
+```
+
+Next, we can use the pdf_text function to read in the PDF.
+```{r}
+PDF <- pdf_text("Data/Wimmer_Lewis_2010_Beyond and Below Racial Homophily.pdf") 
+```
+
+It is some pretty messy text data! We could use what we learned in previous weeks to clean it up. Overall though, it isn't too bad. If you had a folder full of PDFs on your computer, you could loop through each file with a PDF extension, and read it into R. For example, here I do it for a folder of readings from social network analysis class. 
+
+First, I list all the files in the folder. 
+```{r eval = F}
+base_folder <- "Week 2 - Types of Networks"
+files <- list.files(base_folder)
+```
+
+Then I check which files are pdfs
+```{r eval = F}
+which_pdf <- grepl("pdf", files)
+```
+
+I limit the files to the pdfs. 
+
+```{r eval = F}
+files <- files[which_pdf]
+```
+
+Finally, I'll read the pdfs into R using pdftools. 
+
+```{r eval = F}
+week2_pdfs <- sapply(paste0(base_folder, "/", files), pdf_text)
+```
+
+Everything looks good... except the second reading, "Threshold Models of Collective Behavior" by Mark Granovetter. It is completely empty! What is going on? 
+
+It turns out that the PDF has not been OCRed. It was published in 1978, well before the large-scale digitization of journal articles. As a result, it is simply an image of the paper without any text associated with the words in the article. There is nothing for pdftools to grab!
+
+We'll have to OCR it ourselves. We can use the tesseract engine to do that. Tesseract is a state-of-the-art OCR engine originally developed by HP and now sponsored by Google. It may be open source, but it is as accurate as many proprietary engines! 
+
+Before we OCR Professor Granovetter's paper, let's work through a couple examples. First, we'll OCR a test image. Go to http://jeroen.github.io/images/testocr.png to see it. 
+
+Let's install the tesseract package in R.
+```{r eval=F}
+install.packages("tesseract")
+```
+Now we will load it in and select the english engine. 
+```{r}
+library(tesseract)
+eng <- tesseract("eng")
+```
+Last, we can tell tesseract to OCR the image of the poem in the link above. 
+```{r}
+text <- tesseract::ocr("http://jeroen.github.io/images/testocr.png", engine = eng)
+cat(text)
+```
+Pretty good! 
+
+Sometimes you have to clean the image file a bit to make it work well with the OCR engine. We can use the magick package for that. It has functions to resize images, convert images to different color schemes, trim whitespace on images, and write the results to new images. 
+
+```{r eval = F}
+install.packages("magick")
+```
+Let's load in magick
+```{r}
+library(magick)
+```
+
+We'll load in the image. You can go to the link to see that it is a bit messy. 
+```{r}
+input <- image_read("https://jeroen.github.io/images/bowers.jpg")
+```
+
+Now we can apply some of the magick functions to clean up the image. 
+```{r}
+text <- input %>%
+  image_resize("2000x") %>%
+  image_convert(type = 'Grayscale') %>%
+  image_trim(fuzz = 40) %>%
+  image_write(format = 'png', density = '300x300') %>%
+  tesseract::ocr() 
+```
+
+How did we do? 
+```{r}
+cat(text)
+```
+
+Not bad! Alright, let's try reading in Granovetter's piece.
+```{r eval = F}
+pngfile <- pdftools::pdf_convert('Data/Granovetter_AJS_1978_Threshold_Models.pdf', dpi = 600)
+```
+Wow.. It converts each page one by one! I guess we will have to analyze each page separately. 
+ 
+Let's just look at page 5. It looks pretty straight and nice. Let's just try OCR on it.
+
+```{r}
+granovetter_page5 <- tesseract::ocr("Data/Granovetter_AJS_1978_Threshold_Models_5.png") 
+```
+
+Cool! We would have to do this for every page and then put them all into a single vector. 

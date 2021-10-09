@@ -1,0 +1,126 @@
+---
+output: html_document
+---
+
+# R Basics
+
+This initial tutorial for R has two primary learning objectives.  The first is to become affiliated with the R environment and the second is to learn how to extend the basic set of R functions to make it suitable for your own research purposes.  
+
+The lessons we learn in this tutorial will serve as a strong basis for the those that follow, which focus on the actual analysis of data using R. 
+
+Like most programming languages, R can serve as a calculator.  We will use many of these basic mathematical operations when working with data.
+
+```{r}
+2+2
+((2+2)*3)/6
+2^2
+```
+
+We use the assignment operator "<-" to save the results in a vector for later. 
+
+```{r}
+four <- 2+2
+sixteen <- (2+2)^2
+```
+
+If we type the name of the vector, it will return its values. 
+
+```{r}
+four
+sixteen
+```
+
+Functions in R also have names. Later on, we will learn to write our own functions.  For now, we can make use of the large body of default functions that exist within R.
+
+The most basic function is print.  We can use it to output text in the console.
+
+```{r}
+print("Hello world!")
+```
+
+log() is another useful function and it has two arguments, x and base.  When you call the function log() you have to specify x (the input value), while base has a default of exp(1). 
+
+```{r}
+log82 <- log(x = 8, base = 2)
+```
+
+If you don't specify the arguments in their correct order, you must use argument=value form or else you will get a different result.
+
+```{r}
+log1 <- log(8, base = 2)
+log2 <- log(x = 8, base = 2)
+log3 <- log(8, 2)
+log4 <- log(base = 2, x = 8)
+log5 <- log(2, 8)
+```
+
+The cat function concatenates the R objects and prints them. 
+```{r}
+cat(log1, log2, log3, log4, log5)
+```
+
+As you can see, the fifth specification of the logarithm returned different results.
+
+## Vectors
+
+Vectors are the most basic object in R. They contain ordered elements of the same type. Vectors of size > 1 are created using the "c" function. 
+
+```{r}
+v <- c(0,1,2,3,4,5,6,7,8,9)
+print(v)
+```
+
+Computations on vectors are performed element-wise.
+
+```{r}
+v <- v * 3
+print(v)
+```
+
+When we are working with a vector, we might to see what the fourth or fifth element is. We can use indexing to identify them. Indexing looks like this:
+
+```{r}
+v[4]
+v[5]
+```
+
+Finally, we may wish to remove elements from a vector.  We can use the subset function to do this.
+
+```{r}
+v <- subset(v, v > 15)
+print(v)
+```
+
+We can perform this same operation with subscripts
+```{r}
+v[v < 20]
+```
+
+In effect, they both say - subset  vector v so that only those elements greater (or less) than some value remain
+
+We can also use the subscript index method to change values if they meet a certain criteria
+
+```{r}
+v <- c(1,2,3,4,5,6)
+v[v > 2] <- 10
+
+print(v)
+```
+
+## Loading Packages
+
+Before we move on to datasets, rather than just vectors, let's install some necessary packages. Packages are collections of R functions, data, and compiled code. They are built by members of the R community to add functionality to base R. Generally, if you wish you could do something with R, someone has built a package to do it already!
+
+We will use a few packages, some of which are built into R. We will need to install the others. For now, we just need to install tidyverse, which is the most complete data analysis and visualization package for R. To do so, we use the install.packages() function.
+
+```{r}
+# install.packages("tidyverse")
+```
+
+The library function tells R to add the contents of the package to the current R session so that we can use it in our analyses.
+
+```{r}
+library(tidyverse)
+```
+
+We will use the library() function every time we start a new R session.  If R cannot find a function that you are sure is in a package you use, it normally means the package isn't loaded or that you somehow misspelled the function name.

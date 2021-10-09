@@ -1,0 +1,173 @@
+---
+output: html_document
+---
+
+# Exploring and Visualizing Data
+
+Now, let's actually get our hands dirty and start analyzing data. The first thing we will need to do is to pick a data set to analyze. A good candidate is the General Social Survey (GSS) - a large-scale survey that sociologists have been administering since the 1960s, meant to gauge the changing social attitudes and practices of Americans over time. It is probably sociology's most celebrated dataset, the subject of tens of thousands of papers since its inception. It isn't quite big data (only a couple thousand respondets each year), but it is a good starting point for our first data exercises. 
+
+To download the GSS, first navigate to: https://gss.norc.org/get-the-data/stata
+
+Then, click where it says 2018, under the heading **Download Individual Year Data Sets (cross-section only)**. 
+
+For now, drag the downloaded file to your Desktop. It is a STATA file, so we will have to use a special R package, foreign, to load it into R as well as the function, read.dta, from that package. 
+
+A function is basically a command which helps you do something. Later on, we will work on writing our own functions, for now we will us the functions that other people's packages supply for us. 
+
+```{r, echo = T}
+# load in the foreign package.. it comes with R
+library(foreign)
+# now we can load in the GSS data
+gss <- read.dta("Data/GSS2018.dta")
+```
+
+You can use the View() or head() functions to actually view the data and see what it looks like. 
+```{r, echo = F}
+head(gss[1:6,1:10])
+```
+
+If you have ever worked with Excel before, this should look pretty familiar! In R, this is called a data.frame(). It is the most common way we will use to organize data.
+
+```{r, echo = T}
+class(gss)
+```
+
+A data.frame is organized into rows and columns. Each row holds the data for a single respondent, whereas each column holds the data for a single variable (or question). Let's see how many people (rows) and variables (columns) the data have.
+
+```{r, echo = T}
+# Check the number of rows
+nrow(gss)
+
+# Check the number of columns
+ncol(gss)
+
+# Or both at the same time!
+dim(gss)
+```
+
+We can find this information over in the environment too. 
+
+The rows are numbered, while the columns have names. But if you look at the column names, they won't make much sense. 
+```{r, echo = T}
+# check the column names
+colnames(gss)
+```
+
+They are like a secret code - if you know what the code means then you can figure out what information a variable holds. But how do we figure that out? We have to use a codebook!
+
+Head over to https://gssdataexplorer.norc.org/variables/vfilter for an accessible online codebook.
+You can search for keywords to see if it has variables that you care about. Here are some random suggestions:
+* age
+* income
+* partyid
+* sex
+* race
+* hrs1
+
+
+We can evaluate these variables more closely using various R functions. For example, what are respondents' average age? We use the mean function for that, and specify the na.rm = T option to tell R that respodent's who didn't report an age should be ignored.
+```{r, echo = T}
+mean(gss$age, na.rm = T)
+```
+
+Interesting - almost 50 years old! By comparison, the average age in the US is roughly 38 years old. This might signal that the GSS is skewed towards older respondents, but we have to remember that babies do not take surveys.
+
+We can use the summary function to get a host of information about a variable's distribution. For example, below we apply it to partyid - a measure of political affiliation which goes from 1 (Strong Demcorat) to 7 (Strong Republican) [the reason that it is different in practice than what the codebook says is because of how R converts factors to numerics, which we have to do to examine the scale quantitatively -- specifically, the first option of a factor in R will be a 1 rather than a 0]. The median is a 4, which is dabsmack in the middle of the scale. The median respondent is an independent with no reported party leanings. 
+
+
+```{r, echo = T}
+summary(as.numeric(gss$partyid), na.rm = T)
+```
+
+Cool! What if we wanted to see how two variables relate to one another? For example, we have heard from pundits that racial background strongly shapes political leaning in the today's America -- does the GSS confirm that conclusion? For comparison, we can also look at how people of varioius racial backgrounds differ by age. 
+
+To achieve this, we first have to group the data by race using the group_by function from tidyverse.
+
+```{r, echo = T}
+gss <- gss %>% group_by(race)
+```
+
+Now that respondents are grouped by race, we can use the summarize function to evaluate each group's average party identification and age.
+```{r, echo = T}
+
+vars_by_race <- gss %>% summarise(
+                        partyid = mean(as.numeric(partyid), na.rm = T),
+                        age = mean(age, na.rm = T)
+                        )
+
+vars_by_race
+
+```
+
+With respect to politics - just as we expected! People who identify as white also tend to be a bit older on average than people who identify as black.
+
+Instead of just looking at the averages, we could visualize them using a simple barplot. 
+
+We will use the ggplot function for this, which is one of the most useful suite of functions for visualization in all of R. 
+
+```{r}
+ggplot(vars_by_race, aes(x=race, y=partyid, fill=race)) +
+  geom_bar(stat="identity")
+```
+
+It is a complex function, so let's break it down. The first argument is the data we want to visualize itself - vars_by_race. 
+
+Then we need to establish the aesthetics (i.e. aes()). 
+
+x is the x variable (i.e. the variable on the x-axis of the graph), y is the y variable (i.e. the varible on the y axis of the graph), and fill is the variable we want to use to color the bars (race). 
+
+Now that the aesthetics are established, we tell ggplot what kind of plot we want (geom_bar specifies a bar plot). And stat = "identity" means we want to graph the values as they are in the data we provided, rather than trying to do something else with them.
+
+Barplots are useful when you want to see the relationship between a continuous variable (like partyid) and a categorical variable (like race). But what if we have two continuous variables, like age and how many hours one works a week? We can use scatterplots for that!
+
+First, let's return the data to its original state by ungrouping it.
+```{r, echo = T}
+gss <- gss %>% ungroup()
+```
+
+Now we can use geom_point, instead of bar, to plot the relationship between age and hours worked last week (hrs1).
+```{r, echo = T}
+ggplot(data = gss, aes(x = age, y = hrs1)) + 
+  geom_point()
+```  
+With geom_smooth(), we can add a best fit line to better understand the relationship. 
+```{r, echo = T}
+ggplot(data = gss, aes(x = age, y = hrs1)) + 
+  geom_point() +
+  geom_smooth()
+```  
+Pretty flat, with a bit of a decrease after age 50, and a weird uptick around 100 years old... perhaps that is just noise? Let's filter out the really old people from the data. It is simple using the filter command. All we have to specify is that we want people of age less than 80, like so. 
+
+```{r, echo = T}
+gss_younger <- gss %>% filter(age < 80)
+``` 
+Now we replot the data, except we have to change the name of the data we are using to gss_younger!
+
+```{r, echo = T}
+ggplot(data = gss_younger, aes(x = age, y = hrs1)) + 
+  geom_point() +
+  geom_smooth()
+``` 
+Great!
+
+We can add in another variable using color, if we want. Coloring by sex, for example, reveals remaining discrepencies in workforce participation between males and females, though there is a lot of overlap, and much more than we would have seen twenty years ago.
+```{r, echo = T}
+ggplot(data = gss, aes(x = age, y = hrs1, color = sex)) + 
+  geom_point()
+```  
+
+If we add geom_smooth() to this, we actually get two lines, one for each group!
+```{r, echo = T}
+ggplot(data = gss, aes(x = age, y = hrs1, color = sex)) + 
+  geom_point()
+```  
+
+Awesome! That is it for today. 
+
+## Lab Assignment
+Use the GSS to produce an intersting or surprising visualization of your own! We will look at them in class.
+
+
+
+
+

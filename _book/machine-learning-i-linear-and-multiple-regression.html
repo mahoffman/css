@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8 Machine Learning I: Linear and Multiple Regression | Introduction to Computational Social Science</title>
+  <meta name="description" content="8 Machine Learning I: Linear and Multiple Regression | Introduction to Computational Social Science" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="8 Machine Learning I: Linear and Multiple Regression | Introduction to Computational Social Science" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8 Machine Learning I: Linear and Multiple Regression | Introduction to Computational Social Science" />
+  
+  
+  
+
+<meta name="author" content="Mark Hoffman" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="collecting-data-online.html"/>
+<link rel="next" href="machine-learning-with-caret.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="reading-list.html"><a href="reading-list.html"><i class="fa fa-check"></i><b>1</b> Reading List</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="reading-list.html"><a href="reading-list.html#readings-and-software"><i class="fa fa-check"></i><b>1.1</b> Readings and Software</a></li>
+<li class="chapter" data-level="1.2" data-path="reading-list.html"><a href="reading-list.html#course-outline"><i class="fa fa-check"></i><b>1.2</b> Course Outline</a></li>
+<li class="chapter" data-level="1.3" data-path="reading-list.html"><a href="reading-list.html#week-1-beg.-september-20th-introductions-lab-introduction-to-r"><i class="fa fa-check"></i><b>1.3</b> Week 1 (beg. September 20th): Introductions (Lab: Introduction to R)</a></li>
+<li class="chapter" data-level="1.4" data-path="reading-list.html"><a href="reading-list.html#week-2-beg.-september-27th-ethics-lab-surveys-and-survey-experiments"><i class="fa fa-check"></i><b>1.4</b> Week 2 (beg. September 27th): Ethics (Lab: Surveys and Survey Experiments)</a></li>
+<li class="chapter" data-level="1.5" data-path="reading-list.html"><a href="reading-list.html#week-3-beg.-october-4th-inequality-lab-collecting-data-online"><i class="fa fa-check"></i><b>1.5</b> Week 3 (beg. October 4th): Inequality (Lab: Collecting Data Online)</a></li>
+<li class="chapter" data-level="1.6" data-path="reading-list.html"><a href="reading-list.html#week-4-beg.-october-11th-polarization-lab-analyzing-text"><i class="fa fa-check"></i><b>1.6</b> Week 4 (beg. October 11th): Polarization (Lab: Analyzing Text)</a></li>
+<li class="chapter" data-level="1.7" data-path="reading-list.html"><a href="reading-list.html#week-5-beg.-october-18th-markets-lab-regression"><i class="fa fa-check"></i><b>1.7</b> Week 5 (beg. October 18th): Markets (Lab: Regression)</a></li>
+<li class="chapter" data-level="1.8" data-path="reading-list.html"><a href="reading-list.html#week-6-beg.-october-25th-discrimination-lab-machine-learning"><i class="fa fa-check"></i><b>1.8</b> Week 6 (beg. October 25th): Discrimination (Lab: Machine Learning)</a></li>
+<li class="chapter" data-level="1.9" data-path="reading-list.html"><a href="reading-list.html#week-7-beg.-november-1st-homophily-and-diffusion-lab-network-analysis"><i class="fa fa-check"></i><b>1.9</b> Week 7 (beg. November 1st): Homophily and Diffusion (Lab: Network Analysis)</a></li>
+<li class="chapter" data-level="1.10" data-path="reading-list.html"><a href="reading-list.html#week-8-beg.-november-8th-semantic-change-and-historical-meaning-lab-semantic-network-analysis"><i class="fa fa-check"></i><b>1.10</b> Week 8 (beg. November 8th): Semantic Change and Historical Meaning (Lab: Semantic Network Analysis)</a></li>
+<li class="chapter" data-level="1.11" data-path="reading-list.html"><a href="reading-list.html#week-9-beg.-november-15th-health-no-lab"><i class="fa fa-check"></i><b>1.11</b> Week 9 (beg. November 15th): Health (No Lab)</a></li>
+<li class="chapter" data-level="1.12" data-path="reading-list.html"><a href="reading-list.html#week-10-beg.-november-29th-group-presentations"><i class="fa fa-check"></i><b>1.12</b> Week 10 (beg. November 29th): Group Presentations</a></li>
+<li class="chapter" data-level="1.13" data-path="reading-list.html"><a href="reading-list.html#december-11th-final-papers-are-due."><i class="fa fa-check"></i><b>1.13</b> December 11th: Final papers are due.</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="installing-r-and-rstudio.html"><a href="installing-r-and-rstudio.html"><i class="fa fa-check"></i><b>2</b> Installing R and RStudio</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="installing-r-and-rstudio.html"><a href="installing-r-and-rstudio.html#downloading-and-installing-r"><i class="fa fa-check"></i><b>2.1</b> Downloading and Installing R</a></li>
+<li class="chapter" data-level="2.2" data-path="installing-r-and-rstudio.html"><a href="installing-r-and-rstudio.html#downloading-and-installing-rstudio"><i class="fa fa-check"></i><b>2.2</b> Downloading and Installing RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="tour-rstudio-with-udacity.html"><a href="tour-rstudio-with-udacity.html"><i class="fa fa-check"></i><b>3</b> Tour RStudio with Udacity</a></li>
+<li class="chapter" data-level="4" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>4</b> R Basics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="r-basics.html"><a href="r-basics.html#vectors"><i class="fa fa-check"></i><b>4.1</b> Vectors</a></li>
+<li class="chapter" data-level="4.2" data-path="r-basics.html"><a href="r-basics.html#loading-packages"><i class="fa fa-check"></i><b>4.2</b> Loading Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="exploring-and-visualizing-data.html"><a href="exploring-and-visualizing-data.html"><i class="fa fa-check"></i><b>5</b> Exploring and Visualizing Data</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="exploring-and-visualizing-data.html"><a href="exploring-and-visualizing-data.html#lab-assignment"><i class="fa fa-check"></i><b>5.1</b> Lab Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="surveys-and-survey-experiments-with-qualtrics.html"><a href="surveys-and-survey-experiments-with-qualtrics.html"><i class="fa fa-check"></i><b>6</b> Surveys and Survey Experiments with Qualtrics</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="surveys-and-survey-experiments-with-qualtrics.html"><a href="surveys-and-survey-experiments-with-qualtrics.html#creating-a-qualtrics-account"><i class="fa fa-check"></i><b>6.1</b> Creating a Qualtrics account</a></li>
+<li class="chapter" data-level="6.2" data-path="surveys-and-survey-experiments-with-qualtrics.html"><a href="surveys-and-survey-experiments-with-qualtrics.html#building-a-survey"><i class="fa fa-check"></i><b>6.2</b> Building a survey</a></li>
+<li class="chapter" data-level="6.3" data-path="surveys-and-survey-experiments-with-qualtrics.html"><a href="surveys-and-survey-experiments-with-qualtrics.html#survey-options"><i class="fa fa-check"></i><b>6.3</b> Survey options</a></li>
+<li class="chapter" data-level="6.4" data-path="surveys-and-survey-experiments-with-qualtrics.html"><a href="surveys-and-survey-experiments-with-qualtrics.html#a-quick-survey-experiment"><i class="fa fa-check"></i><b>6.4</b> A quick survey experiment</a></li>
+<li class="chapter" data-level="6.5" data-path="surveys-and-survey-experiments-with-qualtrics.html"><a href="surveys-and-survey-experiments-with-qualtrics.html#publish-and-distribute"><i class="fa fa-check"></i><b>6.5</b> Publish and Distribute</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="collecting-data-online.html"><a href="collecting-data-online.html"><i class="fa fa-check"></i><b>7</b> Collecting data online</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="collecting-data-online.html"><a href="collecting-data-online.html#scraping-the-web"><i class="fa fa-check"></i><b>7.1</b> Scraping the web</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html"><i class="fa fa-check"></i><b>8</b> Machine Learning I: Linear and Multiple Regression</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html#more-with-the-gss"><i class="fa fa-check"></i><b>8.1</b> More with the GSS</a></li>
+<li class="chapter" data-level="8.2" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html#how-regression-works"><i class="fa fa-check"></i><b>8.2</b> How regression works</a></li>
+<li class="chapter" data-level="8.3" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html#linear-regression-using-the-lm-function"><i class="fa fa-check"></i><b>8.3</b> Linear regression using the lm function</a></li>
+<li class="chapter" data-level="8.4" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html#prediction-and-prediction-errors"><i class="fa fa-check"></i><b>8.4</b> Prediction and prediction errors</a></li>
+<li class="chapter" data-level="8.5" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html#multiple-regression"><i class="fa fa-check"></i><b>8.5</b> Multiple Regression</a></li>
+<li class="chapter" data-level="8.6" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html#prediction"><i class="fa fa-check"></i><b>8.6</b> Prediction</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="machine-learning-with-caret.html"><a href="machine-learning-with-caret.html"><i class="fa fa-check"></i><b>9</b> Machine Learning with caret</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="machine-learning-with-caret.html"><a href="machine-learning-with-caret.html#the-data"><i class="fa fa-check"></i><b>9.1</b> The data</a></li>
+<li class="chapter" data-level="9.2" data-path="machine-learning-with-caret.html"><a href="machine-learning-with-caret.html#training-vs.-testing"><i class="fa fa-check"></i><b>9.2</b> Training vs. testing</a></li>
+<li class="chapter" data-level="9.3" data-path="machine-learning-with-caret.html"><a href="machine-learning-with-caret.html#creating-features"><i class="fa fa-check"></i><b>9.3</b> Creating features</a></li>
+<li class="chapter" data-level="9.4" data-path="machine-learning-with-caret.html"><a href="machine-learning-with-caret.html#constructing-a-model"><i class="fa fa-check"></i><b>9.4</b> Constructing a model</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="machine-learning-with-caret.html"><a href="machine-learning-with-caret.html#lab"><i class="fa fa-check"></i><b>9.4.1</b> LAB</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html"><i class="fa fa-check"></i><b>10</b> Social and Semantic Network Analysis</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#understanding-network-data-structures"><i class="fa fa-check"></i><b>10.1</b> Understanding network data structures</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#edge-lists"><i class="fa fa-check"></i><b>10.1.1</b> Edge lists</a></li>
+<li class="chapter" data-level="10.1.2" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#adjacency-matrices"><i class="fa fa-check"></i><b>10.1.2</b> Adjacency matrices</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#producing-a-skip-gram-matrix-for-semantic-network-analysis-and-embedding-models"><i class="fa fa-check"></i><b>10.2</b> Producing a skip-gram matrix for semantic network analysis and embedding models</a></li>
+<li class="chapter" data-level="10.3" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#from-data-to-networks"><i class="fa fa-check"></i><b>10.3</b> From data to networks</a></li>
+<li class="chapter" data-level="10.4" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#exploring-your-network"><i class="fa fa-check"></i><b>10.4</b> Exploring your network</a></li>
+<li class="chapter" data-level="10.5" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#the-basics-of-visualization"><i class="fa fa-check"></i><b>10.5</b> The Basics of Visualization</a></li>
+<li class="chapter" data-level="10.6" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#layouts"><i class="fa fa-check"></i><b>10.6</b> Layouts</a></li>
+<li class="chapter" data-level="10.7" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#group-detection"><i class="fa fa-check"></i><b>10.7</b> Group detection</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="working-with-weird-data-an-example.html"><a href="working-with-weird-data-an-example.html"><i class="fa fa-check"></i><b>11</b> Working with weird data, an example</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="working-with-weird-data-an-example.html"><a href="working-with-weird-data-an-example.html#reading-in-pdf-data"><i class="fa fa-check"></i><b>11.1</b> Reading in PDF data</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Computational Social Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="machine-learning-i-linear-and-multiple-regression" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Machine Learning I: Linear and Multiple Regression</h1>
+<p>In machine learning, we use statistical and algorithmic methods to detect patterns in our data. There are, generally, three goals: the first is to describe or understand our data. What are the patterns? How can we make sense of them? The second is to model our data - that is to test a theory on our data about how it was generated and to evaluate the accuracy of that theory. Related, to two, the third goal is to make predictions - if our model is generalizable, then it should apply to other, similar situations. There are a number of strategies for identifying and modeling patterns in data.</p>
+<p>In this regard, machine learning differs from more traditional ways of instructing computers on how to do things in that it provides a framework for the machine to learn from data on its own. We don’t have to type in what the machine should do at every step - it will be able to identify patterns using a model of choice across many different domains.</p>
+<p>We will focus this week on Linear Regression, the most common strategy in the social sciences for modeling data.</p>
+<div id="more-with-the-gss" class="section level2" number="8.1">
+<h2><span class="header-section-number">8.1</span> More with the GSS</h2>
+<p>In the previous lab, we learned how to download data and visualize patterns between variables. In what follows, we will go beyond data visualization and begin to ask theoretically informed questions and using data, again, from the GSS, to answer those questions. Where before we plotted two variables against each other to see their relationship, linear regression will allow us to quantify their relationship: how much do changes in our explanatory variable lead to changes in the variable we are hoping to explain? Is this relationship statistically significant - that is, does it differ from what we should expect by chance?</p>
+<p>Linear regression will also allow us to adjust for covariates - variables that may be affecting our primary dependent variable of interest as well as our independent variable. For example, in classic example of confounding, we may see that the number of ice cream cones people eat per year is correlated with the number of sunburns they get and think that ice cream causes sunburns. However, it is obvious that both of these factors will be influenced by how warm of a climate people live in - with people living in warmer climates consuming more ice cream AND getting more sunburns. By controlling for the warmth of the climate, we can adjust for this fact and likely any association we saw between ice cream and sunburns will go away.</p>
+</div>
+<div id="how-regression-works" class="section level2" number="8.2">
+<h2><span class="header-section-number">8.2</span> How regression works</h2>
+<p>You may remember the slope-intercept form of writing the equation of a straight line from algebra.
+<span class="math display">\[
+y = mx + b
+\]</span>
+Here, we can calculate the coordinate <span class="math inline">\(y\)</span> for any <span class="math inline">\(x\)</span> by first multiplying <span class="math inline">\(x\)</span> by the slope of the line, <span class="math inline">\(m\)</span>, and adding the value of the intercept, <span class="math inline">\(b\)</span>, which is where the line intersects with the <span class="math inline">\(y\)</span> axis.</p>
+<p>Linear regression is a strategy for finding the line that best fits the relationship between two variables. We start with a y variable, also called the outcome or the dependent variable, and an x variable, also called a predictor or the independent variable, and ask what is the slope-intercept equation that most closely approximates their relationship. Given <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, linear regression therefore involves estimating the slope, <span class="math inline">\(m\)</span>, and intercept, <span class="math inline">\(b\)</span>, of the line.</p>
+<p>Rarely in real world applications are two variables perfectly related to one another: even the best social science models have error. To reflect this, we update the equation above to:</p>
+<p><span class="math display">\[
+y = mx + b + ε
+\]</span>
+With <span class="math inline">\(ε\)</span> capturing the error in our predictions.</p>
+<p>How do we fit a line to x and y? The short of it is that we will start with line (say, a horizontal one) and keep adjusting the slope and intercept of that line to minimize the average distance between the data points and the line itself. To see how this works, we can use the plot_ss function, taken from the statsr package. We will explore the relationship between age and income. Make sure you have the GSS data in your R environment.</p>
+<p>First, run this to load the function into your R environment</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-1" aria-hidden="true" tabindex="-1"></a>plot_ss <span class="ot">&lt;-</span> <span class="cf">function</span> (x, y, data, <span class="at">showSquares =</span> <span class="cn">FALSE</span>, <span class="at">leastSquares =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb110-2"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-2" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb110-3"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-3" aria-hidden="true" tabindex="-1"></a>    missingargs <span class="ot">&lt;-</span> <span class="fu">missing</span>(x) <span class="sc">|</span> <span class="fu">missing</span>(y) <span class="sc">|</span> <span class="fu">missing</span>(data)</span>
+<span id="cb110-4"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (missingargs) </span>
+<span id="cb110-5"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">stop</span>(<span class="fu">simpleError</span>(<span class="st">&quot;missing arguments x, y or data&quot;</span>))</span>
+<span id="cb110-6"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-6" aria-hidden="true" tabindex="-1"></a>    xlab <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">substitute</span>(x))</span>
+<span id="cb110-7"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-7" aria-hidden="true" tabindex="-1"></a>    ylab <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">substitute</span>(y))</span>
+<span id="cb110-8"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-8" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="fu">eval</span>(<span class="fu">substitute</span>(x), data)</span>
+<span id="cb110-9"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-9" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> <span class="fu">eval</span>(<span class="fu">substitute</span>(y), data)</span>
+<span id="cb110-10"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-10" aria-hidden="true" tabindex="-1"></a>    data <span class="ot">=</span> <span class="fu">na.omit</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y))</span>
+<span id="cb110-11"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-11" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">=</span> data[[<span class="st">&quot;x&quot;</span>]]</span>
+<span id="cb110-12"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-12" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">=</span> data[[<span class="st">&quot;y&quot;</span>]]</span>
+<span id="cb110-13"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>(y <span class="sc">~</span> x, <span class="at">data =</span> data, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">xlab =</span> xlab, </span>
+<span id="cb110-14"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> ylab)</span>
+<span id="cb110-15"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (leastSquares) {</span>
+<span id="cb110-16"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-16" aria-hidden="true" tabindex="-1"></a>        m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> data)</span>
+<span id="cb110-17"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-17" aria-hidden="true" tabindex="-1"></a>        y.hat <span class="ot">&lt;-</span> m1<span class="sc">$</span>fit</span>
+<span id="cb110-18"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-18" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb110-19"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> {</span>
+<span id="cb110-20"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">cat</span>(<span class="st">&quot;Click two points to make a line.&quot;</span>)</span>
+<span id="cb110-21"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-21" aria-hidden="true" tabindex="-1"></a>        pt1 <span class="ot">&lt;-</span> <span class="fu">locator</span>(<span class="dv">1</span>)</span>
+<span id="cb110-22"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-22" aria-hidden="true" tabindex="-1"></a>        <span class="fu">points</span>(pt1<span class="sc">$</span>x, pt1<span class="sc">$</span>y, <span class="at">pch =</span> <span class="dv">4</span>)</span>
+<span id="cb110-23"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-23" aria-hidden="true" tabindex="-1"></a>        pt2 <span class="ot">&lt;-</span> <span class="fu">locator</span>(<span class="dv">1</span>)</span>
+<span id="cb110-24"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-24" aria-hidden="true" tabindex="-1"></a>        <span class="fu">points</span>(pt2<span class="sc">$</span>x, pt2<span class="sc">$</span>y, <span class="at">pch =</span> <span class="dv">4</span>)</span>
+<span id="cb110-25"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-25" aria-hidden="true" tabindex="-1"></a>        pts <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(pt1<span class="sc">$</span>x, pt2<span class="sc">$</span>x), <span class="at">y =</span> <span class="fu">c</span>(pt1<span class="sc">$</span>y, pt2<span class="sc">$</span>y))</span>
+<span id="cb110-26"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-26" aria-hidden="true" tabindex="-1"></a>        m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> pts)</span>
+<span id="cb110-27"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-27" aria-hidden="true" tabindex="-1"></a>        y.hat <span class="ot">&lt;-</span> <span class="fu">predict</span>(m1, <span class="at">newdata =</span> data)</span>
+<span id="cb110-28"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-28" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb110-29"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-29" aria-hidden="true" tabindex="-1"></a>    r <span class="ot">&lt;-</span> y <span class="sc">-</span> y.hat</span>
+<span id="cb110-30"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">abline</span>(m1)</span>
+<span id="cb110-31"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-31" aria-hidden="true" tabindex="-1"></a>    oSide <span class="ot">&lt;-</span> x <span class="sc">-</span> r</span>
+<span id="cb110-32"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-32" aria-hidden="true" tabindex="-1"></a>    LLim <span class="ot">&lt;-</span> <span class="fu">par</span>()<span class="sc">$</span>usr[<span class="dv">1</span>]</span>
+<span id="cb110-33"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-33" aria-hidden="true" tabindex="-1"></a>    RLim <span class="ot">&lt;-</span> <span class="fu">par</span>()<span class="sc">$</span>usr[<span class="dv">2</span>]</span>
+<span id="cb110-34"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-34" aria-hidden="true" tabindex="-1"></a>    oSide[oSide <span class="sc">&lt;</span> LLim <span class="sc">|</span> oSide <span class="sc">&gt;</span> RLim] <span class="ot">&lt;-</span> <span class="fu">c</span>(x <span class="sc">+</span> r)[oSide <span class="sc">&lt;</span> LLim <span class="sc">|</span> </span>
+<span id="cb110-35"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-35" aria-hidden="true" tabindex="-1"></a>        oSide <span class="sc">&gt;</span> RLim]</span>
+<span id="cb110-36"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-36" aria-hidden="true" tabindex="-1"></a>    n <span class="ot">&lt;-</span> <span class="fu">length</span>(y.hat)</span>
+<span id="cb110-37"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
+<span id="cb110-38"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-38" aria-hidden="true" tabindex="-1"></a>        <span class="fu">lines</span>(<span class="fu">rep</span>(x[i], <span class="dv">2</span>), <span class="fu">c</span>(y[i], y.hat[i]), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;#56B4E9&quot;</span>)</span>
+<span id="cb110-39"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (showSquares) {</span>
+<span id="cb110-40"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-40" aria-hidden="true" tabindex="-1"></a>            <span class="fu">lines</span>(<span class="fu">rep</span>(oSide[i], <span class="dv">2</span>), <span class="fu">c</span>(y[i], y.hat[i]), <span class="at">lty =</span> <span class="dv">3</span>, </span>
+<span id="cb110-41"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-41" aria-hidden="true" tabindex="-1"></a>                <span class="at">col =</span> <span class="st">&quot;#E69F00&quot;</span>)</span>
+<span id="cb110-42"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-42" aria-hidden="true" tabindex="-1"></a>            <span class="fu">lines</span>(<span class="fu">c</span>(oSide[i], x[i]), <span class="fu">rep</span>(y.hat[i], <span class="dv">2</span>), <span class="at">lty =</span> <span class="dv">3</span>, </span>
+<span id="cb110-43"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-43" aria-hidden="true" tabindex="-1"></a>                <span class="at">col =</span> <span class="st">&quot;#E69F00&quot;</span>)</span>
+<span id="cb110-44"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-44" aria-hidden="true" tabindex="-1"></a>            <span class="fu">lines</span>(<span class="fu">c</span>(oSide[i], x[i]), <span class="fu">rep</span>(y[i], <span class="dv">2</span>), <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&quot;#E69F00&quot;</span>)</span>
+<span id="cb110-45"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-45" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb110-46"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-46" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb110-47"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-47" aria-hidden="true" tabindex="-1"></a>    SS <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">sum</span>(r<span class="sc">^</span><span class="dv">2</span>), <span class="dv">3</span>)</span>
+<span id="cb110-48"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-48" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\r</span><span class="st">                                &quot;</span>)</span>
+<span id="cb110-49"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-49" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(m1)</span>
+<span id="cb110-50"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-50" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;Sum of Squares: &quot;</span>, SS)</span>
+<span id="cb110-51"><a href="machine-learning-i-linear-and-multiple-regression.html#cb110-51" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="machine-learning-i-linear-and-multiple-regression.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_ss</span>(<span class="at">x =</span> age, <span class="at">y =</span> realinc, <span class="at">data =</span> gss)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
+<pre><code>## Click two points to make a line.
+                                
+## Call:
+## lm(formula = y ~ x, data = pts)
+## 
+## Coefficients:
+## (Intercept)            x  
+##    30130.57        74.27  
+## 
+## Sum of Squares:  2.082262e+12</code></pre>
+<p>After running this command, you’ll be prompted to click two points on the plot to define a line. Once you’ve done that, the line you specified will be shown in black and the residuals in blue. Note that there is one residual for each of the observations. Residuals are the difference between the observed values and the values predicted by the line:</p>
+<p><span class="math display">\[residual_i =y_i−ŷ_i\]</span>
+Linear regression will seek to minimize the sum of the squared residuals, also known as the sum of squares:</p>
+<p><span class="math display">\[SumSquares = \sum_{i = 1}^{n} (y_i−ŷ_i)^2\]</span></p>
+<p>Using <code>plot_ss</code>, try minimizing the sum of squares. To do so, run the function multiple times, keeping track of the sum of squares that it returns, and adjusting your line to make it smaller. What was the smallest value you could achieve?</p>
+</div>
+<div id="linear-regression-using-the-lm-function" class="section level2" number="8.3">
+<h2><span class="header-section-number">8.3</span> Linear regression using the lm function</h2>
+<p>Thankfully, as computational social scientists, we won’t have to do this adjustment by hand. The lm function in R uses an algorithm, called gradient descent, to find the linear regression line that best minimizes the sum of squares for us.</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="machine-learning-i-linear-and-multiple-regression.html#cb113-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(realinc <span class="sc">~</span> age, <span class="at">data =</span> gss)</span></code></pre></div>
+<p>The first argument in the function lm is a formula that takes the form y ~ x. Here it can be read that we want to make a linear model of real household income as a function of age The second argument specifies that R should look in the gss data frame to find the age and realinc variables.</p>
+<p>The output of lm is an object that contains all of the information we need about the linear model that was just fit. We can access this information using the summary function.</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="machine-learning-i-linear-and-multiple-regression.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = realinc ~ age, data = gss)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -36142 -21953  -8800  11184  88412 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 30130.57    1968.22  15.309   &lt;2e-16 ***
+## age            74.27      37.87   1.961     0.05 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 31160 on 2145 degrees of freedom
+##   (201 observations deleted due to missingness)
+## Multiple R-squared:  0.00179,    Adjusted R-squared:  0.001324 
+## F-statistic: 3.846 on 1 and 2145 DF,  p-value: 0.04999</code></pre>
+<p>Let’s consider this output piece by piece. First, the formula used to describe the model is shown at the top. After the formula you find the five-number summary of the residuals. The “Coefficients” table shown next is key; its first column displays the linear model’s y-intercept and the coefficient of age. With this table, we can write down the least squares regression line for the linear model:</p>
+<p><span class="math display">\[ŷ=30130.57+74.27∗age\]</span>
+It also shows whether the coefficients, here, age, have are statistically significant in predicting the outcome, income. Normally, a p-value cut-off of 0.05 is used to determine statistical significance - here, age’s p-value is almost exactly 0.05 (in fact, it is very slightly lower) and is therefore significant.</p>
+<p>One last piece of information we will discuss from the summary output is the Multiple R-squared, or more simply, R2. The R2 value represents the proportion of variability in the response variable that is explained by the explanatory variable. For this model, only %.18 of the variability in income is explained by age.</p>
+<p>What variables might do a better job of explaining income? Let’s try years of education, which is the variable educ in the gss.Using the estimates from the R output, write the equation of the regression line. What does the slope tell us in the context of the relationship between income and education?</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="machine-learning-i-linear-and-multiple-regression.html#cb116-1" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(realinc <span class="sc">~</span> educ, <span class="at">data =</span> gss)</span>
+<span id="cb116-2"><a href="machine-learning-i-linear-and-multiple-regression.html#cb116-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = realinc ~ educ, data = gss)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -57666 -18112  -6093  10864  97362 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   -21552       3006  -7.171 1.02e-12 ***
+## educ            4006        213  18.809  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 28880 on 2149 degrees of freedom
+##   (197 observations deleted due to missingness)
+## Multiple R-squared:  0.1414, Adjusted R-squared:  0.141 
+## F-statistic: 353.8 on 1 and 2149 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p><span class="math display">\[y=-21552+4006∗educ\]</span></p>
+<p>The higher one’s education, the higher one’s income, generally. Specifically, the slope tells us that for every year of education, a person is expected to see an additional income of 4006 dollars. Further, the intercept tells us that people with 0 years of education are expect to have an income of -21552 dollars. Of course, this is an extrapolation, produced by the linear regression: an income of negative dollars doesn’t make much sense. Finally, we can see from the regression output that the R2 for education is much higher than age: 11%!</p>
+</div>
+<div id="prediction-and-prediction-errors" class="section level2" number="8.4">
+<h2><span class="header-section-number">8.4</span> Prediction and prediction errors</h2>
+<p>Let’s create a scatterplot with the least squares line laid on top.</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="machine-learning-i-linear-and-multiple-regression.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb118-2"><a href="machine-learning-i-linear-and-multiple-regression.html#cb118-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb118-3"><a href="machine-learning-i-linear-and-multiple-regression.html#cb118-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gss, <span class="fu">aes</span>(<span class="at">x =</span> educ, <span class="at">y =</span> realinc)) <span class="sc">+</span></span>
+<span id="cb118-4"><a href="machine-learning-i-linear-and-multiple-regression.html#cb118-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb118-5"><a href="machine-learning-i-linear-and-multiple-regression.html#cb118-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&#39;lm&#39;</span>, <span class="at">formula=</span> y<span class="sc">~</span>x)</span></code></pre></div>
+<pre><code>## Warning: Removed 197 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 197 rows containing missing values (geom_point).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
+</div>
+<div id="multiple-regression" class="section level2" number="8.5">
+<h2><span class="header-section-number">8.5</span> Multiple Regression</h2>
+<p>We can build more complex models by adding variables to our model. When we do that, we go from the world of simple regression to the more complex world of multiple regression.</p>
+<p>Here, for example, is a more complex model with both of the variables we examined above.</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="machine-learning-i-linear-and-multiple-regression.html#cb121-1" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(realinc <span class="sc">~</span> age <span class="sc">+</span> educ, <span class="at">data =</span> gss)</span>
+<span id="cb121-2"><a href="machine-learning-i-linear-and-multiple-regression.html#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m3)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = realinc ~ age + educ, data = gss)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -60809 -19200  -6908  10063  99951 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -25708.70    3481.35  -7.385 2.18e-13 ***
+## age             83.51      35.11   2.378   0.0175 *  
+## educ          4012.21     212.96  18.840  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 28870 on 2143 degrees of freedom
+##   (202 observations deleted due to missingness)
+## Multiple R-squared:  0.1436, Adjusted R-squared:  0.1428 
+## F-statistic: 179.7 on 2 and 2143 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>What do we learn? How does the Multiple R-Squared look compard to previous models? Did we improve our model fit?
+By including both variables, the coefficients now tell us the effect of each variable, conditional on the other. For example, age and education are correlated in complex ways. Younger generations are slightly more educated than older generations. At the same time, being older gives you more time to achieve an education. Controlling for age allows us to interpret education without worrying that age effects of this sort are driving the relationship between education and income. That said, after age is controlled for, while R2 improves, the coefficient size for education stays roughly the same.</p>
+</div>
+<div id="prediction" class="section level2" number="8.6">
+<h2><span class="header-section-number">8.6</span> Prediction</h2>
+<p>Finally, imagine that you want to predict your own income when you graduate in the coming years using this model. Let’s collect data on what your age and education will be at the time of graduation and use the line to predict your future income. First, we create a data.frame with the necessary data.</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="machine-learning-i-linear-and-multiple-regression.html#cb123-1" aria-hidden="true" tabindex="-1"></a>you <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Name =</span> <span class="st">&quot;YOURNAMEHERE&quot;</span>, <span class="at">age =</span> <span class="dv">22</span>, <span class="at">educ =</span> <span class="dv">16</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="machine-learning-i-linear-and-multiple-regression.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(you)</span></code></pre></div>
+<p>As long as a data.frame has the same variables as those in a model, we can use the predict function to predict the expected outcomes of the respondents in the data.frame using the model. What is your predicted income?</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="machine-learning-i-linear-and-multiple-regression.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m3, you)</span></code></pre></div>
+<pre><code>##        1 
+## 40323.84</code></pre>
+<p>To get a better prediction, more tailored to you and your background, we would need a more complex model with more variables!</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="collecting-data-online.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="machine-learning-with-caret.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

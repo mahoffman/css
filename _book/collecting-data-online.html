@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7 Collecting data online | Introduction to Computational Social Science</title>
+  <meta name="description" content="7 Collecting data online | Introduction to Computational Social Science" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7 Collecting data online | Introduction to Computational Social Science" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7 Collecting data online | Introduction to Computational Social Science" />
+  
+  
+  
+
+<meta name="author" content="Mark Hoffman" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="surveys-and-survey-experiments-with-qualtrics.html"/>
+<link rel="next" href="machine-learning-i-linear-and-multiple-regression.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="reading-list.html"><a href="reading-list.html"><i class="fa fa-check"></i><b>1</b> Reading List</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="reading-list.html"><a href="reading-list.html#readings-and-software"><i class="fa fa-check"></i><b>1.1</b> Readings and Software</a></li>
+<li class="chapter" data-level="1.2" data-path="reading-list.html"><a href="reading-list.html#course-outline"><i class="fa fa-check"></i><b>1.2</b> Course Outline</a></li>
+<li class="chapter" data-level="1.3" data-path="reading-list.html"><a href="reading-list.html#week-1-beg.-september-20th-introductions-lab-introduction-to-r"><i class="fa fa-check"></i><b>1.3</b> Week 1 (beg. September 20th): Introductions (Lab: Introduction to R)</a></li>
+<li class="chapter" data-level="1.4" data-path="reading-list.html"><a href="reading-list.html#week-2-beg.-september-27th-ethics-lab-surveys-and-survey-experiments"><i class="fa fa-check"></i><b>1.4</b> Week 2 (beg. September 27th): Ethics (Lab: Surveys and Survey Experiments)</a></li>
+<li class="chapter" data-level="1.5" data-path="reading-list.html"><a href="reading-list.html#week-3-beg.-october-4th-inequality-lab-collecting-data-online"><i class="fa fa-check"></i><b>1.5</b> Week 3 (beg. October 4th): Inequality (Lab: Collecting Data Online)</a></li>
+<li class="chapter" data-level="1.6" data-path="reading-list.html"><a href="reading-list.html#week-4-beg.-october-11th-polarization-lab-analyzing-text"><i class="fa fa-check"></i><b>1.6</b> Week 4 (beg. October 11th): Polarization (Lab: Analyzing Text)</a></li>
+<li class="chapter" data-level="1.7" data-path="reading-list.html"><a href="reading-list.html#week-5-beg.-october-18th-markets-lab-regression"><i class="fa fa-check"></i><b>1.7</b> Week 5 (beg. October 18th): Markets (Lab: Regression)</a></li>
+<li class="chapter" data-level="1.8" data-path="reading-list.html"><a href="reading-list.html#week-6-beg.-october-25th-discrimination-lab-machine-learning"><i class="fa fa-check"></i><b>1.8</b> Week 6 (beg. October 25th): Discrimination (Lab: Machine Learning)</a></li>
+<li class="chapter" data-level="1.9" data-path="reading-list.html"><a href="reading-list.html#week-7-beg.-november-1st-homophily-and-diffusion-lab-network-analysis"><i class="fa fa-check"></i><b>1.9</b> Week 7 (beg. November 1st): Homophily and Diffusion (Lab: Network Analysis)</a></li>
+<li class="chapter" data-level="1.10" data-path="reading-list.html"><a href="reading-list.html#week-8-beg.-november-8th-semantic-change-and-historical-meaning-lab-semantic-network-analysis"><i class="fa fa-check"></i><b>1.10</b> Week 8 (beg. November 8th): Semantic Change and Historical Meaning (Lab: Semantic Network Analysis)</a></li>
+<li class="chapter" data-level="1.11" data-path="reading-list.html"><a href="reading-list.html#week-9-beg.-november-15th-health-no-lab"><i class="fa fa-check"></i><b>1.11</b> Week 9 (beg. November 15th): Health (No Lab)</a></li>
+<li class="chapter" data-level="1.12" data-path="reading-list.html"><a href="reading-list.html#week-10-beg.-november-29th-group-presentations"><i class="fa fa-check"></i><b>1.12</b> Week 10 (beg. November 29th): Group Presentations</a></li>
+<li class="chapter" data-level="1.13" data-path="reading-list.html"><a href="reading-list.html#december-11th-final-papers-are-due."><i class="fa fa-check"></i><b>1.13</b> December 11th: Final papers are due.</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="installing-r-and-rstudio.html"><a href="installing-r-and-rstudio.html"><i class="fa fa-check"></i><b>2</b> Installing R and RStudio</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="installing-r-and-rstudio.html"><a href="installing-r-and-rstudio.html#downloading-and-installing-r"><i class="fa fa-check"></i><b>2.1</b> Downloading and Installing R</a></li>
+<li class="chapter" data-level="2.2" data-path="installing-r-and-rstudio.html"><a href="installing-r-and-rstudio.html#downloading-and-installing-rstudio"><i class="fa fa-check"></i><b>2.2</b> Downloading and Installing RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="tour-rstudio-with-udacity.html"><a href="tour-rstudio-with-udacity.html"><i class="fa fa-check"></i><b>3</b> Tour RStudio with Udacity</a></li>
+<li class="chapter" data-level="4" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>4</b> R Basics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="r-basics.html"><a href="r-basics.html#vectors"><i class="fa fa-check"></i><b>4.1</b> Vectors</a></li>
+<li class="chapter" data-level="4.2" data-path="r-basics.html"><a href="r-basics.html#loading-packages"><i class="fa fa-check"></i><b>4.2</b> Loading Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="exploring-and-visualizing-data.html"><a href="exploring-and-visualizing-data.html"><i class="fa fa-check"></i><b>5</b> Exploring and Visualizing Data</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="exploring-and-visualizing-data.html"><a href="exploring-and-visualizing-data.html#lab-assignment"><i class="fa fa-check"></i><b>5.1</b> Lab Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="surveys-and-survey-experiments-with-qualtrics.html"><a href="surveys-and-survey-experiments-with-qualtrics.html"><i class="fa fa-check"></i><b>6</b> Surveys and Survey Experiments with Qualtrics</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="surveys-and-survey-experiments-with-qualtrics.html"><a href="surveys-and-survey-experiments-with-qualtrics.html#creating-a-qualtrics-account"><i class="fa fa-check"></i><b>6.1</b> Creating a Qualtrics account</a></li>
+<li class="chapter" data-level="6.2" data-path="surveys-and-survey-experiments-with-qualtrics.html"><a href="surveys-and-survey-experiments-with-qualtrics.html#building-a-survey"><i class="fa fa-check"></i><b>6.2</b> Building a survey</a></li>
+<li class="chapter" data-level="6.3" data-path="surveys-and-survey-experiments-with-qualtrics.html"><a href="surveys-and-survey-experiments-with-qualtrics.html#survey-options"><i class="fa fa-check"></i><b>6.3</b> Survey options</a></li>
+<li class="chapter" data-level="6.4" data-path="surveys-and-survey-experiments-with-qualtrics.html"><a href="surveys-and-survey-experiments-with-qualtrics.html#a-quick-survey-experiment"><i class="fa fa-check"></i><b>6.4</b> A quick survey experiment</a></li>
+<li class="chapter" data-level="6.5" data-path="surveys-and-survey-experiments-with-qualtrics.html"><a href="surveys-and-survey-experiments-with-qualtrics.html#publish-and-distribute"><i class="fa fa-check"></i><b>6.5</b> Publish and Distribute</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="collecting-data-online.html"><a href="collecting-data-online.html"><i class="fa fa-check"></i><b>7</b> Collecting data online</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="collecting-data-online.html"><a href="collecting-data-online.html#scraping-the-web"><i class="fa fa-check"></i><b>7.1</b> Scraping the web</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html"><i class="fa fa-check"></i><b>8</b> Machine Learning I: Linear and Multiple Regression</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html#more-with-the-gss"><i class="fa fa-check"></i><b>8.1</b> More with the GSS</a></li>
+<li class="chapter" data-level="8.2" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html#how-regression-works"><i class="fa fa-check"></i><b>8.2</b> How regression works</a></li>
+<li class="chapter" data-level="8.3" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html#linear-regression-using-the-lm-function"><i class="fa fa-check"></i><b>8.3</b> Linear regression using the lm function</a></li>
+<li class="chapter" data-level="8.4" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html#prediction-and-prediction-errors"><i class="fa fa-check"></i><b>8.4</b> Prediction and prediction errors</a></li>
+<li class="chapter" data-level="8.5" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html#multiple-regression"><i class="fa fa-check"></i><b>8.5</b> Multiple Regression</a></li>
+<li class="chapter" data-level="8.6" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html#prediction"><i class="fa fa-check"></i><b>8.6</b> Prediction</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="machine-learning-with-caret.html"><a href="machine-learning-with-caret.html"><i class="fa fa-check"></i><b>9</b> Machine Learning with caret</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="machine-learning-with-caret.html"><a href="machine-learning-with-caret.html#the-data"><i class="fa fa-check"></i><b>9.1</b> The data</a></li>
+<li class="chapter" data-level="9.2" data-path="machine-learning-with-caret.html"><a href="machine-learning-with-caret.html#training-vs.-testing"><i class="fa fa-check"></i><b>9.2</b> Training vs. testing</a></li>
+<li class="chapter" data-level="9.3" data-path="machine-learning-with-caret.html"><a href="machine-learning-with-caret.html#creating-features"><i class="fa fa-check"></i><b>9.3</b> Creating features</a></li>
+<li class="chapter" data-level="9.4" data-path="machine-learning-with-caret.html"><a href="machine-learning-with-caret.html#constructing-a-model"><i class="fa fa-check"></i><b>9.4</b> Constructing a model</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="machine-learning-with-caret.html"><a href="machine-learning-with-caret.html#lab"><i class="fa fa-check"></i><b>9.4.1</b> LAB</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html"><i class="fa fa-check"></i><b>10</b> Social and Semantic Network Analysis</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#understanding-network-data-structures"><i class="fa fa-check"></i><b>10.1</b> Understanding network data structures</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#edge-lists"><i class="fa fa-check"></i><b>10.1.1</b> Edge lists</a></li>
+<li class="chapter" data-level="10.1.2" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#adjacency-matrices"><i class="fa fa-check"></i><b>10.1.2</b> Adjacency matrices</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#producing-a-skip-gram-matrix-for-semantic-network-analysis-and-embedding-models"><i class="fa fa-check"></i><b>10.2</b> Producing a skip-gram matrix for semantic network analysis and embedding models</a></li>
+<li class="chapter" data-level="10.3" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#from-data-to-networks"><i class="fa fa-check"></i><b>10.3</b> From data to networks</a></li>
+<li class="chapter" data-level="10.4" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#exploring-your-network"><i class="fa fa-check"></i><b>10.4</b> Exploring your network</a></li>
+<li class="chapter" data-level="10.5" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#the-basics-of-visualization"><i class="fa fa-check"></i><b>10.5</b> The Basics of Visualization</a></li>
+<li class="chapter" data-level="10.6" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#layouts"><i class="fa fa-check"></i><b>10.6</b> Layouts</a></li>
+<li class="chapter" data-level="10.7" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#group-detection"><i class="fa fa-check"></i><b>10.7</b> Group detection</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="working-with-weird-data-an-example.html"><a href="working-with-weird-data-an-example.html"><i class="fa fa-check"></i><b>11</b> Working with weird data, an example</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="working-with-weird-data-an-example.html"><a href="working-with-weird-data-an-example.html#reading-in-pdf-data"><i class="fa fa-check"></i><b>11.1</b> Reading in PDF data</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Computational Social Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="collecting-data-online" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Collecting data online</h1>
+<p>In previous tutorials, we learned how to download datasets online or collect them ourselves using survey software like Qualtrics and to load them into R for analysis. A lot of computational social science data, however, doesn’t come in such easily downloadable form. This is for a couple reasons. For one, companies might provide their data for viewing on a webpage rather than in a .csv or .dta file. Wikipedia, for example, contains thousands and thousands of data tables, concerning topics from GDP per capita by country to the number and types of awards won by Kanye West. These data are publicly available in the form of tables on their various webpages; but there is no single place where you can download all of them. We therefore will need to learn how to grab this data off their webpages using something called web scraping or crawling in R. This is, in part, what Google uses to index the content of websites and offer them to you following your searches.</p>
+<p>Alternatively, the amount of data that a website provides might just be too large or too heterogenous to reasonably put into a single, downloadable file or else webistes might have privacy and intellectual property concerns, which preclude them from making all of their data easily available to everyone. In such situations, a webiste or organization might provide a tool for accessing their data in an approved fashion, often referred to as an application programming interface (API).</p>
+<p>In tutorial, we will learn the aforementioned skills for collecting online data - web scraping and using APIs. Each website and API is different, so the tutorials presented here might not always apply precisely to every use case, but the basic principles should help get you started collecting digital trace data.</p>
+<div id="scraping-the-web" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Scraping the web</h2>
+<p>In the first portion of this tutorial, we will cover web scraping. Web scraping involves pulling the underlying code – HTML, CSS, or Javascript – of website and interpreting or collecting information embedded in that code. When you visit a website, your browser reads the HTML, CSS, and Javascript and through interpreting them, learns how to display that website. HTML defines the meaning and structure of web content, while CSS (Cascading Style Sheets) and Javascript in turn define how that content appears and behaves, respectively.</p>
+<p>One of the best packages in R for webscraping is rvest. In particular, it focuses on pulling data from html web pages and has a number of functions for doing so. You could build a program which grabs the HTML from websites and searches through it for information, but it would be very difficult. rvest has done the difficult work for you.</p>
+<p>Let’s begin by installing rvest.</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="collecting-data-online.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rvest&quot;</span>)</span></code></pre></div>
+<p>Now we can load it into R. Let’s load in tidyverse too.</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="collecting-data-online.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;rvest&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:readr&#39;:
+## 
+##     guess_encoding</code></pre>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="collecting-data-online.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<p>Great! If you want to read more about rvest beyond what is covered here, check out its reference manual online: <a href="https://cran.r-project.org/web/packages/rvest/rvest.pdf" class="uri">https://cran.r-project.org/web/packages/rvest/rvest.pdf</a></p>
+<p>The core function in rvest for grabbing the html data from a website is html(). We will use it to grab data from Wikipedia about the GDP per person employed. We could grab any webpage using this function and it is worth exploring on your own time.</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="collecting-data-online.html#cb83-1" aria-hidden="true" tabindex="-1"></a>webpage <span class="ot">&lt;-</span> <span class="fu">read_html</span>(<span class="st">&quot;https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(PPP)_per_person_employed&quot;</span>)</span>
+<span id="cb83-2"><a href="collecting-data-online.html#cb83-2" aria-hidden="true" tabindex="-1"></a>webpage</span></code></pre></div>
+<pre><code>## {html_document}
+## &lt;html class=&quot;client-nojs&quot; lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;
+## [1] &lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8 ...
+## [2] &lt;body class=&quot;mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject  ...</code></pre>
+<p>Cool! With the HTML in our R environment, we can now use other functions to extract information from it. How do we do that?</p>
+<p>Well first, we have to know what function to use. There are quite a few - for example, html_attr extracts text or tag names, html_nodes extracts sections or divisions of the html file by name or type, html_table extracts tables inside of sections, and html_text extracts text.</p>
+<p>Once we know the function that we need to use, then we have to figure out what we want to pull from the html.</p>
+<ul>
+<li>Go to our URL: <a href="https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(PPP)_per_person_employed" class="uri">https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(PPP)_per_person_employed</a></li>
+<li>Find the table to extract.</li>
+<li>Right-click the table -&gt; click Inspect</li>
+<li>On the right-hand side, a pop-up menu will show and you will need to select the table element</li>
+<li>Right-click the table element -&gt; Copy -&gt; Copy Xpath</li>
+</ul>
+<p>We can then use html_nodes with the xpath argument set to the copied Xpath to extract just the html information for the table of interest.</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="collecting-data-online.html#cb85-1" aria-hidden="true" tabindex="-1"></a>webpage_table_html <span class="ot">&lt;-</span><span class="fu">html_nodes</span>(webpage, <span class="at">xpath=</span><span class="st">&#39;//*[@id=&quot;mw-content-text&quot;]/div[1]/table/tbody/tr[2]/td[1]/table&#39;</span>)</span>
+<span id="cb85-2"><a href="collecting-data-online.html#cb85-2" aria-hidden="true" tabindex="-1"></a>webpage_table_html</span></code></pre></div>
+<pre><code>## {xml_nodeset (1)}
+## [1] &lt;table class=&quot;wikitable sortable&quot; style=&quot;margin-left:auto;margin-right:au ...</code></pre>
+<p>The problem is that the table is still in html format - thankfully, rvest has a function, html_table, which converts such information into an R data.frame. It saves each table in the html as a data.frame inside of a single list, so we will have to index the list we want. In this case, there is only one table on the page so we will index the first item of the list.</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="collecting-data-online.html#cb87-1" aria-hidden="true" tabindex="-1"></a>gdp_info <span class="ot">&lt;-</span> <span class="fu">html_table</span>(webpage_table_html, <span class="at">fill =</span> T, <span class="at">trim =</span> T)</span>
+<span id="cb87-2"><a href="collecting-data-online.html#cb87-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-3"><a href="collecting-data-online.html#cb87-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(gdp_info)</span></code></pre></div>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="collecting-data-online.html#cb89-1" aria-hidden="true" tabindex="-1"></a>gdp_info <span class="ot">&lt;-</span> gdp_info[[<span class="dv">1</span>]]</span></code></pre></div>
+<p>There isn’t much we can do with a single column of data like this. So what if we scraped data about countries from another Wikipedia page and merged it to this one? For example, we could evaluate if GDP per hour worked (which implicitly adjusts for country size and captures hourly returns to labor) is correlated with how a country performed at the 2016 Olympic games.</p>
+<p>First let’s grab the info just like we did before.</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="collecting-data-online.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Grab the html</span></span>
+<span id="cb90-2"><a href="collecting-data-online.html#cb90-2" aria-hidden="true" tabindex="-1"></a>olympics_webpage <span class="ot">&lt;-</span> <span class="fu">read_html</span>(<span class="st">&quot;https://en.wikipedia.org/wiki/2016_Summer_Olympics_medal_table&quot;</span>)</span>
+<span id="cb90-3"><a href="collecting-data-online.html#cb90-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the table</span></span>
+<span id="cb90-4"><a href="collecting-data-online.html#cb90-4" aria-hidden="true" tabindex="-1"></a>olympics_webpage_table_html <span class="ot">&lt;-</span><span class="fu">html_nodes</span>(olympics_webpage, <span class="at">xpath=</span><span class="st">&#39;//*[@id=&quot;mw-content-text&quot;]/div[1]/table[3]&#39;</span>)</span>
+<span id="cb90-5"><a href="collecting-data-online.html#cb90-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the table to a data.frame</span></span>
+<span id="cb90-6"><a href="collecting-data-online.html#cb90-6" aria-hidden="true" tabindex="-1"></a>medals_info <span class="ot">&lt;-</span> <span class="fu">html_table</span>(olympics_webpage_table_html, <span class="at">fill =</span> T, <span class="at">trim =</span> T)</span>
+<span id="cb90-7"><a href="collecting-data-online.html#cb90-7" aria-hidden="true" tabindex="-1"></a>medals_info <span class="ot">&lt;-</span> medals_info[[<span class="dv">1</span>]]</span></code></pre></div>
+<p>Then let’s inspect the data. Does it look like it can be easily merged with our GDP data? Perhaps, but there is one problem. The country names on the Olympics page have abbreviations next to them.. this will probably trip up R.</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="collecting-data-online.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(medals_info)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 6
+##   Rank  NOC                  Gold Silver Bronze Total
+##   &lt;chr&gt; &lt;chr&gt;               &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;int&gt;
+## 1 1     United States (USA)    46     37     38   121
+## 2 2     Great Britain (GBR)    27     23     17    67
+## 3 3     China (CHN)            26     18     26    70
+## 4 4     Russia (RUS)           19     17     20    56
+## 5 5     Germany (GER)          17     10     15    42
+## 6 6     Japan (JPN)            12      8     21    41</code></pre>
+<p>One option is to try and remove those parentheses from the country names. A strategy for doing that is to split each country name into each of its respective characters, identify which of the characters is a (forward facing?) parenthesis, and to keep only the set of characters which come before that parenthesis. Then we paste all of our country names back together.</p>
+<p>To split strings, we can use the strsplit() function which comes with base R.</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="collecting-data-online.html#cb93-1" aria-hidden="true" tabindex="-1"></a>split_countries <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(medals_info<span class="sc">$</span>NOC, <span class="st">&quot;&quot;</span>)</span>
+<span id="cb93-2"><a href="collecting-data-online.html#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(split_countries)</span></code></pre></div>
+<pre><code>## [[1]]
+##  [1] &quot;U&quot; &quot;n&quot; &quot;i&quot; &quot;t&quot; &quot;e&quot; &quot;d&quot; &quot; &quot; &quot;S&quot; &quot;t&quot; &quot;a&quot; &quot;t&quot; &quot;e&quot; &quot;s&quot; &quot; &quot; &quot;(&quot; &quot;U&quot; &quot;S&quot; &quot;A&quot; &quot;)&quot;
+## 
+## [[2]]
+##  [1] &quot;G&quot; &quot;r&quot; &quot;e&quot; &quot;a&quot; &quot;t&quot; &quot; &quot; &quot;B&quot; &quot;r&quot; &quot;i&quot; &quot;t&quot; &quot;a&quot; &quot;i&quot; &quot;n&quot; &quot; &quot; &quot;(&quot; &quot;G&quot; &quot;B&quot; &quot;R&quot; &quot;)&quot;
+## 
+## [[3]]
+##  [1] &quot;C&quot; &quot;h&quot; &quot;i&quot; &quot;n&quot; &quot;a&quot; &quot; &quot; &quot;(&quot; &quot;C&quot; &quot;H&quot; &quot;N&quot; &quot;)&quot;
+## 
+## [[4]]
+##  [1] &quot;R&quot; &quot;u&quot; &quot;s&quot; &quot;s&quot; &quot;i&quot; &quot;a&quot; &quot; &quot; &quot;(&quot; &quot;R&quot; &quot;U&quot; &quot;S&quot; &quot;)&quot;
+## 
+## [[5]]
+##  [1] &quot;G&quot; &quot;e&quot; &quot;r&quot; &quot;m&quot; &quot;a&quot; &quot;n&quot; &quot;y&quot; &quot; &quot; &quot;(&quot; &quot;G&quot; &quot;E&quot; &quot;R&quot; &quot;)&quot;
+## 
+## [[6]]
+##  [1] &quot;J&quot; &quot;a&quot; &quot;p&quot; &quot;a&quot; &quot;n&quot; &quot; &quot; &quot;(&quot; &quot;J&quot; &quot;P&quot; &quot;N&quot; &quot;)&quot;</code></pre>
+<p>It returns a list. So in future analyses, we will use the lapply() function to apply the same function to each element in the list.</p>
+<p>Let’s write our first function. It takes a vector (x), looks for a parenthesis, if there is one in x, then it limits x to only those items in the vector which came 2 before the parenthesis.</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="collecting-data-online.html#cb95-1" aria-hidden="true" tabindex="-1"></a>keep_before_parenthesis <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb95-2"><a href="collecting-data-online.html#cb95-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># identify parenthesis location</span></span>
+<span id="cb95-3"><a href="collecting-data-online.html#cb95-3" aria-hidden="true" tabindex="-1"></a>  parenthesis_location <span class="ot">&lt;-</span> <span class="fu">which</span>(x <span class="sc">==</span> <span class="st">&quot;(&quot;</span>)</span>
+<span id="cb95-4"><a href="collecting-data-online.html#cb95-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># if there is no parenthesis location (length == 0), then just output the original vector</span></span>
+<span id="cb95-5"><a href="collecting-data-online.html#cb95-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">length</span>(parenthesis_location) <span class="sc">==</span> <span class="dv">0</span>){</span>
+<span id="cb95-6"><a href="collecting-data-online.html#cb95-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(x)</span>
+<span id="cb95-7"><a href="collecting-data-online.html#cb95-7" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> { <span class="co"># otherwise</span></span>
+<span id="cb95-8"><a href="collecting-data-online.html#cb95-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># set the end point of x to be 2 before the location of the parenthesis</span></span>
+<span id="cb95-9"><a href="collecting-data-online.html#cb95-9" aria-hidden="true" tabindex="-1"></a>    end_point <span class="ot">&lt;-</span> parenthesis_location<span class="dv">-2</span></span>
+<span id="cb95-10"><a href="collecting-data-online.html#cb95-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># and index x</span></span>
+<span id="cb95-11"><a href="collecting-data-online.html#cb95-11" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> x[<span class="dv">1</span><span class="sc">:</span>end_point]</span>
+<span id="cb95-12"><a href="collecting-data-online.html#cb95-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb95-13"><a href="collecting-data-online.html#cb95-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># output the new x</span></span>
+<span id="cb95-14"><a href="collecting-data-online.html#cb95-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x)</span>
+<span id="cb95-15"><a href="collecting-data-online.html#cb95-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>We apply this function to every item in the split_countries list with lapply</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="collecting-data-online.html#cb96-1" aria-hidden="true" tabindex="-1"></a>split_countries <span class="ot">&lt;-</span> <span class="fu">lapply</span>(split_countries, keep_before_parenthesis)</span>
+<span id="cb96-2"><a href="collecting-data-online.html#cb96-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(split_countries)</span></code></pre></div>
+<pre><code>## [[1]]
+##  [1] &quot;U&quot; &quot;n&quot; &quot;i&quot; &quot;t&quot; &quot;e&quot; &quot;d&quot; &quot; &quot; &quot;S&quot; &quot;t&quot; &quot;a&quot; &quot;t&quot; &quot;e&quot; &quot;s&quot;
+## 
+## [[2]]
+##  [1] &quot;G&quot; &quot;r&quot; &quot;e&quot; &quot;a&quot; &quot;t&quot; &quot; &quot; &quot;B&quot; &quot;r&quot; &quot;i&quot; &quot;t&quot; &quot;a&quot; &quot;i&quot; &quot;n&quot;
+## 
+## [[3]]
+## [1] &quot;C&quot; &quot;h&quot; &quot;i&quot; &quot;n&quot; &quot;a&quot;
+## 
+## [[4]]
+## [1] &quot;R&quot; &quot;u&quot; &quot;s&quot; &quot;s&quot; &quot;i&quot; &quot;a&quot;
+## 
+## [[5]]
+## [1] &quot;G&quot; &quot;e&quot; &quot;r&quot; &quot;m&quot; &quot;a&quot; &quot;n&quot; &quot;y&quot;
+## 
+## [[6]]
+## [1] &quot;J&quot; &quot;a&quot; &quot;p&quot; &quot;a&quot; &quot;n&quot;</code></pre>
+<p>Now let’s paste them all back together. paste0 with the collapse argument specified with collapse all of the strings in a vector into one string separated by whatever character follows the collapse argument.</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="collecting-data-online.html#cb98-1" aria-hidden="true" tabindex="-1"></a>split_countries <span class="ot">&lt;-</span> <span class="fu">lapply</span>(split_countries, <span class="cf">function</span>(x) <span class="fu">paste0</span>(x, <span class="at">collapse =</span> <span class="st">&quot;&quot;</span>))</span>
+<span id="cb98-2"><a href="collecting-data-online.html#cb98-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(split_countries)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;United States&quot;
+## 
+## [[2]]
+## [1] &quot;Great Britain&quot;
+## 
+## [[3]]
+## [1] &quot;China&quot;
+## 
+## [[4]]
+## [1] &quot;Russia&quot;
+## 
+## [[5]]
+## [1] &quot;Germany&quot;
+## 
+## [[6]]
+## [1] &quot;Japan&quot;</code></pre>
+<p>We can use unlist to convert this list into a vector.</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="collecting-data-online.html#cb100-1" aria-hidden="true" tabindex="-1"></a>split_countries <span class="ot">&lt;-</span> <span class="fu">unlist</span>(split_countries)</span>
+<span id="cb100-2"><a href="collecting-data-online.html#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(split_countries)</span></code></pre></div>
+<pre><code>## [1] &quot;United States&quot; &quot;Great Britain&quot; &quot;China&quot;         &quot;Russia&quot;       
+## [5] &quot;Germany&quot;       &quot;Japan&quot;</code></pre>
+<p>And we assign the result to the medals_info dataset</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="collecting-data-online.html#cb102-1" aria-hidden="true" tabindex="-1"></a>medals_info<span class="sc">$</span>Country <span class="ot">&lt;-</span> split_countries</span></code></pre></div>
+<p>Now that both datasets have the same way of writing country names, we can merge the data by Country.</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="collecting-data-online.html#cb103-1" aria-hidden="true" tabindex="-1"></a>merged_df <span class="ot">&lt;-</span> <span class="fu">merge</span>(gdp_info, medals_info, <span class="at">by =</span> <span class="st">&quot;Country&quot;</span>)</span>
+<span id="cb103-2"><a href="collecting-data-online.html#cb103-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(merged_df)</span></code></pre></div>
+<pre><code>##      Country Rank.x GDP per personemployed(current Intl. $)
+## 1    Algeria     64                                  29,997
+## 2  Argentina     56                                  34,772
+## 3    Armenia     82                                  18,812
+## 4  Australia     22                                  75,855
+## 5    Austria     16                                  80,982
+## 6 Azerbaijan     79                                  19,890
+##   Employed /total pop.(%) Year Rank.y              NOC Gold Silver Bronze Total
+## 1                    28.0 2010     63    Algeria (ALG)    0      2      0     2
+## 2                    41.9 2009     27  Argentina (ARG)    3      1      0     4
+## 3                    32.4 2008     42    Armenia (ARM)    1      3      0     4
+## 4                    50.3 2010     10  Australia (AUS)    8     11     10    29
+## 5                    49.4 2010     78    Austria (AUT)    0      0      1     1
+## 6                    47.4 2009     39 Azerbaijan (AZE)    1      7     10    18</code></pre>
+<p>And we can plot results using ggplot, just like we did in our first R lesson! First, let’s select the columns we want and rename column 2 so it is easy to access with ggplot.</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="collecting-data-online.html#cb105-1" aria-hidden="true" tabindex="-1"></a>merged_df <span class="ot">&lt;-</span> merged_df[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">8</span>)]</span>
+<span id="cb105-2"><a href="collecting-data-online.html#cb105-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(merged_df)[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="st">&quot;GDP_per_person_employed&quot;</span></span></code></pre></div>
+<p>Now let’s plot.</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="collecting-data-online.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(merged_df, <span class="fu">aes</span>(<span class="at">x =</span> GDP_per_person_employed, </span>
+<span id="cb106-2"><a href="collecting-data-online.html#cb106-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">y =</span> Gold, </span>
+<span id="cb106-3"><a href="collecting-data-online.html#cb106-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">label =</span> Country)) <span class="sc">+</span> </span>
+<span id="cb106-4"><a href="collecting-data-online.html#cb106-4" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">geom_text</span>() <span class="sc">+</span> </span>
+<span id="cb106-5"><a href="collecting-data-online.html#cb106-5" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&#39;lm&#39;</span>, <span class="at">formula=</span> y<span class="sc">~</span>x)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
+<p>This plot is terrible! What is up with the x-axis? It doesn’t seem to be detecting either axis as numbers. Let’s convert them using as.numeric so that R doesn’t get confused again. There is a problem though.. the GDP values have commas in them. R won’t recognize them as potential numbers and will return NA when we run as.numeric. We can use the gsub function to substitute things in a string for something else. Let’s use it to remove the commas by substituting commas with empty strings.</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="collecting-data-online.html#cb107-1" aria-hidden="true" tabindex="-1"></a>merged_df<span class="sc">$</span>GDP_per_person_employed <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;,&quot;</span>, <span class="st">&quot;&quot;</span>, merged_df<span class="sc">$</span>GDP_per_person_employed)</span></code></pre></div>
+<p>Now we should be able to use as.numeric and plot the results.</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="collecting-data-online.html#cb108-1" aria-hidden="true" tabindex="-1"></a>merged_df<span class="sc">$</span>GDP_per_person_employed <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(merged_df<span class="sc">$</span>GDP_per_person_employed)</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="collecting-data-online.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(merged_df, <span class="fu">aes</span>(<span class="at">x =</span> GDP_per_person_employed, </span>
+<span id="cb109-2"><a href="collecting-data-online.html#cb109-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">y =</span> Gold, </span>
+<span id="cb109-3"><a href="collecting-data-online.html#cb109-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">label =</span> Country)) <span class="sc">+</span> </span>
+<span id="cb109-4"><a href="collecting-data-online.html#cb109-4" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">geom_text</span>() <span class="sc">+</span> </span>
+<span id="cb109-5"><a href="collecting-data-online.html#cb109-5" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&#39;lm&#39;</span>, <span class="at">formula=</span> y<span class="sc">~</span>x) <span class="sc">+</span></span>
+<span id="cb109-6"><a href="collecting-data-online.html#cb109-6" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">xlab</span>(<span class="st">&quot;GDP per person employed&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
+<p>Clearly GDP per person is not the only factor that affects which country will win the most golds at the Olympics. What important variables are we missing?</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="surveys-and-survey-experiments-with-qualtrics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="machine-learning-i-linear-and-multiple-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

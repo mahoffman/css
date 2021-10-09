@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>9 Machine Learning with caret | Introduction to Computational Social Science</title>
+  <meta name="description" content="9 Machine Learning with caret | Introduction to Computational Social Science" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="9 Machine Learning with caret | Introduction to Computational Social Science" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="9 Machine Learning with caret | Introduction to Computational Social Science" />
+  
+  
+  
+
+<meta name="author" content="Mark Hoffman" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="machine-learning-i-linear-and-multiple-regression.html"/>
+<link rel="next" href="social-and-semantic-network-analysis.html"/>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="reading-list.html"><a href="reading-list.html"><i class="fa fa-check"></i><b>1</b> Reading List</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="reading-list.html"><a href="reading-list.html#readings-and-software"><i class="fa fa-check"></i><b>1.1</b> Readings and Software</a></li>
+<li class="chapter" data-level="1.2" data-path="reading-list.html"><a href="reading-list.html#course-outline"><i class="fa fa-check"></i><b>1.2</b> Course Outline</a></li>
+<li class="chapter" data-level="1.3" data-path="reading-list.html"><a href="reading-list.html#week-1-beg.-september-20th-introductions-lab-introduction-to-r"><i class="fa fa-check"></i><b>1.3</b> Week 1 (beg. September 20th): Introductions (Lab: Introduction to R)</a></li>
+<li class="chapter" data-level="1.4" data-path="reading-list.html"><a href="reading-list.html#week-2-beg.-september-27th-ethics-lab-surveys-and-survey-experiments"><i class="fa fa-check"></i><b>1.4</b> Week 2 (beg. September 27th): Ethics (Lab: Surveys and Survey Experiments)</a></li>
+<li class="chapter" data-level="1.5" data-path="reading-list.html"><a href="reading-list.html#week-3-beg.-october-4th-inequality-lab-collecting-data-online"><i class="fa fa-check"></i><b>1.5</b> Week 3 (beg. October 4th): Inequality (Lab: Collecting Data Online)</a></li>
+<li class="chapter" data-level="1.6" data-path="reading-list.html"><a href="reading-list.html#week-4-beg.-october-11th-polarization-lab-analyzing-text"><i class="fa fa-check"></i><b>1.6</b> Week 4 (beg. October 11th): Polarization (Lab: Analyzing Text)</a></li>
+<li class="chapter" data-level="1.7" data-path="reading-list.html"><a href="reading-list.html#week-5-beg.-october-18th-markets-lab-regression"><i class="fa fa-check"></i><b>1.7</b> Week 5 (beg. October 18th): Markets (Lab: Regression)</a></li>
+<li class="chapter" data-level="1.8" data-path="reading-list.html"><a href="reading-list.html#week-6-beg.-october-25th-discrimination-lab-machine-learning"><i class="fa fa-check"></i><b>1.8</b> Week 6 (beg. October 25th): Discrimination (Lab: Machine Learning)</a></li>
+<li class="chapter" data-level="1.9" data-path="reading-list.html"><a href="reading-list.html#week-7-beg.-november-1st-homophily-and-diffusion-lab-network-analysis"><i class="fa fa-check"></i><b>1.9</b> Week 7 (beg. November 1st): Homophily and Diffusion (Lab: Network Analysis)</a></li>
+<li class="chapter" data-level="1.10" data-path="reading-list.html"><a href="reading-list.html#week-8-beg.-november-8th-semantic-change-and-historical-meaning-lab-semantic-network-analysis"><i class="fa fa-check"></i><b>1.10</b> Week 8 (beg. November 8th): Semantic Change and Historical Meaning (Lab: Semantic Network Analysis)</a></li>
+<li class="chapter" data-level="1.11" data-path="reading-list.html"><a href="reading-list.html#week-9-beg.-november-15th-health-no-lab"><i class="fa fa-check"></i><b>1.11</b> Week 9 (beg. November 15th): Health (No Lab)</a></li>
+<li class="chapter" data-level="1.12" data-path="reading-list.html"><a href="reading-list.html#week-10-beg.-november-29th-group-presentations"><i class="fa fa-check"></i><b>1.12</b> Week 10 (beg. November 29th): Group Presentations</a></li>
+<li class="chapter" data-level="1.13" data-path="reading-list.html"><a href="reading-list.html#december-11th-final-papers-are-due."><i class="fa fa-check"></i><b>1.13</b> December 11th: Final papers are due.</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="installing-r-and-rstudio.html"><a href="installing-r-and-rstudio.html"><i class="fa fa-check"></i><b>2</b> Installing R and RStudio</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="installing-r-and-rstudio.html"><a href="installing-r-and-rstudio.html#downloading-and-installing-r"><i class="fa fa-check"></i><b>2.1</b> Downloading and Installing R</a></li>
+<li class="chapter" data-level="2.2" data-path="installing-r-and-rstudio.html"><a href="installing-r-and-rstudio.html#downloading-and-installing-rstudio"><i class="fa fa-check"></i><b>2.2</b> Downloading and Installing RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="tour-rstudio-with-udacity.html"><a href="tour-rstudio-with-udacity.html"><i class="fa fa-check"></i><b>3</b> Tour RStudio with Udacity</a></li>
+<li class="chapter" data-level="4" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>4</b> R Basics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="r-basics.html"><a href="r-basics.html#vectors"><i class="fa fa-check"></i><b>4.1</b> Vectors</a></li>
+<li class="chapter" data-level="4.2" data-path="r-basics.html"><a href="r-basics.html#loading-packages"><i class="fa fa-check"></i><b>4.2</b> Loading Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="exploring-and-visualizing-data.html"><a href="exploring-and-visualizing-data.html"><i class="fa fa-check"></i><b>5</b> Exploring and Visualizing Data</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="exploring-and-visualizing-data.html"><a href="exploring-and-visualizing-data.html#lab-assignment"><i class="fa fa-check"></i><b>5.1</b> Lab Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="surveys-and-survey-experiments-with-qualtrics.html"><a href="surveys-and-survey-experiments-with-qualtrics.html"><i class="fa fa-check"></i><b>6</b> Surveys and Survey Experiments with Qualtrics</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="surveys-and-survey-experiments-with-qualtrics.html"><a href="surveys-and-survey-experiments-with-qualtrics.html#creating-a-qualtrics-account"><i class="fa fa-check"></i><b>6.1</b> Creating a Qualtrics account</a></li>
+<li class="chapter" data-level="6.2" data-path="surveys-and-survey-experiments-with-qualtrics.html"><a href="surveys-and-survey-experiments-with-qualtrics.html#building-a-survey"><i class="fa fa-check"></i><b>6.2</b> Building a survey</a></li>
+<li class="chapter" data-level="6.3" data-path="surveys-and-survey-experiments-with-qualtrics.html"><a href="surveys-and-survey-experiments-with-qualtrics.html#survey-options"><i class="fa fa-check"></i><b>6.3</b> Survey options</a></li>
+<li class="chapter" data-level="6.4" data-path="surveys-and-survey-experiments-with-qualtrics.html"><a href="surveys-and-survey-experiments-with-qualtrics.html#a-quick-survey-experiment"><i class="fa fa-check"></i><b>6.4</b> A quick survey experiment</a></li>
+<li class="chapter" data-level="6.5" data-path="surveys-and-survey-experiments-with-qualtrics.html"><a href="surveys-and-survey-experiments-with-qualtrics.html#publish-and-distribute"><i class="fa fa-check"></i><b>6.5</b> Publish and Distribute</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="collecting-data-online.html"><a href="collecting-data-online.html"><i class="fa fa-check"></i><b>7</b> Collecting data online</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="collecting-data-online.html"><a href="collecting-data-online.html#scraping-the-web"><i class="fa fa-check"></i><b>7.1</b> Scraping the web</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html"><i class="fa fa-check"></i><b>8</b> Machine Learning I: Linear and Multiple Regression</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html#more-with-the-gss"><i class="fa fa-check"></i><b>8.1</b> More with the GSS</a></li>
+<li class="chapter" data-level="8.2" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html#how-regression-works"><i class="fa fa-check"></i><b>8.2</b> How regression works</a></li>
+<li class="chapter" data-level="8.3" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html#linear-regression-using-the-lm-function"><i class="fa fa-check"></i><b>8.3</b> Linear regression using the lm function</a></li>
+<li class="chapter" data-level="8.4" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html#prediction-and-prediction-errors"><i class="fa fa-check"></i><b>8.4</b> Prediction and prediction errors</a></li>
+<li class="chapter" data-level="8.5" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html#multiple-regression"><i class="fa fa-check"></i><b>8.5</b> Multiple Regression</a></li>
+<li class="chapter" data-level="8.6" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html#prediction"><i class="fa fa-check"></i><b>8.6</b> Prediction</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="machine-learning-with-caret.html"><a href="machine-learning-with-caret.html"><i class="fa fa-check"></i><b>9</b> Machine Learning with caret</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="machine-learning-with-caret.html"><a href="machine-learning-with-caret.html#the-data"><i class="fa fa-check"></i><b>9.1</b> The data</a></li>
+<li class="chapter" data-level="9.2" data-path="machine-learning-with-caret.html"><a href="machine-learning-with-caret.html#training-vs.-testing"><i class="fa fa-check"></i><b>9.2</b> Training vs. testing</a></li>
+<li class="chapter" data-level="9.3" data-path="machine-learning-with-caret.html"><a href="machine-learning-with-caret.html#creating-features"><i class="fa fa-check"></i><b>9.3</b> Creating features</a></li>
+<li class="chapter" data-level="9.4" data-path="machine-learning-with-caret.html"><a href="machine-learning-with-caret.html#constructing-a-model"><i class="fa fa-check"></i><b>9.4</b> Constructing a model</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="machine-learning-with-caret.html"><a href="machine-learning-with-caret.html#lab"><i class="fa fa-check"></i><b>9.4.1</b> LAB</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html"><i class="fa fa-check"></i><b>10</b> Social and Semantic Network Analysis</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#understanding-network-data-structures"><i class="fa fa-check"></i><b>10.1</b> Understanding network data structures</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#edge-lists"><i class="fa fa-check"></i><b>10.1.1</b> Edge lists</a></li>
+<li class="chapter" data-level="10.1.2" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#adjacency-matrices"><i class="fa fa-check"></i><b>10.1.2</b> Adjacency matrices</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#producing-a-skip-gram-matrix-for-semantic-network-analysis-and-embedding-models"><i class="fa fa-check"></i><b>10.2</b> Producing a skip-gram matrix for semantic network analysis and embedding models</a></li>
+<li class="chapter" data-level="10.3" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#from-data-to-networks"><i class="fa fa-check"></i><b>10.3</b> From data to networks</a></li>
+<li class="chapter" data-level="10.4" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#exploring-your-network"><i class="fa fa-check"></i><b>10.4</b> Exploring your network</a></li>
+<li class="chapter" data-level="10.5" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#the-basics-of-visualization"><i class="fa fa-check"></i><b>10.5</b> The Basics of Visualization</a></li>
+<li class="chapter" data-level="10.6" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#layouts"><i class="fa fa-check"></i><b>10.6</b> Layouts</a></li>
+<li class="chapter" data-level="10.7" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#group-detection"><i class="fa fa-check"></i><b>10.7</b> Group detection</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="working-with-weird-data-an-example.html"><a href="working-with-weird-data-an-example.html"><i class="fa fa-check"></i><b>11</b> Working with weird data, an example</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="working-with-weird-data-an-example.html"><a href="working-with-weird-data-an-example.html#reading-in-pdf-data"><i class="fa fa-check"></i><b>11.1</b> Reading in PDF data</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Computational Social Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="machine-learning-with-caret" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Machine Learning with caret</h1>
+<p>A few weeks back, we learned how to perform linear regression, with single and multiple predictors. Linear regression will be useful in a wide range of situations, particularly for descriptive and scientific purposes when you want outputs that you can interpret. That said, there are no guarantees that it will be the most accurate method for predicting your outcome of interest. In fact, often times, when you want to optimize on prediction accuracy, it is worth trying a range of other methods to compare which provides the most accurate predictions.</p>
+<p>The best package for doing this in R is caret (short for Classification And REgression Training). It provides: tools for splitting your data into training and test sets, a number of different models, from random forests to logistic regression, and tools for selecting the best model out of a set of alternatives. In this brief tutorial, we will go through an example from start to finish. We’ll load data, identify an outcome of interest, split the data into training and test sets, fit a series of models to the training data, and evaluate their performance on the test set. Machine learning is an entire subfield of computer science and could be the basis of a course on its own, as such we will only graze the surface of what you can do and what you should consider when predicting social phenomena.</p>
+<div id="the-data" class="section level2" number="9.1">
+<h2><span class="header-section-number">9.1</span> The data</h2>
+<p>The data for this week’s lab come from Twitter, specifically from a recent Kaggle competition (<a href="https://www.kaggle.com/c/twitter-sentiment-analysis2" class="uri">https://www.kaggle.com/c/twitter-sentiment-analysis2</a>), which asked participants to predict the sentiment of a series of tweets using the text content of the tweets. Given our discussion of text analysis in class, let’s see how accurately we can predict sentiment using the tools at our disposal.</p>
+</div>
+<div id="training-vs.-testing" class="section level2" number="9.2">
+<h2><span class="header-section-number">9.2</span> Training vs. testing</h2>
+<p>In machine learning, people generally separate their analysis into two steps. First, they train their model on the data. This is what we did when we fit a multiple regression model to the GSS data. Second, they test the model on data the model hasn’t seen yet in order to evaluate its performance. Why does it matter if the model has seen the test data before? Often times, this can lead to overfitting - where your model is trained too specifically to the data at hand and cannot generalize beyond it. This can means that when your model does see new data it hasn’t seen before, it will do a poor job predicting.</p>
+<p>We will follow this general routine, and train our models on a subset of the data called the training data and then test how well it performs by seeing how accurately it classifies new data. Generally, you assign about a fifth of your total sample to be part of the testing data and the remaining eighty percent are used to train the model.</p>
+<p>First, let’s install caret and load it into R. We’ll need to load in tidytext and tidyverse too.</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="machine-learning-with-caret.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;caret&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="machine-learning-with-caret.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span></code></pre></div>
+<pre><code>## Loading required package: lattice</code></pre>
+<pre><code>## 
+## Attaching package: &#39;caret&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     lift</code></pre>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="machine-learning-with-caret.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<p>Great, now let’s load in the data. I put it on Canvas for easy access.</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="machine-learning-with-caret.html#cb133-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;Data/train.csv&quot;</span>, <span class="at">stringsAsFactors =</span> F, <span class="at">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>)</span></code></pre></div>
+<p>We’ll focus specifically on the SentimentText column, which includes the content of tweets. This is our first time working with text data and it is never as easy as you would hope. We have to do a few things to prepare the data; for example, convert it to utf-8 and remove in extra white space. For the first, we’ll use iconv, which converts between different standards. For the second, we’ll use trimws, which, you guessed it, trims white space.</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="machine-learning-with-caret.html#cb134-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>SentimentText <span class="ot">&lt;-</span> <span class="fu">iconv</span>(data<span class="sc">$</span>SentimentText, <span class="at">from =</span> <span class="st">&quot;latin1&quot;</span>, <span class="at">to =</span> <span class="st">&quot;utf-8&quot;</span>)</span>
+<span id="cb134-2"><a href="machine-learning-with-caret.html#cb134-2" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>SentimentText <span class="ot">&lt;-</span> <span class="fu">trimws</span>(data<span class="sc">$</span>SentimentText)</span></code></pre></div>
+<p>Okay now let’s have a look at the data.</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="machine-learning-with-caret.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(data)</span></code></pre></div>
+<p>It is pretty simple - there are three columns, an id column, the human-evaluated sentiment of the text, and the actual text itself.</p>
+<p>The data are huge, so we can play around with a smaller subset of 10000 tweets.</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="machine-learning-with-caret.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb136-2"><a href="machine-learning-with-caret.html#cb136-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(data), <span class="dv">1000</span>),]</span></code></pre></div>
+</div>
+<div id="creating-features" class="section level2" number="9.3">
+<h2><span class="header-section-number">9.3</span> Creating features</h2>
+<p>To predict the sentiment, we will have to use the text of the tweets. Specifically, we need to extract characterizations or features for each of the tweets which can then be used as predictor variables in the model. We could for example use the different words in the tweets as predictors (how many times does the word happy appear in a given tweet? how about sad?). The problem with this approach is that most words only appear in a few tweets at most. Having such sparse predictors can lead to unstable models which fail to converge. That means we would have to be very selective in our choices and there is no guarantee that we would choose the right words.</p>
+<p>So what about adding some overall features of the tweet, rather than just the words themselves? There is a cool package called textfeatures in R, which automatically extracts a bunch of useful text information for you (even word embeddings!)</p>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="machine-learning-with-caret.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;textfeatures&quot;</span>)</span>
+<span id="cb137-2"><a href="machine-learning-with-caret.html#cb137-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;text2vec&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="machine-learning-with-caret.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(textfeatures)</span>
+<span id="cb138-2"><a href="machine-learning-with-caret.html#cb138-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(text2vec)</span></code></pre></div>
+<p>Let’s extract the features along with 20 word embedding dimensions</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="machine-learning-with-caret.html#cb139-1" aria-hidden="true" tabindex="-1"></a>textlevel_features <span class="ot">&lt;-</span> <span class="fu">textfeatures</span>(data<span class="sc">$</span>SentimentText, </span>
+<span id="cb139-2"><a href="machine-learning-with-caret.html#cb139-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">word_dims =</span> <span class="dv">20</span>, </span>
+<span id="cb139-3"><a href="machine-learning-with-caret.html#cb139-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">normalize =</span> T, </span>
+<span id="cb139-4"><a href="machine-learning-with-caret.html#cb139-4" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb139-5"><a href="machine-learning-with-caret.html#cb139-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-6"><a href="machine-learning-with-caret.html#cb139-6" aria-hidden="true" tabindex="-1"></a>data_w_features <span class="ot">&lt;-</span> <span class="fu">cbind</span>(data, textlevel_features)</span>
+<span id="cb139-7"><a href="machine-learning-with-caret.html#cb139-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-8"><a href="machine-learning-with-caret.html#cb139-8" aria-hidden="true" tabindex="-1"></a><span class="co"># drop the coluns which we won&#39;t use in the model</span></span>
+<span id="cb139-9"><a href="machine-learning-with-caret.html#cb139-9" aria-hidden="true" tabindex="-1"></a>data_w_features <span class="ot">&lt;-</span> <span class="fu">subset</span>(data_w_features, <span class="at">select =</span> <span class="sc">-</span><span class="fu">c</span>(ItemID, SentimentText))</span>
+<span id="cb139-10"><a href="machine-learning-with-caret.html#cb139-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-11"><a href="machine-learning-with-caret.html#cb139-11" aria-hidden="true" tabindex="-1"></a><span class="co"># set the outcome variable to factor (since it is categorical, sentiment or not)</span></span>
+<span id="cb139-12"><a href="machine-learning-with-caret.html#cb139-12" aria-hidden="true" tabindex="-1"></a>data_w_features<span class="sc">$</span>Sentiment <span class="ot">=</span> <span class="fu">as.factor</span>(data_w_features<span class="sc">$</span>Sentiment)</span>
+<span id="cb139-13"><a href="machine-learning-with-caret.html#cb139-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-14"><a href="machine-learning-with-caret.html#cb139-14" aria-hidden="true" tabindex="-1"></a><span class="do">## drop columns with little to no variance</span></span>
+<span id="cb139-15"><a href="machine-learning-with-caret.html#cb139-15" aria-hidden="true" tabindex="-1"></a>min_var <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">min =</span> <span class="dv">1</span>) {</span>
+<span id="cb139-16"><a href="machine-learning-with-caret.html#cb139-16" aria-hidden="true" tabindex="-1"></a>  is_num <span class="ot">&lt;-</span> <span class="fu">vapply</span>(x, is.numeric, <span class="fu">logical</span>(<span class="dv">1</span>))</span>
+<span id="cb139-17"><a href="machine-learning-with-caret.html#cb139-17" aria-hidden="true" tabindex="-1"></a>  non_num <span class="ot">&lt;-</span> <span class="fu">names</span>(x)[<span class="sc">!</span>is_num]</span>
+<span id="cb139-18"><a href="machine-learning-with-caret.html#cb139-18" aria-hidden="true" tabindex="-1"></a>  yminvar <span class="ot">&lt;-</span> <span class="fu">names</span>(x[is_num])[<span class="fu">vapply</span>(x[is_num], <span class="cf">function</span>(.x) stats<span class="sc">::</span><span class="fu">var</span>(.x, </span>
+<span id="cb139-19"><a href="machine-learning-with-caret.html#cb139-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">&gt;=</span> min, <span class="fu">logical</span>(<span class="dv">1</span>))]</span>
+<span id="cb139-20"><a href="machine-learning-with-caret.html#cb139-20" aria-hidden="true" tabindex="-1"></a>  x[<span class="fu">c</span>(non_num, yminvar)]</span>
+<span id="cb139-21"><a href="machine-learning-with-caret.html#cb139-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb139-22"><a href="machine-learning-with-caret.html#cb139-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-23"><a href="machine-learning-with-caret.html#cb139-23" aria-hidden="true" tabindex="-1"></a>data_w_features <span class="ot">&lt;-</span> <span class="fu">min_var</span>(data_w_features)</span></code></pre></div>
+<p>Now let’s split this smaller data into training and test sets.</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="machine-learning-with-caret.html#cb140-1" aria-hidden="true" tabindex="-1"></a>training_ids <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">rownames</span>(data_w_features), <span class="dv">800</span>)</span>
+<span id="cb140-2"><a href="machine-learning-with-caret.html#cb140-2" aria-hidden="true" tabindex="-1"></a>training_data <span class="ot">&lt;-</span> data_w_features[<span class="fu">rownames</span>(data_w_features) <span class="sc">%in%</span> training_ids,]</span>
+<span id="cb140-3"><a href="machine-learning-with-caret.html#cb140-3" aria-hidden="true" tabindex="-1"></a>test_data <span class="ot">&lt;-</span> data_w_features[<span class="sc">!</span><span class="fu">rownames</span>(data_w_features) <span class="sc">%in%</span> training_ids,]</span></code></pre></div>
+<p>Cool! Now let’s begin building our models.</p>
+</div>
+<div id="constructing-a-model" class="section level2" number="9.4">
+<h2><span class="header-section-number">9.4</span> Constructing a model</h2>
+<p>Constructing models in caret involves two steps. First, we have to decide how training should occur. For example, should it use cross-validation (where the data is divided into k equal parts, k rounds of training and testing occur, where data is trained on k-1 portions of the data and tested on the last, held-out portion)? There are many different options, but for now we will just use cross-validation with 5 folds.</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="machine-learning-with-caret.html#cb141-1" aria-hidden="true" tabindex="-1"></a>fitControl <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">&quot;cv&quot;</span>,</span>
+<span id="cb141-2"><a href="machine-learning-with-caret.html#cb141-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">number =</span> <span class="dv">5</span>)</span></code></pre></div>
+<p>Now we can fit models.</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="machine-learning-with-caret.html#cb142-1" aria-hidden="true" tabindex="-1"></a>m.randomForest <span class="ot">&lt;-</span> <span class="fu">train</span>(Sentiment <span class="sc">~</span> ., </span>
+<span id="cb142-2"><a href="machine-learning-with-caret.html#cb142-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">data =</span> training_data, </span>
+<span id="cb142-3"><a href="machine-learning-with-caret.html#cb142-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">method =</span> <span class="st">&quot;rf&quot;</span>, </span>
+<span id="cb142-4"><a href="machine-learning-with-caret.html#cb142-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">trControl =</span> fitControl,</span>
+<span id="cb142-5"><a href="machine-learning-with-caret.html#cb142-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">na.action =</span> na.omit,</span>
+<span id="cb142-6"><a href="machine-learning-with-caret.html#cb142-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">trace =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## Naive Bayes 
+## 
+## 800 samples
+##  37 predictor
+##   2 classes: &#39;0&#39;, &#39;1&#39; 
+## 
+## No pre-processing
+## Resampling: Cross-Validated (5 fold) 
+## Summary of sample sizes: 641, 640, 640, 640, 639 
+## Resampling results across tuning parameters:
+## 
+##   usekernel  Accuracy   Kappa    
+##   FALSE      0.5853086  0.2041723
+##    TRUE      0.5988604  0.2304654
+## 
+## Tuning parameter &#39;fL&#39; was held constant at a value of 0
+## Tuning
+##  parameter &#39;adjust&#39; was held constant at a value of 1
+## Accuracy was used to select the optimal model using the largest value.
+## The final values used for the model were fL = 0, usekernel = TRUE and adjust
+##  = 1.</code></pre>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="machine-learning-with-caret.html#cb144-1" aria-hidden="true" tabindex="-1"></a>m.decisionTree <span class="ot">&lt;-</span> <span class="fu">train</span>(Sentiment <span class="sc">~</span> ., </span>
+<span id="cb144-2"><a href="machine-learning-with-caret.html#cb144-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">data =</span> training_data, </span>
+<span id="cb144-3"><a href="machine-learning-with-caret.html#cb144-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">method =</span> <span class="st">&quot;C5.0&quot;</span>, </span>
+<span id="cb144-4"><a href="machine-learning-with-caret.html#cb144-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">trControl =</span> fitControl,</span>
+<span id="cb144-5"><a href="machine-learning-with-caret.html#cb144-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">na.action =</span> na.omit,</span>
+<span id="cb144-6"><a href="machine-learning-with-caret.html#cb144-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">trace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb144-7"><a href="machine-learning-with-caret.html#cb144-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb144-8"><a href="machine-learning-with-caret.html#cb144-8" aria-hidden="true" tabindex="-1"></a>m.decisionTree</span></code></pre></div>
+<pre><code>## C5.0 
+## 
+## 800 samples
+##  37 predictor
+##   2 classes: &#39;0&#39;, &#39;1&#39; 
+## 
+## No pre-processing
+## Resampling: Cross-Validated (5 fold) 
+## Summary of sample sizes: 640, 640, 640, 639, 641 
+## Resampling results across tuning parameters:
+## 
+##   model  winnow  trials  Accuracy   Kappa    
+##   rules  FALSE    1      0.6174395  0.2195846
+##   rules  FALSE   10      0.6311663  0.2466009
+##   rules  FALSE   20      0.6387677  0.2580611
+##   rules   TRUE    1      0.6050568  0.1856155
+##   rules   TRUE   10      0.6036349  0.1844294
+##   rules   TRUE   20      0.6173536  0.2143403
+##   tree   FALSE    1      0.6049550  0.1971405
+##   tree   FALSE   10      0.6436352  0.2681289
+##   tree   FALSE   20      0.6674091  0.3171329
+##   tree    TRUE    1      0.5850023  0.1572419
+##   tree    TRUE   10      0.6037680  0.1875013
+##   tree    TRUE   20      0.6149632  0.2136201
+## 
+## Accuracy was used to select the optimal model using the largest value.
+## The final values used for the model were trials = 20, model = tree and winnow
+##  = FALSE.</code></pre>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="machine-learning-with-caret.html#cb146-1" aria-hidden="true" tabindex="-1"></a>m.NeuralNet <span class="ot">&lt;-</span> <span class="fu">train</span>(Sentiment <span class="sc">~</span> ., </span>
+<span id="cb146-2"><a href="machine-learning-with-caret.html#cb146-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">data =</span> training_data, </span>
+<span id="cb146-3"><a href="machine-learning-with-caret.html#cb146-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">method =</span> <span class="st">&quot;nnet&quot;</span>, </span>
+<span id="cb146-4"><a href="machine-learning-with-caret.html#cb146-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">trControl =</span> fitControl,</span>
+<span id="cb146-5"><a href="machine-learning-with-caret.html#cb146-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">na.action =</span> na.omit,</span>
+<span id="cb146-6"><a href="machine-learning-with-caret.html#cb146-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">trace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb146-7"><a href="machine-learning-with-caret.html#cb146-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb146-8"><a href="machine-learning-with-caret.html#cb146-8" aria-hidden="true" tabindex="-1"></a>m.NeuralNet</span></code></pre></div>
+<pre><code>## Neural Network 
+## 
+## 800 samples
+##  37 predictor
+##   2 classes: &#39;0&#39;, &#39;1&#39; 
+## 
+## No pre-processing
+## Resampling: Cross-Validated (5 fold) 
+## Summary of sample sizes: 640, 640, 640, 641, 639 
+## Resampling results across tuning parameters:
+## 
+##   size  decay  Accuracy   Kappa    
+##   1     0e+00  0.6251111  0.2324807
+##   1     1e-04  0.6413309  0.2799198
+##   1     1e-01  0.6536978  0.3034218
+##   3     0e+00  0.6225957  0.2290596
+##   3     1e-04  0.6325730  0.2541539
+##   3     1e-01  0.6062516  0.2038744
+##   5     0e+00  0.6025251  0.1941279
+##   5     1e-04  0.5938376  0.1701331
+##   5     1e-01  0.6149866  0.2246250
+## 
+## Accuracy was used to select the optimal model using the largest value.
+## The final values used for the model were size = 1 and decay = 0.1.</code></pre>
+<p>Which method makes the most accurate predictions? caret provides some handy functions for evaluating this.</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="machine-learning-with-caret.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make predictions using the test data set</span></span>
+<span id="cb148-2"><a href="machine-learning-with-caret.html#cb148-2" aria-hidden="true" tabindex="-1"></a>rf.pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(m.randomForest,test_data)</span>
+<span id="cb148-3"><a href="machine-learning-with-caret.html#cb148-3" aria-hidden="true" tabindex="-1"></a>nb.pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(m.NaiveBayes,test_data)</span>
+<span id="cb148-4"><a href="machine-learning-with-caret.html#cb148-4" aria-hidden="true" tabindex="-1"></a>dt.pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(m.decisionTree,test_data)</span>
+<span id="cb148-5"><a href="machine-learning-with-caret.html#cb148-5" aria-hidden="true" tabindex="-1"></a>nn.pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(m.NeuralNet,test_data)</span>
+<span id="cb148-6"><a href="machine-learning-with-caret.html#cb148-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb148-7"><a href="machine-learning-with-caret.html#cb148-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Look at the confusion matrix  </span></span>
+<span id="cb148-8"><a href="machine-learning-with-caret.html#cb148-8" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(rf.pred, test_data<span class="sc">$</span>Sentiment)   </span></code></pre></div>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction  0  1
+##          0 44 28
+##          1 36 92
+##                                          
+##                Accuracy : 0.68           
+##                  95% CI : (0.6105, 0.744)
+##     No Information Rate : 0.6            
+##     P-Value [Acc &gt; NIR] : 0.01187        
+##                                          
+##                   Kappa : 0.322          
+##                                          
+##  Mcnemar&#39;s Test P-Value : 0.38157        
+##                                          
+##             Sensitivity : 0.5500         
+##             Specificity : 0.7667         
+##          Pos Pred Value : 0.6111         
+##          Neg Pred Value : 0.7188         
+##              Prevalence : 0.4000         
+##          Detection Rate : 0.2200         
+##    Detection Prevalence : 0.3600         
+##       Balanced Accuracy : 0.6583         
+##                                          
+##        &#39;Positive&#39; Class : 0              
+## </code></pre>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="machine-learning-with-caret.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(nb.pred, test_data<span class="sc">$</span>Sentiment)   </span></code></pre></div>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction  0  1
+##          0 69 68
+##          1 11 52
+##                                           
+##                Accuracy : 0.605           
+##                  95% CI : (0.5336, 0.6732)
+##     No Information Rate : 0.6             
+##     P-Value [Acc &gt; NIR] : 0.4732          
+##                                           
+##                   Kappa : 0.2644          
+##                                           
+##  Mcnemar&#39;s Test P-Value : 2.967e-10       
+##                                           
+##             Sensitivity : 0.8625          
+##             Specificity : 0.4333          
+##          Pos Pred Value : 0.5036          
+##          Neg Pred Value : 0.8254          
+##              Prevalence : 0.4000          
+##          Detection Rate : 0.3450          
+##    Detection Prevalence : 0.6850          
+##       Balanced Accuracy : 0.6479          
+##                                           
+##        &#39;Positive&#39; Class : 0               
+## </code></pre>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="machine-learning-with-caret.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(dt.pred, test_data<span class="sc">$</span>Sentiment)   </span></code></pre></div>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction  0  1
+##          0 43 33
+##          1 37 87
+##                                           
+##                Accuracy : 0.65            
+##                  95% CI : (0.5795, 0.7159)
+##     No Information Rate : 0.6             
+##     P-Value [Acc &gt; NIR] : 0.0844          
+##                                           
+##                   Kappa : 0.2647          
+##                                           
+##  Mcnemar&#39;s Test P-Value : 0.7199          
+##                                           
+##             Sensitivity : 0.5375          
+##             Specificity : 0.7250          
+##          Pos Pred Value : 0.5658          
+##          Neg Pred Value : 0.7016          
+##              Prevalence : 0.4000          
+##          Detection Rate : 0.2150          
+##    Detection Prevalence : 0.3800          
+##       Balanced Accuracy : 0.6312          
+##                                           
+##        &#39;Positive&#39; Class : 0               
+## </code></pre>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="machine-learning-with-caret.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(nn.pred, test_data<span class="sc">$</span>Sentiment)   </span></code></pre></div>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction  0  1
+##          0 52 47
+##          1 28 73
+##                                           
+##                Accuracy : 0.625           
+##                  95% CI : (0.5539, 0.6923)
+##     No Information Rate : 0.6             
+##     P-Value [Acc &gt; NIR] : 0.25896         
+##                                           
+##                   Kappa : 0.2485          
+##                                           
+##  Mcnemar&#39;s Test P-Value : 0.03767         
+##                                           
+##             Sensitivity : 0.6500          
+##             Specificity : 0.6083          
+##          Pos Pred Value : 0.5253          
+##          Neg Pred Value : 0.7228          
+##              Prevalence : 0.4000          
+##          Detection Rate : 0.2600          
+##    Detection Prevalence : 0.4950          
+##       Balanced Accuracy : 0.6292          
+##                                           
+##        &#39;Positive&#39; Class : 0               
+## </code></pre>
+<p>We can also plot a ROC curve, in which the True Positive rate (sensitivity) is plotted against the True Negative rate (specificity). This is good for evaluating whether your model is both correctly predicting which are and are not positive sentiment (not just one or the other).</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="machine-learning-with-caret.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pROC) </span>
+<span id="cb156-2"><a href="machine-learning-with-caret.html#cb156-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-3"><a href="machine-learning-with-caret.html#cb156-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Draw the ROC curve </span></span>
+<span id="cb156-4"><a href="machine-learning-with-caret.html#cb156-4" aria-hidden="true" tabindex="-1"></a>nn.probs <span class="ot">&lt;-</span> <span class="fu">predict</span>(m.NeuralNet,test_data,<span class="at">type=</span><span class="st">&quot;prob&quot;</span>)</span>
+<span id="cb156-5"><a href="machine-learning-with-caret.html#cb156-5" aria-hidden="true" tabindex="-1"></a>nn.ROC <span class="ot">&lt;-</span> <span class="fu">roc</span>(<span class="at">predictor=</span>nn.probs<span class="sc">$</span><span class="st">`</span><span class="at">1</span><span class="st">`</span>,</span>
+<span id="cb156-6"><a href="machine-learning-with-caret.html#cb156-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">response=</span><span class="fu">as.numeric</span>(test_data<span class="sc">$</span>Sentiment)<span class="sc">-</span><span class="dv">1</span>,</span>
+<span id="cb156-7"><a href="machine-learning-with-caret.html#cb156-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">levels=</span><span class="fu">rev</span>(<span class="fu">levels</span>(test_data<span class="sc">$</span>Sentiment)))</span>
+<span id="cb156-8"><a href="machine-learning-with-caret.html#cb156-8" aria-hidden="true" tabindex="-1"></a>nn.ROC<span class="sc">$</span>auc</span></code></pre></div>
+<pre><code>## Area under the curve: 0.6939</code></pre>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="machine-learning-with-caret.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Area under the curve: 0.6936</span></span>
+<span id="cb158-2"><a href="machine-learning-with-caret.html#cb158-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nn.ROC,<span class="at">main=</span><span class="st">&quot;Neural Net ROC&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
+<pre><code>
+&lt;!--chapter:end:09-MachineLearning.Rmd--&gt;
+
+---
+output: html_document
+---
+
+# A text project, from start to topic model
+
+In this tutorial, we focus on a new analysis strategy for text - topic modeling. We download all of the pages on Wikipedia for famous philosophers, from Aristotle to Bruno Latour. Each page discusses their lives and works and we topic model the text in order to identify shared themes across them. 
+
+To do this, we first need to load in a bunch of packages. If you are missing one of these packages - if you get the error message &quot;Error in library(tm) : there is no package called ‘tm’&quot;, for example - then you should use install.packages() to install it. 
+
+In particular, there are three packages we have never seen before: stringi, which is useful for manipulating strings (we will use it to convert non-latin script to latin script), tm, which is a suite of functions for text mining in R, and texclean, which has useful functions for cleaning text. 
+
+
+```r
+library(rvest)
+library(tidytext)
+library(dplyr)
+library(tidyr)
+library(stringi)
+library(tm)
+library(textclean)</code></pre>
+<p>Most of the real scraping work I left out of the tutorial for the sake of time. But I followed, more or less, what we learned in the week on scraping. I found a page a series of pages which list philosophers alphabetically. I visited those pages and saw that they contained links to every Wikipedia page for a well-known philosopher. I used Inspect to copy the Xpath for a couple of these links and found that they followed a similar pattern - each was nested in the HTML structure underneath the pathway //*[@id=“mw-content-text”]/div/ul/li/a. I extracted the set of nodes which followed that path and grabbed the href (HTML lingo for a url) from each. The result was a list of Wikipedia short links for philosophers. I pasted the main wikipedia URL to precede short links. I also grabbed the titles of the nodes, which was the names of the philosophers. I used lapply to apply this function to each of the four pages, saved the results for each in a data.frame, and used do.call(“rbind”) to put all of them into a single data.frame.</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="machine-learning-with-caret.html#cb160-1" aria-hidden="true" tabindex="-1"></a>grab_urls <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb160-2"><a href="machine-learning-with-caret.html#cb160-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb160-3"><a href="machine-learning-with-caret.html#cb160-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># id the url locations on the page (identified using Inspect and XPath)</span></span>
+<span id="cb160-4"><a href="machine-learning-with-caret.html#cb160-4" aria-hidden="true" tabindex="-1"></a>  philosophers_urls <span class="ot">&lt;-</span> <span class="fu">html_nodes</span>(x, <span class="at">xpath =</span> <span class="st">&#39;//*[@id=&quot;mw-content-text&quot;]/div/ul/li/a&#39;</span>) </span>
+<span id="cb160-5"><a href="machine-learning-with-caret.html#cb160-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb160-6"><a href="machine-learning-with-caret.html#cb160-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># extract the URL specifically</span></span>
+<span id="cb160-7"><a href="machine-learning-with-caret.html#cb160-7" aria-hidden="true" tabindex="-1"></a>  href_links <span class="ot">&lt;-</span> philosophers_urls <span class="sc">%&gt;%</span> <span class="fu">html_attr</span>(<span class="st">&#39;href&#39;</span>)</span>
+<span id="cb160-8"><a href="machine-learning-with-caret.html#cb160-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb160-9"><a href="machine-learning-with-caret.html#cb160-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># paste the url ending to wikipedia English main url</span></span>
+<span id="cb160-10"><a href="machine-learning-with-caret.html#cb160-10" aria-hidden="true" tabindex="-1"></a>  urls <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;https://en.wikipedia.org/&quot;</span>, href_links)</span>
+<span id="cb160-11"><a href="machine-learning-with-caret.html#cb160-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb160-12"><a href="machine-learning-with-caret.html#cb160-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># extract each philosopher&#39;s name</span></span>
+<span id="cb160-13"><a href="machine-learning-with-caret.html#cb160-13" aria-hidden="true" tabindex="-1"></a>  philosopher_names <span class="ot">&lt;-</span> philosophers_urls <span class="sc">%&gt;%</span> <span class="fu">html_attr</span>(<span class="st">&#39;title&#39;</span>)</span>
+<span id="cb160-14"><a href="machine-learning-with-caret.html#cb160-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb160-15"><a href="machine-learning-with-caret.html#cb160-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># save the result in a data.frame</span></span>
+<span id="cb160-16"><a href="machine-learning-with-caret.html#cb160-16" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Philosopher =</span> philosopher_names, <span class="at">URL =</span> urls, <span class="at">stringsAsFactors =</span> F)</span>
+<span id="cb160-17"><a href="machine-learning-with-caret.html#cb160-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb160-18"><a href="machine-learning-with-caret.html#cb160-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># output the data.frame</span></span>
+<span id="cb160-19"><a href="machine-learning-with-caret.html#cb160-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(df)</span>
+<span id="cb160-20"><a href="machine-learning-with-caret.html#cb160-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb160-21"><a href="machine-learning-with-caret.html#cb160-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb160-22"><a href="machine-learning-with-caret.html#cb160-22" aria-hidden="true" tabindex="-1"></a><span class="co"># download html for each of the main philosopher pages from wikipedia</span></span>
+<span id="cb160-23"><a href="machine-learning-with-caret.html#cb160-23" aria-hidden="true" tabindex="-1"></a>philosophers_A_C <span class="ot">&lt;-</span>  <span class="fu">read_html</span>(<span class="st">&quot;https://en.wikipedia.org/wiki/List_of_philosophers_(A–C)&quot;</span>)</span>
+<span id="cb160-24"><a href="machine-learning-with-caret.html#cb160-24" aria-hidden="true" tabindex="-1"></a>philosophers_D_H <span class="ot">&lt;-</span> <span class="fu">read_html</span>(<span class="st">&quot;https://en.wikipedia.org/wiki/List_of_philosophers_(D–H)&quot;</span>)</span>
+<span id="cb160-25"><a href="machine-learning-with-caret.html#cb160-25" aria-hidden="true" tabindex="-1"></a>philosophers_I_Q <span class="ot">&lt;-</span> <span class="fu">read_html</span>(<span class="st">&quot;https://en.wikipedia.org/wiki/List_of_philosophers_(I–Q)&quot;</span>)</span>
+<span id="cb160-26"><a href="machine-learning-with-caret.html#cb160-26" aria-hidden="true" tabindex="-1"></a>philosophers_R_Z <span class="ot">&lt;-</span> <span class="fu">read_html</span>(<span class="st">&quot;https://en.wikipedia.org/wiki/List_of_philosophers_(R–Z)&quot;</span>)</span>
+<span id="cb160-27"><a href="machine-learning-with-caret.html#cb160-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb160-28"><a href="machine-learning-with-caret.html#cb160-28" aria-hidden="true" tabindex="-1"></a><span class="co"># apply the above code to each of the pages</span></span>
+<span id="cb160-29"><a href="machine-learning-with-caret.html#cb160-29" aria-hidden="true" tabindex="-1"></a>all_dfs <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">list</span>(philosophers_A_C, philosophers_D_H, philosophers_I_Q, philosophers_R_Z), grab_urls)</span>
+<span id="cb160-30"><a href="machine-learning-with-caret.html#cb160-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb160-31"><a href="machine-learning-with-caret.html#cb160-31" aria-hidden="true" tabindex="-1"></a><span class="co"># put it all together </span></span>
+<span id="cb160-32"><a href="machine-learning-with-caret.html#cb160-32" aria-hidden="true" tabindex="-1"></a>all_philosophers <span class="ot">&lt;-</span> <span class="fu">do.call</span>(<span class="st">&quot;rbind&quot;</span>, all_dfs)</span>
+<span id="cb160-33"><a href="machine-learning-with-caret.html#cb160-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb160-34"><a href="machine-learning-with-caret.html#cb160-34" aria-hidden="true" tabindex="-1"></a><span class="co"># saveRDS(all_philosophers, &quot;all_philosophers_2021.RDS&quot;)</span></span></code></pre></div>
+<p>Let’s take a look. The data.frame has two columns - Philosopher and URL. We can use this information to now go to each of the philosopher’s pages and grab the content of their Wikipedia page.</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="machine-learning-with-caret.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(all_philosophers)</span></code></pre></div>
+<p>So now I write a new function which grabs the text from each page. It takes as its argument a URL. The HTML of this URL is read into R using rvest’s read_html. Then the body of the page - identified by //*[@id=“mw-content-text”]/div/p - is read into R and its text is extracted. This text is returned.</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="machine-learning-with-caret.html#cb162-1" aria-hidden="true" tabindex="-1"></a>grab_text <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb162-2"><a href="machine-learning-with-caret.html#cb162-2" aria-hidden="true" tabindex="-1"></a>    philosopher_html <span class="ot">&lt;-</span> <span class="fu">read_html</span>(x)</span>
+<span id="cb162-3"><a href="machine-learning-with-caret.html#cb162-3" aria-hidden="true" tabindex="-1"></a>    philosopher_text <span class="ot">&lt;-</span> philosopher_html <span class="sc">%&gt;%</span> </span>
+<span id="cb162-4"><a href="machine-learning-with-caret.html#cb162-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">html_nodes</span>(<span class="at">xpath =</span> <span class="st">&#39;//*[@id=&quot;mw-content-text&quot;]/div/p&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb162-5"><a href="machine-learning-with-caret.html#cb162-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">html_text</span>()</span>
+<span id="cb162-6"><a href="machine-learning-with-caret.html#cb162-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(philosopher_text)</span>
+<span id="cb162-7"><a href="machine-learning-with-caret.html#cb162-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>I apply it, again using lapply, to every URL in the all_philosophers data.frame. The result is the text of every philosopher’s page on Wikipedia. The only problem is it takes a while to run, especially if your computer isn’t fast.</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="machine-learning-with-caret.html#cb163-1" aria-hidden="true" tabindex="-1"></a>philosophers_page_text <span class="ot">&lt;-</span> <span class="fu">lapply</span>(all_philosophers<span class="sc">$</span>URL, <span class="cf">function</span>(x) <span class="fu">try</span>(<span class="fu">grab_text</span>(x)))</span>
+<span id="cb163-2"><a href="machine-learning-with-caret.html#cb163-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb163-3"><a href="machine-learning-with-caret.html#cb163-3" aria-hidden="true" tabindex="-1"></a><span class="co"># saveRDS(philosophers_page_text, &quot;philosophers_page_text_2021.RDS&quot;)</span></span></code></pre></div>
+<p>I actually saved the results into an RDS file and put them on Canvas, so that you wouldn’t have to run this full loop (though you can if you are curious.) Download philosophers_page_text.RDS, drag it into your R directory, and load it in using readRDS, like so.</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="machine-learning-with-caret.html#cb164-1" aria-hidden="true" tabindex="-1"></a>philosophers_page_text <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;Data/philosophers_page_text_2021.RDS&quot;</span>)</span>
+<span id="cb164-2"><a href="machine-learning-with-caret.html#cb164-2" aria-hidden="true" tabindex="-1"></a>philosophers_page_text <span class="ot">&lt;-</span> philosophers_page_text[<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(philosophers_page_text), <span class="dv">200</span>)]</span></code></pre></div>
+<p>So the texts are quite messy and we need to clean them before we can analyze them (though with topic modeling, this isn’t strictly necessary since it will often lump all of the junk into its own topic.) We build a function to do that. It uses repeated gsubs to remove characters that we don’t want from the text. If you don’t really understand what is going on here, then it is worth reading up on regex - it is an essential framework for working with text. Once the text is cleaned, we put all of the sentences for each philosopher into a single character vector and make it lowercase. Finally, we convert the list of texts to a character vector</p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="machine-learning-with-caret.html#cb165-1" aria-hidden="true" tabindex="-1"></a>clean_text <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb165-2"><a href="machine-learning-with-caret.html#cb165-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># remove all parentheses and their content</span></span>
+<span id="cb165-3"><a href="machine-learning-with-caret.html#cb165-3" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">s*</span><span class="sc">\\</span><span class="st">([^</span><span class="sc">\\</span><span class="st">)]+</span><span class="sc">\\</span><span class="st">)&quot;</span>, <span class="st">&quot;&quot;</span>, x)</span>
+<span id="cb165-4"><a href="machine-learning-with-caret.html#cb165-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># remove all square brackets and their content</span></span>
+<span id="cb165-5"><a href="machine-learning-with-caret.html#cb165-5" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">[[^][]*]&quot;</span>, <span class="st">&quot;&quot;</span>, x)</span>
+<span id="cb165-6"><a href="machine-learning-with-caret.html#cb165-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># remove all punctuation</span></span>
+<span id="cb165-7"><a href="machine-learning-with-caret.html#cb165-7" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&#39;[[:punct:] ]+&#39;</span>,<span class="st">&#39; &#39;</span>,x)</span>
+<span id="cb165-8"><a href="machine-learning-with-caret.html#cb165-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># remove all numbers</span></span>
+<span id="cb165-9"><a href="machine-learning-with-caret.html#cb165-9" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&#39;[[:digit:]]+&#39;</span>, <span class="st">&#39;&#39;</span>, x)</span>
+<span id="cb165-10"><a href="machine-learning-with-caret.html#cb165-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># drop paragraph breaks</span></span>
+<span id="cb165-11"><a href="machine-learning-with-caret.html#cb165-11" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>, <span class="st">&#39;&#39;</span>, x)</span>
+<span id="cb165-12"><a href="machine-learning-with-caret.html#cb165-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># drop empty lines</span></span>
+<span id="cb165-13"><a href="machine-learning-with-caret.html#cb165-13" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">subset</span>(x, x <span class="sc">!=</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb165-14"><a href="machine-learning-with-caret.html#cb165-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># remove spaces at beginning and end of lines</span></span>
+<span id="cb165-15"><a href="machine-learning-with-caret.html#cb165-15" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">trimws</span>(x)</span>
+<span id="cb165-16"><a href="machine-learning-with-caret.html#cb165-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># paste all of the lines together into one text</span></span>
+<span id="cb165-17"><a href="machine-learning-with-caret.html#cb165-17" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">paste0</span>(x, <span class="at">collapse =</span> <span class="st">&quot; &quot;</span>)</span>
+<span id="cb165-18"><a href="machine-learning-with-caret.html#cb165-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># make everything lower case</span></span>
+<span id="cb165-19"><a href="machine-learning-with-caret.html#cb165-19" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">tolower</span>(x)</span>
+<span id="cb165-20"><a href="machine-learning-with-caret.html#cb165-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># return text</span></span>
+<span id="cb165-21"><a href="machine-learning-with-caret.html#cb165-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x)</span>
+<span id="cb165-22"><a href="machine-learning-with-caret.html#cb165-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb165-23"><a href="machine-learning-with-caret.html#cb165-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb165-24"><a href="machine-learning-with-caret.html#cb165-24" aria-hidden="true" tabindex="-1"></a>philosophers_texts_cleaned <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">lapply</span>(philosophers_page_text, clean_text))</span></code></pre></div>
+<p>Now we can add the texts into the data.frame of philosophers and their URLs. We can also drop the philosophers whose name was on Wikipedia but who don’t actually have a page. They can be identified by the fact that their text equals “error in open connection http error”.</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="machine-learning-with-caret.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert non-latin script to latin, if no easy conversion, then substite for empty string (i.e. delete)</span></span>
+<span id="cb166-2"><a href="machine-learning-with-caret.html#cb166-2" aria-hidden="true" tabindex="-1"></a>philosophers_texts_cleaned <span class="ot">&lt;-</span> <span class="fu">iconv</span>(<span class="fu">stri_trans_general</span>(philosophers_texts_cleaned, <span class="st">&quot;latin-ascii&quot;</span>), <span class="st">&quot;latin1&quot;</span>, <span class="st">&quot;ASCII&quot;</span>, <span class="at">sub=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb166-3"><a href="machine-learning-with-caret.html#cb166-3" aria-hidden="true" tabindex="-1"></a>philosophers_texts_cleaned <span class="ot">&lt;-</span> <span class="fu">replace_non_ascii</span>(philosophers_texts_cleaned)</span>
+<span id="cb166-4"><a href="machine-learning-with-caret.html#cb166-4" aria-hidden="true" tabindex="-1"></a>good_texts <span class="ot">&lt;-</span> <span class="fu">which</span>(philosophers_texts_cleaned<span class="sc">!=</span> <span class="st">&quot;error in open connection http error&quot;</span>)</span>
+<span id="cb166-5"><a href="machine-learning-with-caret.html#cb166-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb166-6"><a href="machine-learning-with-caret.html#cb166-6" aria-hidden="true" tabindex="-1"></a>all_philosophers <span class="ot">&lt;-</span> all_philosophers[good_texts,]</span>
+<span id="cb166-7"><a href="machine-learning-with-caret.html#cb166-7" aria-hidden="true" tabindex="-1"></a>all_philosophers<span class="sc">$</span>Text <span class="ot">&lt;-</span> philosophers_texts_cleaned[good_texts]</span></code></pre></div>
+<p>Now we have to do some more cleaning. We can turn this data set into a tokenized tidytext data set with the unnest_tokens function.</p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="machine-learning-with-caret.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="co"># further cleaning...</span></span>
+<span id="cb167-2"><a href="machine-learning-with-caret.html#cb167-2" aria-hidden="true" tabindex="-1"></a><span class="co"># tokenize the result</span></span>
+<span id="cb167-3"><a href="machine-learning-with-caret.html#cb167-3" aria-hidden="true" tabindex="-1"></a>text_cleaning_tokens <span class="ot">&lt;-</span> all_philosophers <span class="sc">%&gt;%</span> <span class="fu">unnest_tokens</span>(word, Text)</span></code></pre></div>
+<p>Next we want to drop words which are less than three characters in length, and drop stop words. We can drop short words with filter combined with the nchar function, and anti_join to drop stopwords.</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="machine-learning-with-caret.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="co"># drop words with are either stop words or length == 1</span></span>
+<span id="cb168-2"><a href="machine-learning-with-caret.html#cb168-2" aria-hidden="true" tabindex="-1"></a>text_cleaning_tokens <span class="ot">&lt;-</span> text_cleaning_tokens <span class="sc">%&gt;%</span> </span>
+<span id="cb168-3"><a href="machine-learning-with-caret.html#cb168-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(<span class="fu">nchar</span>(word) <span class="sc">&lt;</span> <span class="dv">3</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb168-4"><a href="machine-learning-with-caret.html#cb168-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(stop_words)</span></code></pre></div>
+<pre><code>## Joining, by = &quot;word&quot;</code></pre>
+<p>Next we drop empty words</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="machine-learning-with-caret.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filter out empty words</span></span>
+<span id="cb170-2"><a href="machine-learning-with-caret.html#cb170-2" aria-hidden="true" tabindex="-1"></a>tokens <span class="ot">&lt;-</span> text_cleaning_tokens <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span>(word<span class="sc">==</span><span class="st">&quot;&quot;</span>))</span></code></pre></div>
+<p>The next part is a bit complicated. The basic idea is that we want to paste the texts for each philosopher back together. The unite function is good for that, but it only works on a wide form data set. So we will first group by philosopher, produce an index for the row number (that is, what position is a given word in their text), we will then spread the data, converting our long form data into wide form, setting the key argument (which defines the columns of the new data.frame) to equal the index we created, and the value argument to word. The result is that each book is now its own row in the data.frame, with the column i+2 identifying the ith word in that philosopher’s Wikipedia page.</p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="machine-learning-with-caret.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="co"># turn each person into a row, with a column for each word in their wikipedia</span></span>
+<span id="cb171-2"><a href="machine-learning-with-caret.html#cb171-2" aria-hidden="true" tabindex="-1"></a>tokens <span class="ot">&lt;-</span> tokens <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Philosopher) <span class="sc">%&gt;%</span> </span>
+<span id="cb171-3"><a href="machine-learning-with-caret.html#cb171-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ind =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb171-4"><a href="machine-learning-with-caret.html#cb171-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(<span class="at">key =</span> ind, <span class="at">value =</span> word)</span></code></pre></div>
+<p>We’ll convert NAs to "" and use unite to paste all of the columns in the data.frame together. We specify -Philosopher and -URL so that those columns are preserved and not pasted with the words of each page.</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="machine-learning-with-caret.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert NAs to empty strings</span></span>
+<span id="cb172-2"><a href="machine-learning-with-caret.html#cb172-2" aria-hidden="true" tabindex="-1"></a>tokens[<span class="fu">is.na</span>(tokens)] <span class="ot">&lt;-</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb172-3"><a href="machine-learning-with-caret.html#cb172-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-4"><a href="machine-learning-with-caret.html#cb172-4" aria-hidden="true" tabindex="-1"></a><span class="co"># put the data.frame back together</span></span>
+<span id="cb172-5"><a href="machine-learning-with-caret.html#cb172-5" aria-hidden="true" tabindex="-1"></a>tokens <span class="ot">&lt;-</span> <span class="fu">unite</span>(tokens, Text,<span class="sc">-</span>Philosopher, <span class="sc">-</span>URL, <span class="at">sep =</span><span class="st">&quot; &quot;</span> )</span></code></pre></div>
+<p>Two last things are necessary before we analyze the data. We need to trim whitespace, so that there aren’t spaces at the beginning or end of texts. And we need to convert non-latin characters to latin characters (using the stri_trans_general() function from stringi) or else, if they can’t be converted, drop them (using the iconv() function from base R.)</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="machine-learning-with-caret.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="co"># trim white space</span></span>
+<span id="cb173-2"><a href="machine-learning-with-caret.html#cb173-2" aria-hidden="true" tabindex="-1"></a>tokens<span class="sc">$</span>Text <span class="ot">&lt;-</span> <span class="fu">trimws</span>(tokens<span class="sc">$</span>Text)</span></code></pre></div>
+<p>Great! Let’s check out the data.</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="machine-learning-with-caret.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(tokens)</span></code></pre></div>
+<p>Topic modeling requires a document to word matrix. In such a matrix, each row is a document, each column is a word, and each cell or value in the matrix is a count of how many times a given document uses a given word. To get to such a matrix, we first need to count how many times each word appears on each philosopher’s page. We learned how to do this last tutorial.</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="machine-learning-with-caret.html#cb175-1" aria-hidden="true" tabindex="-1"></a>token_counts <span class="ot">&lt;-</span> tokens <span class="sc">%&gt;%</span> </span>
+<span id="cb175-2"><a href="machine-learning-with-caret.html#cb175-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(word, Text) <span class="sc">%&gt;%</span> </span>
+<span id="cb175-3"><a href="machine-learning-with-caret.html#cb175-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Philosopher, word, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>Now we can use a function called cast_dtm from the tm package to convert token_counts into a document-to-word matrix (dtm stands for document-to-term, actually.) We tell it - the variable in token_counts we want to use for the rows of the dtm (Philosopher), the variable we want to use as the column (word), and the variable that should fill the matrix as values (n).</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="machine-learning-with-caret.html#cb176-1" aria-hidden="true" tabindex="-1"></a>philosopher_dtm <span class="ot">&lt;-</span> token_counts <span class="sc">%&gt;%</span></span>
+<span id="cb176-2"><a href="machine-learning-with-caret.html#cb176-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cast_dtm</span>(Philosopher, word, n)</span></code></pre></div>
+<p>Awesome! You can View what it looks like if you want. We can use this dtm to fit a topic model using latent dirichlet allocation (LDA) from the topicmodels package. We have a few options when doing so - first we will set k, the number of topics to equal 20. If we were doing this for a real study (like your final project), we would want to fit a couple of different models with different ks to see how the results change and to try to find the model with the best fit. For now, we will settle for just trying k = 20. We can also set the seed directly inside the function so that we are certain to all get the same results.</p>
+<p>This might take a while!</p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="machine-learning-with-caret.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(topicmodels)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;topicmodels&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:text2vec&#39;:
+## 
+##     perplexity</code></pre>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="machine-learning-with-caret.html#cb180-1" aria-hidden="true" tabindex="-1"></a>philosophers_lda <span class="ot">&lt;-</span> <span class="fu">LDA</span>(philosopher_dtm, <span class="at">k =</span> <span class="dv">20</span>, <span class="at">control =</span> <span class="fu">list</span>(<span class="at">seed =</span> <span class="dv">1234</span>))</span></code></pre></div>
+<p>It finished running - now what? We can use the tidy function from the tidyr package to extract some useful information. First, let’s extract the beta coefficients - which provides weights for the words with respect to topics.</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="machine-learning-with-caret.html#cb181-1" aria-hidden="true" tabindex="-1"></a>philosophers_lda_td <span class="ot">&lt;-</span> <span class="fu">tidy</span>(philosophers_lda, <span class="at">matrix =</span> <span class="st">&quot;beta&quot;</span>)</span></code></pre></div>
+<p>Just like we did last class, let’s use top_n to grab the top 10 words per topic.</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="machine-learning-with-caret.html#cb182-1" aria-hidden="true" tabindex="-1"></a>top_terms <span class="ot">&lt;-</span> philosophers_lda_td <span class="sc">%&gt;%</span></span>
+<span id="cb182-2"><a href="machine-learning-with-caret.html#cb182-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(topic) <span class="sc">%&gt;%</span></span>
+<span id="cb182-3"><a href="machine-learning-with-caret.html#cb182-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>, beta) <span class="sc">%&gt;%</span></span>
+<span id="cb182-4"><a href="machine-learning-with-caret.html#cb182-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb182-5"><a href="machine-learning-with-caret.html#cb182-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(topic, <span class="sc">-</span>beta)</span></code></pre></div>
+<p>We can plot the results using ggplot as a series of bar plots</p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="machine-learning-with-caret.html#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb183-2"><a href="machine-learning-with-caret.html#cb183-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb183-3"><a href="machine-learning-with-caret.html#cb183-3" aria-hidden="true" tabindex="-1"></a>top_terms <span class="sc">%&gt;%</span></span>
+<span id="cb183-4"><a href="machine-learning-with-caret.html#cb183-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">term =</span> <span class="fu">reorder_within</span>(term, beta, topic)) <span class="sc">%&gt;%</span></span>
+<span id="cb183-5"><a href="machine-learning-with-caret.html#cb183-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(term, beta)) <span class="sc">+</span></span>
+<span id="cb183-6"><a href="machine-learning-with-caret.html#cb183-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb183-7"><a href="machine-learning-with-caret.html#cb183-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_reordered</span>() <span class="sc">+</span></span>
+<span id="cb183-8"><a href="machine-learning-with-caret.html#cb183-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> topic, <span class="at">scales =</span> <span class="st">&quot;free_x&quot;</span>) <span class="sc">+</span></span>
+<span id="cb183-9"><a href="machine-learning-with-caret.html#cb183-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
+<p>Or else as a table.</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="machine-learning-with-caret.html#cb184-1" aria-hidden="true" tabindex="-1"></a>top_terms_table <span class="ot">&lt;-</span> top_terms <span class="sc">%&gt;%</span></span>
+<span id="cb184-2"><a href="machine-learning-with-caret.html#cb184-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(topic) <span class="sc">%&gt;%</span> </span>
+<span id="cb184-3"><a href="machine-learning-with-caret.html#cb184-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">order =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(topic)) <span class="sc">%&gt;%</span></span>
+<span id="cb184-4"><a href="machine-learning-with-caret.html#cb184-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>beta) <span class="sc">%&gt;%</span></span>
+<span id="cb184-5"><a href="machine-learning-with-caret.html#cb184-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(topic, term) <span class="sc">%&gt;%</span></span>
+<span id="cb184-6"><a href="machine-learning-with-caret.html#cb184-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>order) </span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-106">Table 9.1: </span>Top 10 terms per topic</caption>
+<colgroup>
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="5%" />
+<col width="5%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="4%" />
+<col width="3%" />
+<col width="5%" />
+<col width="4%" />
+<col width="6%" />
+<col width="5%" />
+<col width="4%" />
+<col width="4%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">1</th>
+<th align="left">2</th>
+<th align="left">3</th>
+<th align="left">4</th>
+<th align="left">5</th>
+<th align="left">6</th>
+<th align="left">7</th>
+<th align="left">8</th>
+<th align="left">9</th>
+<th align="left">10</th>
+<th align="left">11</th>
+<th align="left">12</th>
+<th align="left">13</th>
+<th align="left">14</th>
+<th align="left">15</th>
+<th align="left">16</th>
+<th align="left">17</th>
+<th align="left">18</th>
+<th align="left">19</th>
+<th align="left">20</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">searle</td>
+<td align="left">confucius</td>
+<td align="left">darwin</td>
+<td align="left">chomsky</td>
+<td align="left">output</td>
+<td align="left">bakhtin</td>
+<td align="left">adorno</td>
+<td align="left">hazlitt</td>
+<td align="left">junger</td>
+<td align="left">sun</td>
+<td align="left">avicenna</td>
+<td align="left">epicurus</td>
+<td align="left">gaddafi</td>
+<td align="left">thoreau</td>
+<td align="left">descartes</td>
+<td align="left">stalin</td>
+<td align="left">wundt</td>
+<td align="left">linnaeus</td>
+<td align="left">watts</td>
+<td align="left">luxemburg</td>
+</tr>
+<tr class="even">
+<td align="left">deleuze</td>
+<td align="left">mahavira</td>
+<td align="left">philosophy</td>
+<td align="left">rand</td>
+<td align="left">parser</td>
+<td align="left">losurdo</td>
+<td align="left">bonhoeffer</td>
+<td align="left">coleridge</td>
+<td align="left">anaximenes</td>
+<td align="left">tocqueville</td>
+<td align="left">philosophy</td>
+<td align="left">mather</td>
+<td align="left">proudhon</td>
+<td align="left">gambra</td>
+<td align="left">world</td>
+<td align="left">soviet</td>
+<td align="left">psychology</td>
+<td align="left">tolstoy</td>
+<td align="left">philosophy</td>
+<td align="left">arnold</td>
+</tr>
+<tr class="odd">
+<td align="left">beauvoir</td>
+<td align="left">philosophy</td>
+<td align="left">university</td>
+<td align="left">political</td>
+<td align="left">royce</td>
+<td align="left">herder</td>
+<td align="left">university</td>
+<td align="left">life</td>
+<td align="left">air</td>
+<td align="left">china</td>
+<td align="left">anaximander</td>
+<td align="left">skinner</td>
+<td align="left">libya</td>
+<td align="left">monboddo</td>
+<td align="left">philosophy</td>
+<td align="left">lenin</td>
+<td align="left">eliot</td>
+<td align="left">hus</td>
+<td align="left">eco</td>
+<td align="left">published</td>
+</tr>
+<tr class="even">
+<td align="left">philosophy</td>
+<td align="left">plantinga</td>
+<td align="left">species</td>
+<td align="left">baudrillard</td>
+<td align="left">philosophy</td>
+<td align="left">language</td>
+<td align="left">german</td>
+<td align="left">time</td>
+<td align="left">scholem</td>
+<td align="left">sen</td>
+<td align="left">world</td>
+<td align="left">behavior</td>
+<td align="left">property</td>
+<td align="left">hesiod</td>
+<td align="left">ideas</td>
+<td align="left">war</td>
+<td align="left">university</td>
+<td align="left">church</td>
+<td align="left">university</td>
+<td align="left">russian</td>
+</tr>
+<tr class="odd">
+<td align="left">women</td>
+<td align="left">holbach</td>
+<td align="left">book</td>
+<td align="left">philosophy</td>
+<td align="left">madhva</td>
+<td align="left">history</td>
+<td align="left">philosophy</td>
+<td align="left">longinus</td>
+<td align="left">polanyi</td>
+<td align="left">yat</td>
+<td align="left">islamic</td>
+<td align="left">philosophy</td>
+<td align="left">arab</td>
+<td align="left">john</td>
+<td align="left">malebranche</td>
+<td align="left">union</td>
+<td align="left">philosophy</td>
+<td align="left">melanchthon</td>
+<td align="left">book</td>
+<td align="left">german</td>
+</tr>
+<tr class="even">
+<td align="left">astell</td>
+<td align="left">university</td>
+<td align="left">natural</td>
+<td align="left">jevons</td>
+<td align="left">god</td>
+<td align="left">oken</td>
+<td align="left">music</td>
+<td align="left">essays</td>
+<td align="left">war</td>
+<td align="left">martineau</td>
+<td align="left">koyre</td>
+<td align="left">book</td>
+<td align="left">government</td>
+<td align="left">time</td>
+<td align="left">mind</td>
+<td align="left">party</td>
+<td align="left">theory</td>
+<td align="left">clarke</td>
+<td align="left">gentile</td>
+<td align="left">philosophy</td>
+</tr>
+<tr class="odd">
+<td align="left">university</td>
+<td align="left">family</td>
+<td align="left">howison</td>
+<td align="left">theory</td>
+<td align="left">madhvacharya</td>
+<td align="left">world</td>
+<td align="left">church</td>
+<td align="left">wordsworth</td>
+<td align="left">output</td>
+<td align="left">political</td>
+<td align="left">science</td>
+<td align="left">santayana</td>
+<td align="left">boole</td>
+<td align="left">wrote</td>
+<td align="left">god</td>
+<td align="left">russian</td>
+<td align="left">chateaubriand</td>
+<td align="left">luther</td>
+<td align="left">life</td>
+<td align="left">stein</td>
+</tr>
+<tr class="even">
+<td align="left">published</td>
+<td align="left">jain</td>
+<td align="left">selection</td>
+<td align="left">university</td>
+<td align="left">lock</td>
+<td align="left">published</td>
+<td align="left">published</td>
+<td align="left">literary</td>
+<td align="left">parser</td>
+<td align="left">chinese</td>
+<td align="left">aristotle</td>
+<td align="left">life</td>
+<td align="left">political</td>
+<td align="left">walden</td>
+<td align="left">hutton</td>
+<td align="left">government</td>
+<td align="left">koffka</td>
+<td align="left">time</td>
+<td align="left">published</td>
+<td align="left">germany</td>
+</tr>
+<tr class="odd">
+<td align="left">french</td>
+<td align="left">teachings</td>
+<td align="left">theory</td>
+<td align="left">published</td>
+<td align="left">citation</td>
+<td align="left">time</td>
+<td align="left">time</td>
+<td align="left">published</td>
+<td align="left">world</td>
+<td align="left">freire</td>
+<td align="left">mill</td>
+<td align="left">pyrrho</td>
+<td align="left">libyan</td>
+<td align="left">modern</td>
+<td align="left">herbart</td>
+<td align="left">germany</td>
+<td align="left">published</td>
+<td align="left">university</td>
+<td align="left">time</td>
+<td align="left">alexander</td>
+</tr>
+<tr class="even">
+<td align="left">derrida</td>
+<td align="left">century</td>
+<td align="left">published</td>
+<td align="left">language</td>
+<td align="left">agrippa</td>
+<td align="left">german</td>
+<td align="left">culture</td>
+<td align="left">william</td>
+<td align="left">theory</td>
+<td align="left">education</td>
+<td align="left">medicine</td>
+<td align="left">epicureanism</td>
+<td align="left">revolution</td>
+<td align="left">life</td>
+<td align="left">body</td>
+<td align="left">communist</td>
+<td align="left">psychological</td>
+<td align="left">published</td>
+<td align="left">boyle</td>
+<td align="left">university</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">georgian</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
+<p>What if want to look at the extent to which each document or philosopher is composed of each topic? We can instead set matrix = “gamma” to get the gamma values, which tell you exactly that.</p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="machine-learning-with-caret.html#cb185-1" aria-hidden="true" tabindex="-1"></a>philosophers_lda_gamma <span class="ot">&lt;-</span> <span class="fu">tidy</span>(philosophers_lda, <span class="at">matrix =</span> <span class="st">&quot;gamma&quot;</span>)</span></code></pre></div>
+<p>We’ll sort in descending order according to gamma</p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="machine-learning-with-caret.html#cb186-1" aria-hidden="true" tabindex="-1"></a>top_topics <span class="ot">&lt;-</span> philosophers_lda_gamma <span class="sc">%&gt;%</span></span>
+<span id="cb186-2"><a href="machine-learning-with-caret.html#cb186-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(document, <span class="sc">-</span>gamma)</span></code></pre></div>
+<p>There are a bunch of philosophers, too many to examine all at once. Let’s select a few particularly prominent ones and examine their topic distributions.</p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="machine-learning-with-caret.html#cb187-1" aria-hidden="true" tabindex="-1"></a>selected_philosophers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Martin Luther King, Jr.&quot;</span>, </span>
+<span id="cb187-2"><a href="machine-learning-with-caret.html#cb187-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Francis Bacon&quot;</span>, </span>
+<span id="cb187-3"><a href="machine-learning-with-caret.html#cb187-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Wang Fuzhi&quot;</span>, </span>
+<span id="cb187-4"><a href="machine-learning-with-caret.html#cb187-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Aristotle&quot;</span>, </span>
+<span id="cb187-5"><a href="machine-learning-with-caret.html#cb187-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Immanuel Kant&quot;</span>, </span>
+<span id="cb187-6"><a href="machine-learning-with-caret.html#cb187-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Pope John XXI&quot;</span>, </span>
+<span id="cb187-7"><a href="machine-learning-with-caret.html#cb187-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Friedrich Kayek&quot;</span>, </span>
+<span id="cb187-8"><a href="machine-learning-with-caret.html#cb187-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Edmund Burke&quot;</span>, </span>
+<span id="cb187-9"><a href="machine-learning-with-caret.html#cb187-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Simone de Beauvoir&quot;</span>, </span>
+<span id="cb187-10"><a href="machine-learning-with-caret.html#cb187-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Bruno Latour&quot;</span>)</span>
+<span id="cb187-11"><a href="machine-learning-with-caret.html#cb187-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb187-12"><a href="machine-learning-with-caret.html#cb187-12" aria-hidden="true" tabindex="-1"></a>top_topics <span class="sc">%&gt;%</span> </span>
+<span id="cb187-13"><a href="machine-learning-with-caret.html#cb187-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(document <span class="sc">%in%</span> selected_philosophers) <span class="sc">%&gt;%</span></span>
+<span id="cb187-14"><a href="machine-learning-with-caret.html#cb187-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(topic, gamma)) <span class="sc">+</span></span>
+<span id="cb187-15"><a href="machine-learning-with-caret.html#cb187-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb187-16"><a href="machine-learning-with-caret.html#cb187-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb187-17"><a href="machine-learning-with-caret.html#cb187-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> document, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="sc">+</span></span>
+<span id="cb187-18"><a href="machine-learning-with-caret.html#cb187-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-109-1.png" width="672" /></p>
+<div id="lab" class="section level3" number="9.4.1">
+<h3><span class="header-section-number">9.4.1</span> LAB</h3>
+<p>For the lab this week, select or randomly sample 100 texts from the Gutenberg library and topic model the texts with a k of your choosing.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="machine-learning-i-linear-and-multiple-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="social-and-semantic-network-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

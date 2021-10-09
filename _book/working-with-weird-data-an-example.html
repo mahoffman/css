@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>11 Working with weird data, an example | Introduction to Computational Social Science</title>
+  <meta name="description" content="11 Working with weird data, an example | Introduction to Computational Social Science" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="11 Working with weird data, an example | Introduction to Computational Social Science" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="11 Working with weird data, an example | Introduction to Computational Social Science" />
+  
+  
+  
+
+<meta name="author" content="Mark Hoffman" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="social-and-semantic-network-analysis.html"/>
+
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="reading-list.html"><a href="reading-list.html"><i class="fa fa-check"></i><b>1</b> Reading List</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="reading-list.html"><a href="reading-list.html#readings-and-software"><i class="fa fa-check"></i><b>1.1</b> Readings and Software</a></li>
+<li class="chapter" data-level="1.2" data-path="reading-list.html"><a href="reading-list.html#course-outline"><i class="fa fa-check"></i><b>1.2</b> Course Outline</a></li>
+<li class="chapter" data-level="1.3" data-path="reading-list.html"><a href="reading-list.html#week-1-beg.-september-20th-introductions-lab-introduction-to-r"><i class="fa fa-check"></i><b>1.3</b> Week 1 (beg. September 20th): Introductions (Lab: Introduction to R)</a></li>
+<li class="chapter" data-level="1.4" data-path="reading-list.html"><a href="reading-list.html#week-2-beg.-september-27th-ethics-lab-surveys-and-survey-experiments"><i class="fa fa-check"></i><b>1.4</b> Week 2 (beg. September 27th): Ethics (Lab: Surveys and Survey Experiments)</a></li>
+<li class="chapter" data-level="1.5" data-path="reading-list.html"><a href="reading-list.html#week-3-beg.-october-4th-inequality-lab-collecting-data-online"><i class="fa fa-check"></i><b>1.5</b> Week 3 (beg. October 4th): Inequality (Lab: Collecting Data Online)</a></li>
+<li class="chapter" data-level="1.6" data-path="reading-list.html"><a href="reading-list.html#week-4-beg.-october-11th-polarization-lab-analyzing-text"><i class="fa fa-check"></i><b>1.6</b> Week 4 (beg. October 11th): Polarization (Lab: Analyzing Text)</a></li>
+<li class="chapter" data-level="1.7" data-path="reading-list.html"><a href="reading-list.html#week-5-beg.-october-18th-markets-lab-regression"><i class="fa fa-check"></i><b>1.7</b> Week 5 (beg. October 18th): Markets (Lab: Regression)</a></li>
+<li class="chapter" data-level="1.8" data-path="reading-list.html"><a href="reading-list.html#week-6-beg.-october-25th-discrimination-lab-machine-learning"><i class="fa fa-check"></i><b>1.8</b> Week 6 (beg. October 25th): Discrimination (Lab: Machine Learning)</a></li>
+<li class="chapter" data-level="1.9" data-path="reading-list.html"><a href="reading-list.html#week-7-beg.-november-1st-homophily-and-diffusion-lab-network-analysis"><i class="fa fa-check"></i><b>1.9</b> Week 7 (beg. November 1st): Homophily and Diffusion (Lab: Network Analysis)</a></li>
+<li class="chapter" data-level="1.10" data-path="reading-list.html"><a href="reading-list.html#week-8-beg.-november-8th-semantic-change-and-historical-meaning-lab-semantic-network-analysis"><i class="fa fa-check"></i><b>1.10</b> Week 8 (beg. November 8th): Semantic Change and Historical Meaning (Lab: Semantic Network Analysis)</a></li>
+<li class="chapter" data-level="1.11" data-path="reading-list.html"><a href="reading-list.html#week-9-beg.-november-15th-health-no-lab"><i class="fa fa-check"></i><b>1.11</b> Week 9 (beg. November 15th): Health (No Lab)</a></li>
+<li class="chapter" data-level="1.12" data-path="reading-list.html"><a href="reading-list.html#week-10-beg.-november-29th-group-presentations"><i class="fa fa-check"></i><b>1.12</b> Week 10 (beg. November 29th): Group Presentations</a></li>
+<li class="chapter" data-level="1.13" data-path="reading-list.html"><a href="reading-list.html#december-11th-final-papers-are-due."><i class="fa fa-check"></i><b>1.13</b> December 11th: Final papers are due.</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="installing-r-and-rstudio.html"><a href="installing-r-and-rstudio.html"><i class="fa fa-check"></i><b>2</b> Installing R and RStudio</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="installing-r-and-rstudio.html"><a href="installing-r-and-rstudio.html#downloading-and-installing-r"><i class="fa fa-check"></i><b>2.1</b> Downloading and Installing R</a></li>
+<li class="chapter" data-level="2.2" data-path="installing-r-and-rstudio.html"><a href="installing-r-and-rstudio.html#downloading-and-installing-rstudio"><i class="fa fa-check"></i><b>2.2</b> Downloading and Installing RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="tour-rstudio-with-udacity.html"><a href="tour-rstudio-with-udacity.html"><i class="fa fa-check"></i><b>3</b> Tour RStudio with Udacity</a></li>
+<li class="chapter" data-level="4" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>4</b> R Basics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="r-basics.html"><a href="r-basics.html#vectors"><i class="fa fa-check"></i><b>4.1</b> Vectors</a></li>
+<li class="chapter" data-level="4.2" data-path="r-basics.html"><a href="r-basics.html#loading-packages"><i class="fa fa-check"></i><b>4.2</b> Loading Packages</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="exploring-and-visualizing-data.html"><a href="exploring-and-visualizing-data.html"><i class="fa fa-check"></i><b>5</b> Exploring and Visualizing Data</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="exploring-and-visualizing-data.html"><a href="exploring-and-visualizing-data.html#lab-assignment"><i class="fa fa-check"></i><b>5.1</b> Lab Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="surveys-and-survey-experiments-with-qualtrics.html"><a href="surveys-and-survey-experiments-with-qualtrics.html"><i class="fa fa-check"></i><b>6</b> Surveys and Survey Experiments with Qualtrics</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="surveys-and-survey-experiments-with-qualtrics.html"><a href="surveys-and-survey-experiments-with-qualtrics.html#creating-a-qualtrics-account"><i class="fa fa-check"></i><b>6.1</b> Creating a Qualtrics account</a></li>
+<li class="chapter" data-level="6.2" data-path="surveys-and-survey-experiments-with-qualtrics.html"><a href="surveys-and-survey-experiments-with-qualtrics.html#building-a-survey"><i class="fa fa-check"></i><b>6.2</b> Building a survey</a></li>
+<li class="chapter" data-level="6.3" data-path="surveys-and-survey-experiments-with-qualtrics.html"><a href="surveys-and-survey-experiments-with-qualtrics.html#survey-options"><i class="fa fa-check"></i><b>6.3</b> Survey options</a></li>
+<li class="chapter" data-level="6.4" data-path="surveys-and-survey-experiments-with-qualtrics.html"><a href="surveys-and-survey-experiments-with-qualtrics.html#a-quick-survey-experiment"><i class="fa fa-check"></i><b>6.4</b> A quick survey experiment</a></li>
+<li class="chapter" data-level="6.5" data-path="surveys-and-survey-experiments-with-qualtrics.html"><a href="surveys-and-survey-experiments-with-qualtrics.html#publish-and-distribute"><i class="fa fa-check"></i><b>6.5</b> Publish and Distribute</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="collecting-data-online.html"><a href="collecting-data-online.html"><i class="fa fa-check"></i><b>7</b> Collecting data online</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="collecting-data-online.html"><a href="collecting-data-online.html#scraping-the-web"><i class="fa fa-check"></i><b>7.1</b> Scraping the web</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html"><i class="fa fa-check"></i><b>8</b> Machine Learning I: Linear and Multiple Regression</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html#more-with-the-gss"><i class="fa fa-check"></i><b>8.1</b> More with the GSS</a></li>
+<li class="chapter" data-level="8.2" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html#how-regression-works"><i class="fa fa-check"></i><b>8.2</b> How regression works</a></li>
+<li class="chapter" data-level="8.3" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html#linear-regression-using-the-lm-function"><i class="fa fa-check"></i><b>8.3</b> Linear regression using the lm function</a></li>
+<li class="chapter" data-level="8.4" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html#prediction-and-prediction-errors"><i class="fa fa-check"></i><b>8.4</b> Prediction and prediction errors</a></li>
+<li class="chapter" data-level="8.5" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html#multiple-regression"><i class="fa fa-check"></i><b>8.5</b> Multiple Regression</a></li>
+<li class="chapter" data-level="8.6" data-path="machine-learning-i-linear-and-multiple-regression.html"><a href="machine-learning-i-linear-and-multiple-regression.html#prediction"><i class="fa fa-check"></i><b>8.6</b> Prediction</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="machine-learning-with-caret.html"><a href="machine-learning-with-caret.html"><i class="fa fa-check"></i><b>9</b> Machine Learning with caret</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="machine-learning-with-caret.html"><a href="machine-learning-with-caret.html#the-data"><i class="fa fa-check"></i><b>9.1</b> The data</a></li>
+<li class="chapter" data-level="9.2" data-path="machine-learning-with-caret.html"><a href="machine-learning-with-caret.html#training-vs.-testing"><i class="fa fa-check"></i><b>9.2</b> Training vs. testing</a></li>
+<li class="chapter" data-level="9.3" data-path="machine-learning-with-caret.html"><a href="machine-learning-with-caret.html#creating-features"><i class="fa fa-check"></i><b>9.3</b> Creating features</a></li>
+<li class="chapter" data-level="9.4" data-path="machine-learning-with-caret.html"><a href="machine-learning-with-caret.html#constructing-a-model"><i class="fa fa-check"></i><b>9.4</b> Constructing a model</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="machine-learning-with-caret.html"><a href="machine-learning-with-caret.html#lab"><i class="fa fa-check"></i><b>9.4.1</b> LAB</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html"><i class="fa fa-check"></i><b>10</b> Social and Semantic Network Analysis</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#understanding-network-data-structures"><i class="fa fa-check"></i><b>10.1</b> Understanding network data structures</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#edge-lists"><i class="fa fa-check"></i><b>10.1.1</b> Edge lists</a></li>
+<li class="chapter" data-level="10.1.2" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#adjacency-matrices"><i class="fa fa-check"></i><b>10.1.2</b> Adjacency matrices</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#producing-a-skip-gram-matrix-for-semantic-network-analysis-and-embedding-models"><i class="fa fa-check"></i><b>10.2</b> Producing a skip-gram matrix for semantic network analysis and embedding models</a></li>
+<li class="chapter" data-level="10.3" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#from-data-to-networks"><i class="fa fa-check"></i><b>10.3</b> From data to networks</a></li>
+<li class="chapter" data-level="10.4" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#exploring-your-network"><i class="fa fa-check"></i><b>10.4</b> Exploring your network</a></li>
+<li class="chapter" data-level="10.5" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#the-basics-of-visualization"><i class="fa fa-check"></i><b>10.5</b> The Basics of Visualization</a></li>
+<li class="chapter" data-level="10.6" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#layouts"><i class="fa fa-check"></i><b>10.6</b> Layouts</a></li>
+<li class="chapter" data-level="10.7" data-path="social-and-semantic-network-analysis.html"><a href="social-and-semantic-network-analysis.html#group-detection"><i class="fa fa-check"></i><b>10.7</b> Group detection</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="working-with-weird-data-an-example.html"><a href="working-with-weird-data-an-example.html"><i class="fa fa-check"></i><b>11</b> Working with weird data, an example</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="working-with-weird-data-an-example.html"><a href="working-with-weird-data-an-example.html#reading-in-pdf-data"><i class="fa fa-check"></i><b>11.1</b> Reading in PDF data</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Computational Social Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="working-with-weird-data-an-example" class="section level1" number="11">
+<h1><span class="header-section-number">11</span> Working with weird data, an example</h1>
+<p>By now, you have a wide range of skills when it comes to analyzing data. You can design your own surveys, analyze networks, text data, text networks, perform machine learning and linear regression. The goal of this week is to prepare you for some of the inevitable difficulties you will run into when starting your own data projects.</p>
+<p>There is so much data out there and a lot of it is messy or in formats that you can’t easily analyze. One common data format you will run into, especially in social histroy, is PDF. We use PDFs all the time for documents ranging from articles to contracts. PDFs can easily be opened one at a time using Adobe or Preview but are difficult to analyze systematically in R.</p>
+<p>Two common issues arise when working with PDFs. First, PDFs do not natively read into R. If you want PDF data, you’ll have to use packages like <code>pdftools</code> to read your PDF. But it gets even more complicated – older PDFs are often just simple images of texts, scanned into the computer. As a result, the data they hold is optical, and so you can’t simply read the text into R, even with pdftools at your disposal. As a result, we’ll have to learn how to perform Optimal Character Recognition (OCR), which uses machine learning to take images of texts and reads the text.</p>
+<div id="reading-in-pdf-data" class="section level2" number="11.1">
+<h2><span class="header-section-number">11.1</span> Reading in PDF data</h2>
+<p>How can we read PDFs into R? If your PDF is already OCRed and has text associated with it, you can simply use the <code>pdf_text()</code> function from the pdftools packages in R to read in the text. For example, here, I read in a pdf from my own computer.</p>
+<p>First, install pdftools.</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="working-with-weird-data-an-example.html#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;pdftools&quot;</span>)</span></code></pre></div>
+<p>Then load it in along with tidyverse</p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="working-with-weird-data-an-example.html#cb240-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pdftools)</span></code></pre></div>
+<pre><code>## Using poppler version 20.12.1</code></pre>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="working-with-weird-data-an-example.html#cb242-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<p>Next, we can use the pdf_text function to read in the PDF.</p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="working-with-weird-data-an-example.html#cb243-1" aria-hidden="true" tabindex="-1"></a>PDF <span class="ot">&lt;-</span> <span class="fu">pdf_text</span>(<span class="st">&quot;Data/Wimmer_Lewis_2010_Beyond and Below Racial Homophily.pdf&quot;</span>) </span></code></pre></div>
+<p>It is some pretty messy text data! We could use what we learned in previous weeks to clean it up. Overall though, it isn’t too bad. If you had a folder full of PDFs on your computer, you could loop through each file with a PDF extension, and read it into R. For example, here I do it for a folder of readings from social network analysis class.</p>
+<p>First, I list all the files in the folder.</p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="working-with-weird-data-an-example.html#cb244-1" aria-hidden="true" tabindex="-1"></a>base_folder <span class="ot">&lt;-</span> <span class="st">&quot;Week 2 - Types of Networks&quot;</span></span>
+<span id="cb244-2"><a href="working-with-weird-data-an-example.html#cb244-2" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(base_folder)</span></code></pre></div>
+<p>Then I check which files are pdfs</p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="working-with-weird-data-an-example.html#cb245-1" aria-hidden="true" tabindex="-1"></a>which_pdf <span class="ot">&lt;-</span> <span class="fu">grepl</span>(<span class="st">&quot;pdf&quot;</span>, files)</span></code></pre></div>
+<p>I limit the files to the pdfs.</p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="working-with-weird-data-an-example.html#cb246-1" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> files[which_pdf]</span></code></pre></div>
+<p>Finally, I’ll read the pdfs into R using pdftools.</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="working-with-weird-data-an-example.html#cb247-1" aria-hidden="true" tabindex="-1"></a>week2_pdfs <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">paste0</span>(base_folder, <span class="st">&quot;/&quot;</span>, files), pdf_text)</span></code></pre></div>
+<p>Everything looks good… except the second reading, “Threshold Models of Collective Behavior” by Mark Granovetter. It is completely empty! What is going on?</p>
+<p>It turns out that the PDF has not been OCRed. It was published in 1978, well before the large-scale digitization of journal articles. As a result, it is simply an image of the paper without any text associated with the words in the article. There is nothing for pdftools to grab!</p>
+<p>We’ll have to OCR it ourselves. We can use the tesseract engine to do that. Tesseract is a state-of-the-art OCR engine originally developed by HP and now sponsored by Google. It may be open source, but it is as accurate as many proprietary engines!</p>
+<p>Before we OCR Professor Granovetter’s paper, let’s work through a couple examples. First, we’ll OCR a test image. Go to <a href="http://jeroen.github.io/images/testocr.png" class="uri">http://jeroen.github.io/images/testocr.png</a> to see it.</p>
+<p>Let’s install the tesseract package in R.</p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="working-with-weird-data-an-example.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tesseract&quot;</span>)</span></code></pre></div>
+<p>Now we will load it in and select the english engine.</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="working-with-weird-data-an-example.html#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tesseract)</span>
+<span id="cb249-2"><a href="working-with-weird-data-an-example.html#cb249-2" aria-hidden="true" tabindex="-1"></a>eng <span class="ot">&lt;-</span> <span class="fu">tesseract</span>(<span class="st">&quot;eng&quot;</span>)</span></code></pre></div>
+<p>Last, we can tell tesseract to OCR the image of the poem in the link above.</p>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="working-with-weird-data-an-example.html#cb250-1" aria-hidden="true" tabindex="-1"></a>text <span class="ot">&lt;-</span> tesseract<span class="sc">::</span><span class="fu">ocr</span>(<span class="st">&quot;http://jeroen.github.io/images/testocr.png&quot;</span>, <span class="at">engine =</span> eng)</span>
+<span id="cb250-2"><a href="working-with-weird-data-an-example.html#cb250-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(text)</span></code></pre></div>
+<pre><code>## This is a lot of 12 point text to test the
+## ocr code and see if it works on all types
+## of file format.
+## 
+## The quick brown dog jumped over the
+## lazy fox. The quick brown dog jumped
+## over the lazy fox. The quick brown dog
+## jumped over the lazy fox. The quick
+## brown dog jumped over the lazy fox.</code></pre>
+<p>Pretty good!</p>
+<p>Sometimes you have to clean the image file a bit to make it work well with the OCR engine. We can use the magick package for that. It has functions to resize images, convert images to different color schemes, trim whitespace on images, and write the results to new images.</p>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="working-with-weird-data-an-example.html#cb252-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;magick&quot;</span>)</span></code></pre></div>
+<p>Let’s load in magick</p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="working-with-weird-data-an-example.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magick)</span></code></pre></div>
+<pre><code>## Linking to ImageMagick 6.9.12.3
+## Enabled features: cairo, fontconfig, freetype, heic, lcms, pango, raw, rsvg, webp
+## Disabled features: fftw, ghostscript, x11</code></pre>
+<p>We’ll load in the image. You can go to the link to see that it is a bit messy.</p>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="working-with-weird-data-an-example.html#cb255-1" aria-hidden="true" tabindex="-1"></a>input <span class="ot">&lt;-</span> <span class="fu">image_read</span>(<span class="st">&quot;https://jeroen.github.io/images/bowers.jpg&quot;</span>)</span></code></pre></div>
+<p>Now we can apply some of the magick functions to clean up the image.</p>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="working-with-weird-data-an-example.html#cb256-1" aria-hidden="true" tabindex="-1"></a>text <span class="ot">&lt;-</span> input <span class="sc">%&gt;%</span></span>
+<span id="cb256-2"><a href="working-with-weird-data-an-example.html#cb256-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">image_resize</span>(<span class="st">&quot;2000x&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb256-3"><a href="working-with-weird-data-an-example.html#cb256-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">image_convert</span>(<span class="at">type =</span> <span class="st">&#39;Grayscale&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb256-4"><a href="working-with-weird-data-an-example.html#cb256-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">image_trim</span>(<span class="at">fuzz =</span> <span class="dv">40</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb256-5"><a href="working-with-weird-data-an-example.html#cb256-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">image_write</span>(<span class="at">format =</span> <span class="st">&#39;png&#39;</span>, <span class="at">density =</span> <span class="st">&#39;300x300&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb256-6"><a href="working-with-weird-data-an-example.html#cb256-6" aria-hidden="true" tabindex="-1"></a>  tesseract<span class="sc">::</span><span class="fu">ocr</span>() </span></code></pre></div>
+<p>How did we do?</p>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="working-with-weird-data-an-example.html#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(text)</span></code></pre></div>
+<pre><code>## The Life and Work of
+## Fredson Bowers
+## by
+## G. THOMAS TANSELLE
+## 
+## N EVERY FIELD OF ENDEAVOR THERE ARE A FEW FIGURES WHOSE ACCOM-
+## plishment and influence cause them to be the symbols of their age;
+## their careers and oeuvres become the touchstones by which the
+## field is measured and its history told. In the related pursuits of
+## analytical and descriptive bibliography, textual criticism, and scholarly
+## editing, Fredson Bowers was such a figure, dominating the four decades
+## after 1949, when his Principles of Bibliographical Description was pub-
+## lished. By 1973 the period was already being called “the age of Bowers”:
+## in that year Norman Sanders, writing the chapter on textual scholarship
+## for Stanley Wells&#39;s Shakespeare: Select Bibliographies, gave this title to
+## a section of his essay. For most people, it would be achievement enough
+## to rise to such a position in a field as complex as Shakespearean textual
+## studies; but Bowers played an equally important role in other areas.
+## Editors of nineteenth-century American authors, for example, would
+## also have to call the recent past “the age of Bowers,” as would the writers
+## of descriptive bibliographies of authors and presses. His ubiquity in
+## the broad field of bibliographical and textual study, his seemingly com-
+## plete possession of it, distinguished him from his illustrious predeces-
+## sors and made him the personification of bibliographical scholarship in
+## 
+## his time.
+## 
+## When in 1969 Bowers was awarded the Gold Medal of the Biblio-
+## graphical Society in London, John Carter’s citation referred to the
+## Principles as “majestic,” called Bowers’s current projects “formidable,”
+## said that he had “imposed critical discipline” on the texts of several
+## authors, described Studies in Bibliography as a “great and continuing
+## achievement,” and included among his characteristics “uncompromising
+## seriousness of purpose” and “professional intensity.” Bowers was not
+## unaccustomed to such encomia, but he had also experienced his share of
+## attacks: his scholarly positions were not universally popular, and he
+## expressed them with an aggressiveness that almost seemed calculated to</code></pre>
+<p>Not bad! Alright, let’s try reading in Granovetter’s piece.</p>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="working-with-weird-data-an-example.html#cb259-1" aria-hidden="true" tabindex="-1"></a>pngfile <span class="ot">&lt;-</span> pdftools<span class="sc">::</span><span class="fu">pdf_convert</span>(<span class="st">&#39;Data/Granovetter_AJS_1978_Threshold_Models.pdf&#39;</span>, <span class="at">dpi =</span> <span class="dv">600</span>)</span></code></pre></div>
+<p>Wow.. It converts each page one by one! I guess we will have to analyze each page separately.</p>
+<p>Let’s just look at page 5. It looks pretty straight and nice. Let’s just try OCR on it.</p>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="working-with-weird-data-an-example.html#cb260-1" aria-hidden="true" tabindex="-1"></a>granovetter_page5 <span class="ot">&lt;-</span> tesseract<span class="sc">::</span><span class="fu">ocr</span>(<span class="st">&quot;Data/Granovetter_AJS_1978_Threshold_Models_5.png&quot;</span>) </span></code></pre></div>
+<p>Cool! We would have to do this for every page and then put them all into a single vector.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="social-and-semantic-network-analysis.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

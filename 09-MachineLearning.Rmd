@@ -1,0 +1,190 @@
+---
+output: html_document
+---
+
+# Machine Learning with caret
+
+A few weeks back, we learned how to perform linear regression, with single and multiple predictors. Linear regression will be useful in a wide range of situations, particularly for descriptive and scientific purposes when you want outputs that you can interpret. That said, there are no guarantees that it will be the most accurate method for predicting your outcome of interest. In fact, often times, when you want to optimize on prediction accuracy, it is worth trying a range of other methods to compare which provides the most accurate predictions. 
+
+The best package for doing this in R is caret (short for Classification And REgression Training). It provides: tools for splitting your data into training and test sets, a number of different models, from random forests to logistic regression, and tools for selecting the best model out of a set of alternatives. In this brief tutorial, we will go through an example from start to finish. We'll load data, identify an outcome of interest, split the data into training and test sets, fit a series of models to the training data, and evaluate their performance on the test set. Machine learning is an entire subfield of computer science and could be the basis of a course on its own, as such we will only graze the surface of what you can do and what you should consider when predicting social phenomena. 
+
+## The data
+
+The data for this week's lab come from Twitter, specifically from a recent Kaggle competition (https://www.kaggle.com/c/twitter-sentiment-analysis2), which asked participants to predict the sentiment of a series of tweets using the text content of the tweets. Given our discussion of text analysis in class, let's see how accurately we can predict sentiment using the tools at our disposal. 
+
+## Training vs. testing
+In machine learning, people generally separate their analysis into two steps. First, they train their model on the data. This is what we did when we fit a multiple regression model to the GSS data. Second, they test the model on data the model hasn't seen yet in order to evaluate its performance. Why does it matter if the model has seen the test data before? Often times, this can lead to overfitting - where your model is trained too specifically to the data at hand and cannot generalize beyond it. This can means that when your model does see new data it hasn't seen before, it will do a poor job predicting. 
+
+We will follow this general routine, and train our models on a subset of the data called the training data and then test how well it performs by seeing how accurately it classifies new data. Generally, you assign about a fifth of your total sample to be part of the testing data and the remaining eighty percent are used to train the model. 
+
+First, let's install caret and load it into R. We'll need to load in tidytext and tidyverse too.
+
+```{r eval = F}
+install.packages("caret")
+```
+```{r}
+library(caret)
+library(tidyverse)
+```
+
+Great, now let's load in the data. I put it on Canvas for easy access. 
+```{r}
+data <- read.csv("Data/train.csv", stringsAsFactors = F, encoding = "UTF-8")
+```
+
+We'll focus specifically on the SentimentText column, which includes the content of tweets. This is our first time working with text data and it is never as easy as you would hope. We have to do a few things to prepare the data; for example, convert it to utf-8 and remove in extra white space. For the first, we'll use iconv, which converts between different standards. For the second, we'll use trimws, which, you guessed it, trims white space.
+
+```{r}
+data$SentimentText <- iconv(data$SentimentText, from = "latin1", to = "utf-8")
+data$SentimentText <- trimws(data$SentimentText)
+```
+
+Okay now let's have a look at the data.
+```{r, eval=F}
+View(data)
+```
+
+It is pretty simple - there are three columns, an id column, the human-evaluated sentiment of the text, and the actual text itself. 
+
+The data are huge, so we can play around with a smaller subset of 10000 tweets. 
+```{r}
+set.seed(1234)
+data <- data[sample(1:nrow(data), 1000),]
+```
+
+
+## Creating features
+
+To predict the sentiment, we will have to use the text of the tweets. Specifically, we need to extract characterizations or features for each of the tweets which can then be used as predictor variables in the model. We could for example use the different words in the tweets as predictors (how many times does the word happy appear in a given tweet? how about sad?). The problem with this approach is that most words only appear in a few tweets at most. Having such sparse predictors can lead to unstable models which fail to converge. That means we would have to be very selective in our choices and there is no guarantee that we would choose the right words. 
+
+So what about adding some overall features of the tweet, rather than just the words themselves? There is a cool package called textfeatures in R, which automatically extracts a bunch of useful text information for you (even word embeddings!)
+
+```{r, eval = F}
+install.packages("textfeatures")
+install.packages("text2vec")
+```
+```{r}
+library(textfeatures)
+library(text2vec)
+```
+
+Let's extract the features along with 20 word embedding dimensions
+```{r}
+textlevel_features <- textfeatures(data$SentimentText, 
+                                   word_dims = 20, 
+                                   normalize = T, 
+                                   verbose = FALSE)
+
+data_w_features <- cbind(data, textlevel_features)
+
+# drop the coluns which we won't use in the model
+data_w_features <- subset(data_w_features, select = -c(ItemID, SentimentText))
+
+# set the outcome variable to factor (since it is categorical, sentiment or not)
+data_w_features$Sentiment = as.factor(data_w_features$Sentiment)
+
+## drop columns with little to no variance
+min_var <- function(x, min = 1) {
+  is_num <- vapply(x, is.numeric, logical(1))
+  non_num <- names(x)[!is_num]
+  yminvar <- names(x[is_num])[vapply(x[is_num], function(.x) stats::var(.x, 
+      na.rm = TRUE) >= min, logical(1))]
+  x[c(non_num, yminvar)]
+}
+
+data_w_features <- min_var(data_w_features)
+```
+
+Now let's split this smaller data into training and test sets. 
+```{r}
+training_ids <- sample(rownames(data_w_features), 800)
+training_data <- data_w_features[rownames(data_w_features) %in% training_ids,]
+test_data <- data_w_features[!rownames(data_w_features) %in% training_ids,]
+```
+
+Cool! Now let's begin building our models. 
+
+## Constructing a model
+
+Constructing models in caret involves two steps. First, we have to decide how training should occur. For example, should it use cross-validation (where the data is divided into k equal parts, k rounds of training and testing occur, where data is trained on k-1 portions of the data and tested on the last, held-out portion)? There are many different options, but for now we will just use cross-validation with 5 folds.
+
+```{r, warning=FALSE, message=FALSE}
+fitControl <- trainControl(method = "cv",
+                           number = 5)
+```
+
+Now we can fit models. 
+```{r, warning=FALSE, message=FALSE}
+m.randomForest <- train(Sentiment ~ ., 
+                      data = training_data, 
+                      method = "rf", 
+                      trControl = fitControl,
+                      na.action = na.omit,
+                      trace = FALSE)
+```
+
+```{r, echo = F, warning = F, message = F}
+m.NaiveBayes <- train(Sentiment ~ ., 
+                      data = training_data, 
+                      method = "nb", 
+                      trControl = fitControl,
+                      na.action = na.omit,
+                      trace = FALSE)
+
+m.NaiveBayes
+```
+
+```{r, warning=FALSE, message=FALSE}
+m.decisionTree <- train(Sentiment ~ ., 
+                      data = training_data, 
+                      method = "C5.0", 
+                      trControl = fitControl,
+                      na.action = na.omit,
+                      trace = FALSE)
+
+m.decisionTree
+```
+
+
+```{r, warning=FALSE, message=FALSE}
+m.NeuralNet <- train(Sentiment ~ ., 
+                      data = training_data, 
+                      method = "nnet", 
+                      trControl = fitControl,
+                      na.action = na.omit,
+                     trace = FALSE)
+
+m.NeuralNet
+```
+
+Which method makes the most accurate predictions? caret provides some handy functions for evaluating this. 
+```{r, warning=FALSE, message=FALSE}
+# Make predictions using the test data set
+rf.pred <- predict(m.randomForest,test_data)
+nb.pred <- predict(m.NaiveBayes,test_data)
+dt.pred <- predict(m.decisionTree,test_data)
+nn.pred <- predict(m.NeuralNet,test_data)
+
+#Look at the confusion matrix  
+confusionMatrix(rf.pred, test_data$Sentiment)   
+confusionMatrix(nb.pred, test_data$Sentiment)   
+confusionMatrix(dt.pred, test_data$Sentiment)   
+confusionMatrix(nn.pred, test_data$Sentiment)   
+```
+
+We can also plot a ROC curve, in which the True Positive rate (sensitivity) is plotted against the True Negative rate (specificity). This is good for evaluating whether your model is both correctly predicting which are and are not positive sentiment (not just one or the other). 
+```{r, warning=FALSE, message=FALSE}
+library(pROC) 
+
+#Draw the ROC curve 
+nn.probs <- predict(m.NeuralNet,test_data,type="prob")
+nn.ROC <- roc(predictor=nn.probs$`1`,
+               response=as.numeric(test_data$Sentiment)-1,
+               levels=rev(levels(test_data$Sentiment)))
+nn.ROC$auc
+
+#Area under the curve: 0.6936
+plot(nn.ROC,main="Neural Net ROC")
+```
+
+```{}
